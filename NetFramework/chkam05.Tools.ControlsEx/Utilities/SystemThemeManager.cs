@@ -1,5 +1,5 @@
-﻿using chkam05.Tools.ControlsEx.Data.Appearance;
-using chkam05.Tools.ControlsEx.Data.Events;
+﻿using chkam05.Tools.ControlsEx.Data.Events;
+using chkam05.Tools.ControlsEx.Data.Theme;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;

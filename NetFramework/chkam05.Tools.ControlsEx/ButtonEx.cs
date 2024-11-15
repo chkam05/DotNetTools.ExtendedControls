@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Resources;
+using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace chkam05.Tools.ControlsEx
 
         //  DEPENDENCY PROPERTIES
 
+        public static readonly DependencyProperty BackgroundInactiveProperty = DependencyProperty.Register(
+            nameof(BackgroundInactive),
+            typeof(Brush),
+            typeof(ButtonEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DarkInactive)));
+
         public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(BackgroundMouseOver),
             typeof(Brush),
@@ -27,11 +34,11 @@ namespace chkam05.Tools.ControlsEx
             typeof(ButtonEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorPressed)));
 
-        public static readonly DependencyProperty BackgroundSelectedProperty = DependencyProperty.Register(
-            nameof(BackgroundSelected),
+        public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
+            nameof(BorderBrushInactive),
             typeof(Brush),
             typeof(ButtonEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorSelected)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DarkInactive)));
 
         public static readonly DependencyProperty BorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(BorderBrushMouseOver),
@@ -45,17 +52,17 @@ namespace chkam05.Tools.ControlsEx
             typeof(ButtonEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorPressed)));
 
-        public static readonly DependencyProperty BorderBrushSelectedProperty = DependencyProperty.Register(
-            nameof(BorderBrushSelected),
-            typeof(Brush),
-            typeof(ButtonEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorSelected)));
-
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
             typeof(ButtonEx),
             new PropertyMetadata(new CornerRadius(4)));
+
+        public static readonly DependencyProperty ForegroundInactiveProperty = DependencyProperty.Register(
+            nameof(ForegroundInactive),
+            typeof(Brush),
+            typeof(ButtonEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DarkInactive)));
 
         public static readonly DependencyProperty ForegroundMouseOverProperty = DependencyProperty.Register(
             nameof(ForegroundMouseOver),
@@ -69,14 +76,20 @@ namespace chkam05.Tools.ControlsEx
             typeof(ButtonEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorForeground)));
 
-        public static readonly DependencyProperty ForegroundSelectedProperty = DependencyProperty.Register(
-            nameof(ForegroundSelected),
-            typeof(Brush),
+        public static readonly DependencyProperty OpacityInactiveProperty = DependencyProperty.Register(
+            nameof(OpacityInactive),
+            typeof(double),
             typeof(ButtonEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorForeground)));
+            new PropertyMetadata(0.56d));
 
 
         //  GETTERS & SETTERS
+
+        public Brush BackgroundInactive
+        {
+            get => (Brush)GetValue(BackgroundInactiveProperty);
+            set => SetValue(BackgroundInactiveProperty, value);
+        }
 
         public Brush BackgroundMouseOver
         {
@@ -90,10 +103,10 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(BackgroundPressedProperty, value);
         }
 
-        public Brush BackgroundSelected
+        public Brush BorderBrushInactive
         {
-            get => (Brush)GetValue(BackgroundSelectedProperty);
-            set => SetValue(BackgroundSelectedProperty, value);
+            get => (Brush)GetValue(BorderBrushInactiveProperty);
+            set => SetValue(BorderBrushInactiveProperty, value);
         }
 
         public Brush BorderBrushMouseOver
@@ -108,16 +121,16 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(BorderBrushPressedProperty, value);
         }
 
-        public Brush BorderBrushSelected
-        {
-            get => (Brush)GetValue(BorderBrushSelectedProperty);
-            set => SetValue(BorderBrushSelectedProperty, value);
-        }
-
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        public Brush ForegroundInactive
+        {
+            get => (Brush)GetValue(ForegroundInactiveProperty);
+            set => SetValue(ForegroundInactiveProperty, value);
         }
 
         public Brush ForegroundMouseOver
@@ -132,10 +145,10 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ForegroundPressedProperty, value);
         }
 
-        public Brush ForegroundSelected
+        public double OpacityInactive
         {
-            get => (Brush)GetValue(ForegroundSelectedProperty);
-            set => SetValue(ForegroundSelectedProperty, value);
+            get => (double)GetValue(OpacityInactiveProperty);
+            set => SetValue(OpacityInactiveProperty, MathUtilities.Clamp(value, 0d, 1d));
         }
 
 

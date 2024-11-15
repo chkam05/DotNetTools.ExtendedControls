@@ -5,35 +5,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace chkam05.Tools.ControlsEx.Data.Appearance
+namespace chkam05.Tools.ControlsEx.Data.Theme
 {
-    public class AppearanceManager
+    public class ThemeManager
     {
 
         //  VARIABLES
 
-        private AppearanceManager instance;
-        private object instanceLock = new object();
-        private AppearanceDataModel dataContext;
+        private static ThemeManager instance;
+        private static object instanceLock = new object();
+        private ThemeDataModel dataContext;
 
 
         //  GETTERS & SETTERS
 
-        public AppearanceManager Instance
+        public static ThemeManager Instance
         {
             get
             {
                 lock (instanceLock)
                 {
                     if (instance == null)
-                        instance = new AppearanceManager();
+                        instance = new ThemeManager();
 
                     return instance;
                 }
             }
         }
 
-        public AppearanceDataModel DataContext { get; private set; }
+        public ThemeDataModel DataContext
+        {
+            get => dataContext;
+        }
 
 
         //  METHODS
@@ -41,10 +44,10 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
         #region CONSTRUCTORS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> AppearanceManager private class constructor. </summary>
-        private AppearanceManager()
+        /// <summary> ThemeManager private class constructor. </summary>
+        private ThemeManager()
         {
-            dataContext = new AppearanceDataModel();
+            dataContext = new ThemeDataModel();
         }
 
         #endregion CONSTRUCTORS

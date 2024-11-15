@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace chkam05.Tools.ControlsEx.Data.Appearance
+namespace chkam05.Tools.ControlsEx.Data.Theme
 {
     public enum ThemeType
     {

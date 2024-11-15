@@ -1,4 +1,4 @@
-﻿using chkam05.Tools.ControlsEx.Data.Appearance;
+﻿using chkam05.Tools.ControlsEx.Data.Theme;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -50,9 +50,9 @@
   <ItemGroup>
     <Compile Include="ButtonEx.cs" />
     <Compile Include="Data\AHSLColor.cs" />
-    <Compile Include="Data\Appearance\AppearanceDataModel.cs" />
-    <Compile Include="Data\Appearance\AppearanceManager.cs" />
-    <Compile Include="Data\Appearance\ThemeType.cs" />
+    <Compile Include="Data\Theme\ThemeDataModel.cs" />
+    <Compile Include="Data\Theme\ThemeManager.cs" />
+    <Compile Include="Data\Theme\ThemeType.cs" />
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

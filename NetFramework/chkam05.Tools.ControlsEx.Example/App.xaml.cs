@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Data;
+using chkam05.Tools.ControlsEx.Data.Theme;
 using chkam05.Tools.ControlsEx.Example.Windows;
 using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
@@ -9,11 +10,17 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx.Example
 {
     public partial class App : Application
     {
+
+        //  VARIABLES
+
+        public ThemeManager ThemeManager { get; private set; }
+
 
         //  METHODS
 
@@ -23,7 +30,8 @@ namespace chkam05.Tools.ControlsEx.Example
         /// <summary> App class constructor. </summary>
         public App() : base()
         {
-            //
+            ThemeManager = ThemeManager.Instance;
+            this.ThemeManager.DataContext.AppearanceColor = Colors.Green;
         }
 
         #endregion CONSTRUCTORS

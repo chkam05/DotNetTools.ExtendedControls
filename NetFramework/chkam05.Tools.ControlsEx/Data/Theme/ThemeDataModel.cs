@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace chkam05.Tools.ControlsEx.Data.Appearance
+namespace chkam05.Tools.ControlsEx.Data.Theme
 {
-    public class AppearanceDataModel : BaseViewModel
+    public class ThemeDataModel : BaseViewModel
     {
 
         //  VARIABLES
@@ -19,38 +19,39 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
         private Brush accentBackground;
         private Brush accentBorderBrush;
         private Brush accentForeground;
-        private Brush accentMouseOverBackground;
-        private Brush accentMouseOverBorderBrush;
-        private Brush accentMouseOverForeground;
-        private Brush accentPressedBackground;
-        private Brush accentPressedBorderBrush;
-        private Brush accentPressedForeground;
-        private Brush accentSelectedBackground;
-        private Brush accentSelectedBorderBrush;
-        private Brush accentSelectedForeground;
+        private Brush accentBackgroundMouseOver;
+        private Brush accentBackgroundPressed;
+        private Brush accentBackgroundSelected;
+        private Brush accentBorderBrushMouseOver;
+        private Brush accentBorderBrushPressed;
+        private Brush accentBorderBrushSelected;
+        private Brush accentForegroundMouseOver;
+        private Brush accentForegroundPressed;
+        private Brush accentForegroundSelected;
 
         private int accentMouseOverColorFactor = -15;
         private int accentPressedColorFactor = 10;
         private int accentSelectedColorFactor = 5;
 
+        private Brush backgroundInactive;
+        private Brush borderBrushInactive;
+        private Brush foregroundInactive;
+
         private bool enableIndependentAccentConfig = false;
         private bool enableIndependentThemeConfig = false;
+        
+        private double opacityInactive = 0.56;
 
-        private Brush inactiveBackground;
-        private Brush inactiveBorderBrush;
-        private Brush inactiveForeground;
-        private double inactiveOpacity = 0.56;
-
-        private ThemeType themeType = ThemeType.Light;
+        private ThemeType themeType = ThemeType.Dark;
         private Brush themeBackground;
+        private Brush themeBackgroundMouseOver;
+        private Brush themeBackgroundPressed;
+        private Brush themeBackgroundSelected;
+        private Brush themeBackgroundShade;
         private Brush themeForeground;
-        private Brush themeShadeBackground;
-        private Brush themeMouseOverBackground;
-        private Brush themeMouseOverForeground;
-        private Brush themePressedBackground;
-        private Brush themePressedForeground;
-        private Brush themeSelectedBackground;
-        private Brush themeSelectedForeground;
+        private Brush themeForegroundMouseOver;
+        private Brush themeForegroundPressed;
+        private Brush themeForegroundSelected;
 
         private int themeInactiveColorFactor = 37;
         private int themeMouseOverColorFactor = 50;
@@ -78,10 +79,46 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref accentBackground, value);
         }
 
+        public Brush AccentBackgroundMouseOver
+        {
+            get => accentBackgroundMouseOver;
+            set => UpdateProperty(ref accentBackgroundMouseOver, value);
+        }
+
+        public Brush AccentBackgroundPressed
+        {
+            get => accentBackgroundPressed;
+            set => UpdateProperty(ref accentBackgroundPressed, value);
+        }
+
+        public Brush AccentBackgroundSelected
+        {
+            get => accentBackgroundSelected;
+            set => UpdateProperty(ref accentBackgroundSelected, value);
+        }
+
         public Brush AccentBorderBrush
         {
             get => accentBorderBrush;
             set => UpdateProperty(ref accentBorderBrush, value);
+        }
+
+        public Brush AccentBorderBrushMouseOver
+        {
+            get => accentBorderBrushMouseOver;
+            set => UpdateProperty(ref accentBorderBrushMouseOver, value);
+        }
+
+        public Brush AccentBorderBrushPressed
+        {
+            get => accentBorderBrushPressed;
+            set => UpdateProperty(ref accentBorderBrushPressed, value);
+        }
+
+        public Brush AccentBorderBrushSelected
+        {
+            get => accentBorderBrushSelected;
+            set => UpdateProperty(ref accentBorderBrushSelected, value);
         }
 
         public Brush AccentForeground
@@ -90,58 +127,22 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref accentForeground, value);
         }
 
-        public Brush AccentMouseOverBackground
+        public Brush AccentForegroundMouseOver
         {
-            get => accentMouseOverBackground;
-            set => UpdateProperty(ref accentMouseOverBackground, value);
+            get => accentForegroundMouseOver;
+            set => UpdateProperty(ref accentForegroundMouseOver, value);
         }
 
-        public Brush AccentMouseOverBorderBrush
+        public Brush AccentForegroundPressed
         {
-            get => accentMouseOverBorderBrush;
-            set => UpdateProperty(ref accentMouseOverBorderBrush, value);
+            get => accentForegroundPressed;
+            set => UpdateProperty(ref accentForegroundPressed, value);
         }
 
-        public Brush AccentMouseOverForeground
+        public Brush AccentForegroundSelected
         {
-            get => accentMouseOverForeground;
-            set => UpdateProperty(ref accentMouseOverForeground, value);
-        }
-
-        public Brush AccentPressedBackground
-        {
-            get => accentPressedBackground;
-            set => UpdateProperty(ref accentPressedBackground, value);
-        }
-
-        public Brush AccentPressedBorderBrush
-        {
-            get => accentPressedBorderBrush;
-            set => UpdateProperty(ref accentPressedBorderBrush, value);
-        }
-
-        public Brush AccentPressedForeground
-        {
-            get => accentPressedForeground;
-            set => UpdateProperty(ref accentPressedForeground, value);
-        }
-
-        public Brush AccentSelectedBackground
-        {
-            get => accentSelectedBackground;
-            set => UpdateProperty(ref accentSelectedBackground, value);
-        }
-
-        public Brush AccentSelectedBorderBrush
-        {
-            get => accentSelectedBorderBrush;
-            set => UpdateProperty(ref accentSelectedBorderBrush, value);
-        }
-
-        public Brush AccentSelectedForeground
-        {
-            get => accentSelectedForeground;
-            set => UpdateProperty(ref accentSelectedForeground, value);
+            get => accentForegroundSelected;
+            set => UpdateProperty(ref accentForegroundSelected, value);
         }
 
         public int AccentMouseOverColorFactor
@@ -174,6 +175,24 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             }
         }
 
+        public Brush BackgroundInactive
+        {
+            get => backgroundInactive;
+            set => UpdateProperty(ref backgroundInactive, value);
+        }
+
+        public Brush BorderBrushInactive
+        {
+            get => borderBrushInactive;
+            set => UpdateProperty(ref borderBrushInactive, value);
+        }
+
+        public Brush ForegroundInactive
+        {
+            get => foregroundInactive;
+            set => UpdateProperty(ref foregroundInactive, value);
+        }
+
         public bool EnableIndependentAccentConfig
         {
             get => enableIndependentAccentConfig;
@@ -186,30 +205,6 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref enableIndependentThemeConfig, value);
         }
 
-        public Brush InactiveBackground
-        {
-            get => inactiveBackground;
-            set => UpdateProperty(ref inactiveBackground, value);
-        }
-
-        public Brush InactiveBorderBrush
-        {
-            get => inactiveBorderBrush;
-            set => UpdateProperty(ref inactiveBorderBrush, value);
-        }
-
-        public Brush InactiveForeground
-        {
-            get => inactiveForeground;
-            set => UpdateProperty(ref inactiveForeground, value);
-        }
-
-        public double InactiveOpacity
-        {
-            get => inactiveOpacity;
-            set => UpdateProperty(ref inactiveOpacity, MathUtilities.Clamp(value, 0d, 1d));
-        }
-
         public int InactiveColorFactor
         {
             get => themeInactiveColorFactor;
@@ -219,6 +214,12 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
                 UpdateAppearanceBrushes(appearanceColor);
                 UpdateThemeBrushes(themeType);
             }
+        }
+
+        public double OpacityInactive
+        {
+            get => opacityInactive;
+            set => UpdateProperty(ref opacityInactive, MathUtilities.Clamp(value, 0d, 1d));
         }
 
         public ThemeType ThemeType
@@ -237,52 +238,52 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref themeBackground, value);
         }
 
+        public Brush ThemeBackgroundMouseOver
+        {
+            get => themeBackgroundMouseOver;
+            set => UpdateProperty(ref themeBackgroundMouseOver, value);
+        }
+
+        public Brush ThemeBackgroundPressed
+        {
+            get => themeBackgroundPressed;
+            set => UpdateProperty(ref themeBackgroundPressed, value);
+        }
+
+        public Brush ThemeBackgroundSelected
+        {
+            get => themeBackgroundSelected;
+            set => UpdateProperty(ref themeBackgroundSelected, value);
+        }
+
+        public Brush ThemeBackgroundShade
+        {
+            get => themeBackgroundShade;
+            set => UpdateProperty(ref themeBackgroundShade, value);
+        }
+
         public Brush ThemeForeground
         {
             get => themeForeground;
             set => UpdateProperty(ref themeForeground, value);
         }
 
-        public Brush ThemeShadeBackground
+        public Brush ThemeForegroundMouseOver
         {
-            get => themeShadeBackground;
-            set => UpdateProperty(ref themeShadeBackground, value);
+            get => themeForegroundMouseOver;
+            set => UpdateProperty(ref themeForegroundMouseOver, value);
         }
 
-        public Brush ThemeMouseOverBackground
+        public Brush ThemeForegroundPressed
         {
-            get => themeMouseOverBackground;
-            set => UpdateProperty(ref themeMouseOverBackground, value);
+            get => themeForegroundPressed;
+            set => UpdateProperty(ref themeForegroundPressed, value);
         }
 
-        public Brush ThemeMouseOverForeground
+        public Brush ThemeForegroundSelected
         {
-            get => themeMouseOverForeground;
-            set => UpdateProperty(ref themeMouseOverForeground, value);
-        }
-
-        public Brush ThemePressedBackground
-        {
-            get => themePressedBackground;
-            set => UpdateProperty(ref themePressedBackground, value);
-        }
-
-        public Brush ThemePressedForeground
-        {
-            get => themePressedForeground;
-            set => UpdateProperty(ref themePressedForeground, value);
-        }
-
-        public Brush ThemeSelectedBackground
-        {
-            get => themeSelectedBackground;
-            set => UpdateProperty(ref themeSelectedBackground, value);
-        }
-
-        public Brush ThemeSelectedForeground
-        {
-            get => themeSelectedForeground;
-            set => UpdateProperty(ref themeSelectedForeground, value);
+            get => themeForegroundSelected;
+            set => UpdateProperty(ref themeForegroundSelected, value);
         }
 
         public int ThemeInactiveColorFactor
@@ -342,7 +343,7 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
 
         //  --------------------------------------------------------------------------------
         /// <summary> Appearance data model class constructor. </summary>
-        public AppearanceDataModel()
+        public ThemeDataModel()
         {
             Refresh();
         }
@@ -375,18 +376,19 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             var selected = ColorsUtilities.UpdateColor(ahslColor, l: ahslColor.L - accentSelectedColorFactor).ToColor();
 
             AccentBackground = new SolidColorBrush(color);
+            AccentBackgroundMouseOver = new SolidColorBrush(mouseOver);
+            AccentBackgroundPressed = new SolidColorBrush(pressed);
+            AccentBackgroundSelected = new SolidColorBrush(selected);
+
             AccentBorderBrush = new SolidColorBrush(color);
+            AccentBorderBrushMouseOver = new SolidColorBrush(mouseOver);
+            AccentBorderBrushPressed = new SolidColorBrush(pressed);
+            AccentBorderBrushSelected = new SolidColorBrush(selected);
+
             AccentForeground = new SolidColorBrush(foreground);
-            AccentMouseOverBackground = new SolidColorBrush(mouseOver);
-            AccentMouseOverBorderBrush = new SolidColorBrush(mouseOver);
-            AccentMouseOverForeground = new SolidColorBrush(foreground);
-            
-            AccentPressedBackground = new SolidColorBrush(pressed);
-            AccentPressedBorderBrush = new SolidColorBrush(pressed);
-            AccentPressedForeground = new SolidColorBrush(foreground);
-            AccentSelectedBackground = new SolidColorBrush(selected);
-            AccentSelectedBorderBrush = new SolidColorBrush(selected);
-            AccentSelectedForeground = new SolidColorBrush(foreground);
+            AccentForegroundMouseOver = new SolidColorBrush(foreground);
+            AccentForegroundPressed = new SolidColorBrush(foreground);
+            AccentForegroundSelected = new SolidColorBrush(foreground);
         }
 
         //  --------------------------------------------------------------------------------
@@ -449,19 +451,20 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
                     : ahslColor.L + themeSelectedColorFactor,
                 s: 0).ToColor();
 
-            InactiveBackground = new SolidColorBrush(inactive);
-            InactiveBorderBrush = new SolidColorBrush(inactive);
-            InactiveForeground = new SolidColorBrush(inactiveForeground);
+            BackgroundInactive = new SolidColorBrush(inactive);
+            BorderBrushInactive = new SolidColorBrush(inactive);
+            ForegroundInactive = new SolidColorBrush(inactiveForeground);
 
             ThemeBackground = new SolidColorBrush(background);
+            ThemeBackgroundMouseOver = new SolidColorBrush(mouseOver);
+            ThemeBackgroundPressed = new SolidColorBrush(pressed);
+            ThemeBackgroundSelected = new SolidColorBrush(selected);
+            ThemeBackgroundShade = new SolidColorBrush(shade);
+
             ThemeForeground = new SolidColorBrush(foreground);
-            ThemeShadeBackground = new SolidColorBrush(shade);
-            ThemeMouseOverBackground = new SolidColorBrush(mouseOver);
-            ThemeMouseOverForeground = new SolidColorBrush(foreground);
-            ThemePressedBackground = new SolidColorBrush(pressed);
-            ThemePressedForeground = new SolidColorBrush(foreground);
-            ThemeSelectedBackground = new SolidColorBrush(selected);
-            ThemeSelectedForeground = new SolidColorBrush(foreground);
+            ThemeForegroundMouseOver = new SolidColorBrush(foreground);
+            ThemeForegroundPressed = new SolidColorBrush(foreground);
+            ThemeForegroundSelected = new SolidColorBrush(foreground);
         }
 
         #endregion CONFIGURATION UPDATE
