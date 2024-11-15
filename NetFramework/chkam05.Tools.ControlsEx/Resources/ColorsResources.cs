@@ -10,11 +10,33 @@ namespace chkam05.Tools.ControlsEx.Resources
 {
     public static class ColorsResources
     {
-        public static readonly Color BaseAccentColor = Color.FromArgb(255, 0, 120, 215);
+        //  BASE ACCENT COLORS
+
+        public static readonly Color DefaultAccentColor = Color.FromArgb(255, 0, 120, 215);
+        public static readonly Color DefaultAccentColorForeground = Color.FromArgb(255, 255, 255, 255);
+        public static readonly Color DefaultAccentColorMouseOver = Color.FromArgb(255, 35, 157, 254);
+        public static readonly Color DefaultAccentColorPressed = Color.FromArgb(255, 0, 90, 163);
+        public static readonly Color DefaultAccentColorSelected = Color.FromArgb(255, 0, 105, 188);
+
+        //  BASE THEME COLORS
+
         public static readonly Color DarkBackground = Colors.Black;
+        public static readonly Color DarkForeground = Colors.White;
+        public static readonly Color DarkInactive = Color.FromArgb(255, 94, 94, 94);
+        public static readonly Color DarkMouseOver = Color.FromArgb(255, 127, 127, 127);
+        public static readonly Color DarkPressed = Color.FromArgb(255, 43, 43, 43);
+        public static readonly Color DarkSelected = Color.FromArgb(255, 86, 86, 86);
         public static readonly Color DarkShadeBackground = Color.FromArgb(255, 36, 36, 36);
+
         public static readonly Color LightBackground = Colors.White;
+        public static readonly Color LightForeground = Colors.Black;
+        public static readonly Color LighInactive = Color.FromArgb(255, 160, 160, 160);
+        public static readonly Color LighMouseOver = Color.FromArgb(255, 127, 127, 127);
+        public static readonly Color LighPressed = Color.FromArgb(255, 211, 211, 211);
+        public static readonly Color LighSelected = Color.FromArgb(255, 168, 168, 168);
         public static readonly Color LightShadeBackground = Color.FromArgb(255, 219, 219, 219);
+
+        //  PALETTE COLORS
 
         public static readonly ColorEx GoldYellow = ColorEx.CreateFromHexCode("#FFB900", "Gold Yellow");
         public static readonly ColorEx Gold = ColorEx.CreateFromHexCode("#FF8C00", "Gold");
@@ -69,5 +91,61 @@ namespace chkam05.Tools.ControlsEx.Resources
         public static readonly ColorEx Sage = ColorEx.CreateFromHexCode("#525E54", "Sage");
         public static readonly ColorEx Desert = ColorEx.CreateFromHexCode("#847545", "Desert");
         public static readonly ColorEx Moro = ColorEx.CreateFromHexCode("#766B59", "Moro");
+
+        //  PALETTE BRUSHES
+
+        public static readonly Brush GoldYellowBrush = new SolidColorBrush(GoldYellow.Color);
+        public static readonly Brush GoldBrush = new SolidColorBrush(Gold.Color);
+        public static readonly Brush BrightOrangeBrush = new SolidColorBrush(BrightOrange.Color);
+        public static readonly Brush DarkOrangeBrush = new SolidColorBrush(DarkOrange.Color);
+        public static readonly Brush RustyBrush = new SolidColorBrush(Rusty.Color);
+        public static readonly Brush PaleRustyBrush = new SolidColorBrush(PaleRusty.Color);
+        public static readonly Brush BrickRedBrush = new SolidColorBrush(BrickRed.Color);
+        public static readonly Brush ModerateRedBrush = new SolidColorBrush(ModerateRed.Color);
+
+        public static readonly Brush PaleRedBrush = new SolidColorBrush(PaleRed.Color);
+        public static readonly Brush RedBrush = new SolidColorBrush(Red.Color);
+        public static readonly Brush LightPinkBrush = new SolidColorBrush(LightPink.Color);
+        public static readonly Brush RoseBrush = new SolidColorBrush(Rose.Color);
+        public static readonly Brush LightPlumBrush = new SolidColorBrush(LightPlum.Color);
+        public static readonly Brush PlumBrush = new SolidColorBrush(Plum.Color);
+        public static readonly Brush LightlyOrchidBrush = new SolidColorBrush(LightlyOrchid.Color);
+        public static readonly Brush OrchidBrush = new SolidColorBrush(Orchid.Color);
+
+        public static readonly Brush BlueBrush = new SolidColorBrush(Blue.Color);
+        public static readonly Brush NavyBrush = new SolidColorBrush(Navy.Color);
+        public static readonly Brush PurpleShadeBrush = new SolidColorBrush(PurpleShade.Color);
+        public static readonly Brush DarkPurpleShadeBrush = new SolidColorBrush(DarkPurpleShade.Color);
+        public static readonly Brush PastelIrisBrush = new SolidColorBrush(PastelIris.Color);
+        public static readonly Brush BrightlyIridescentBrush = new SolidColorBrush(BrightlyIridescent.Color);
+        public static readonly Brush LightPurpleRedBrush = new SolidColorBrush(LightPurpleRed.Color);
+        public static readonly Brush PurpleRedBrush = new SolidColorBrush(PurpleRed.Color);
+
+        public static readonly Brush BrightBlueBrush = new SolidColorBrush(BrightBlue.Color);
+        public static readonly Brush LightBlueBrush = new SolidColorBrush(LightBlue.Color);
+        public static readonly Brush SeaFoamBrush = new SolidColorBrush(SeaFoam.Color);
+        public static readonly Brush GreenyBrush = new SolidColorBrush(Greeny.Color);
+        public static readonly Brush LightMintBrush = new SolidColorBrush(LightMint.Color);
+        public static readonly Brush DarkMintBrush = new SolidColorBrush(DarkMint.Color);
+        public static readonly Brush PeatyBrush = new SolidColorBrush(Peaty.Color);
+        public static readonly Brush BrightGreenBrush = new SolidColorBrush(BrightGreen.Color);
+
+        public static readonly Brush GrayBrush = new SolidColorBrush(Gray.Color);
+        public static readonly Brush GrayBrownBrush = new SolidColorBrush(GrayBrown.Color);
+        public static readonly Brush SteelBlueBrush = new SolidColorBrush(SteelBlue.Color);
+        public static readonly Brush MetalicBlueBrush = new SolidColorBrush(MetalicBlue.Color);
+        public static readonly Brush PaleDarkGreenBrush = new SolidColorBrush(PaleDarkGreen.Color);
+        public static readonly Brush DarkGreenBrush = new SolidColorBrush(DarkGreen.Color);
+        public static readonly Brush LightGreenBrush = new SolidColorBrush(LightGreen.Color);
+        public static readonly Brush GreenBrush = new SolidColorBrush(Green.Color);
+
+        public static readonly Brush CloudyBrush = new SolidColorBrush(Cloudy.Color);
+        public static readonly Brush StormBrush = new SolidColorBrush(Storm.Color);
+        public static readonly Brush BlueGrayBrush = new SolidColorBrush(BlueGray.Color);
+        public static readonly Brush DarkGrayBrush = new SolidColorBrush(DarkGray.Color);
+        public static readonly Brush ShadedGreenBrush = new SolidColorBrush(ShadedGreen.Color);
+        public static readonly Brush SageBrush = new SolidColorBrush(Sage.Color);
+        public static readonly Brush DesertBrush = new SolidColorBrush(Desert.Color);
+        public static readonly Brush MoroBrush = new SolidColorBrush(Moro.Color);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using chkam05.Tools.ControlsEx.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,23 @@ namespace chkam05.Tools.ControlsEx.Utilities
                 return Colors.Black;
             else
                 return Colors.White;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update AHSL color model with new component values. </summary>
+        /// <param name="color"> AHSL color model. </param>
+        /// <param name="a"> Alpha. </param>
+        /// <param name="h"> Hue. </param>
+        /// <param name="s"> Saturation. </param>
+        /// <param name="l"> Lightness. </param>
+        /// <returns> Updated AHSL color model. </returns>
+        public static AHSLColor UpdateColor(AHSLColor color, byte? a = null, int? h = null, int? s = null, int? l = null)
+        {
+            return new AHSLColor(
+                a.HasValue ? a.Value : color.A,
+                h.HasValue ? h.Value : color.H,
+                s.HasValue ? s.Value : color.S,
+                l.HasValue ? l.Value : color.L);
         }
 
     }

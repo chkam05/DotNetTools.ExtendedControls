@@ -15,16 +15,13 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
 
         //  VARIABLES
 
-        private Color appearanceColor = ColorsResources.BaseAccentColor;
+        private Color appearanceColor = ColorsResources.DefaultAccentColor;
         private Brush accentBackground;
         private Brush accentBorderBrush;
         private Brush accentForeground;
         private Brush accentMouseOverBackground;
         private Brush accentMouseOverBorderBrush;
         private Brush accentMouseOverForeground;
-        private Brush accentInactiveBackground;
-        private Brush accentInactiveBorderBrush;
-        private Brush accentInactiveForeground;
         private Brush accentPressedBackground;
         private Brush accentPressedBorderBrush;
         private Brush accentPressedForeground;
@@ -32,13 +29,17 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
         private Brush accentSelectedBorderBrush;
         private Brush accentSelectedForeground;
 
+        private int accentMouseOverColorFactor = -15;
+        private int accentPressedColorFactor = 10;
+        private int accentSelectedColorFactor = 5;
+
         private bool enableIndependentAccentConfig = false;
         private bool enableIndependentThemeConfig = false;
 
-        private int inactiveColorFactor = 15;
-        private int mouseOverColorFactor = 15;
-        private int pressedColorFactor = 10;
-        private int selectedColorFactor = 5;
+        private Brush inactiveBackground;
+        private Brush inactiveBorderBrush;
+        private Brush inactiveForeground;
+        private double inactiveOpacity = 0.56;
 
         private ThemeType themeType = ThemeType.Light;
         private Brush themeBackground;
@@ -50,6 +51,11 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
         private Brush themePressedForeground;
         private Brush themeSelectedBackground;
         private Brush themeSelectedForeground;
+
+        private int themeInactiveColorFactor = 37;
+        private int themeMouseOverColorFactor = 50;
+        private int themePressedColorFactor = 17;
+        private int themeSelectedColorFactor = 34;
 
         private bool useSystemColorInsteadOfApplication = false;
 
@@ -102,24 +108,6 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref accentMouseOverForeground, value);
         }
 
-        public Brush AccentInactiveBackground
-        {
-            get => accentInactiveBackground;
-            set => UpdateProperty(ref accentInactiveBackground, value);
-        }
-
-        public Brush AccentInactiveBorderBrush
-        {
-            get => accentInactiveBorderBrush;
-            set => UpdateProperty(ref accentInactiveBorderBrush, value);
-        }
-
-        public Brush AccentInactiveForeground
-        {
-            get => accentInactiveForeground;
-            set => UpdateProperty(ref accentInactiveForeground, value);
-        }
-
         public Brush AccentPressedBackground
         {
             get => accentPressedBackground;
@@ -156,6 +144,36 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref accentSelectedForeground, value);
         }
 
+        public int AccentMouseOverColorFactor
+        {
+            get => accentMouseOverColorFactor;
+            set
+            {
+                UpdateProperty(ref accentMouseOverColorFactor, value);
+                UpdateAppearanceBrushes(appearanceColor);
+            }
+        }
+
+        public int AccentPressedColorFactor
+        {
+            get => accentPressedColorFactor;
+            set
+            {
+                UpdateProperty(ref accentPressedColorFactor, value);
+                UpdateAppearanceBrushes(appearanceColor);
+            }
+        }
+
+        public int AccentSelectedColorFactor
+        {
+            get => accentSelectedColorFactor;
+            set
+            {
+                UpdateProperty(ref accentSelectedColorFactor, value);
+                UpdateAppearanceBrushes(appearanceColor);
+            }
+        }
+
         public bool EnableIndependentAccentConfig
         {
             get => enableIndependentAccentConfig;
@@ -168,45 +186,36 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref enableIndependentThemeConfig, value);
         }
 
+        public Brush InactiveBackground
+        {
+            get => inactiveBackground;
+            set => UpdateProperty(ref inactiveBackground, value);
+        }
+
+        public Brush InactiveBorderBrush
+        {
+            get => inactiveBorderBrush;
+            set => UpdateProperty(ref inactiveBorderBrush, value);
+        }
+
+        public Brush InactiveForeground
+        {
+            get => inactiveForeground;
+            set => UpdateProperty(ref inactiveForeground, value);
+        }
+
+        public double InactiveOpacity
+        {
+            get => inactiveOpacity;
+            set => UpdateProperty(ref inactiveOpacity, MathUtilities.Clamp(value, 0d, 1d));
+        }
+
         public int InactiveColorFactor
         {
-            get => inactiveColorFactor;
+            get => themeInactiveColorFactor;
             set
             {
-                UpdateProperty(ref inactiveColorFactor, value);
-                UpdateAppearanceBrushes(appearanceColor);
-                UpdateThemeBrushes(themeType);
-            }
-        }
-
-        public int MouseOverColorFactor
-        {
-            get => mouseOverColorFactor;
-            set
-            {
-                UpdateProperty(ref mouseOverColorFactor, value);
-                UpdateAppearanceBrushes(appearanceColor);
-                UpdateThemeBrushes(themeType);
-            }
-        }
-
-        public int PressedColorFactor
-        {
-            get => pressedColorFactor;
-            set
-            {
-                UpdateProperty(ref pressedColorFactor, value);
-                UpdateAppearanceBrushes(appearanceColor);
-                UpdateThemeBrushes(themeType);
-            }
-        }
-
-        public int SelectedColorFactor
-        {
-            get => selectedColorFactor;
-            set
-            {
-                UpdateProperty(ref selectedColorFactor, value);
+                UpdateProperty(ref themeInactiveColorFactor, value);
                 UpdateAppearanceBrushes(appearanceColor);
                 UpdateThemeBrushes(themeType);
             }
@@ -276,6 +285,46 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             set => UpdateProperty(ref themeSelectedForeground, value);
         }
 
+        public int ThemeInactiveColorFactor
+        {
+            get => themeInactiveColorFactor;
+            set
+            {
+                UpdateProperty(ref themeInactiveColorFactor, MathUtilities.Clamp(value, -100, 100));
+                UpdateThemeBrushes(themeType);
+            }
+        }
+
+        public int ThemeMouseOverColorFactor
+        {
+            get => themeMouseOverColorFactor;
+            set
+            {
+                UpdateProperty(ref themeMouseOverColorFactor, MathUtilities.Clamp(value, -100, 100));
+                UpdateThemeBrushes(themeType);
+            }
+        }
+
+        public int ThemePressedColorFactor
+        {
+            get => themePressedColorFactor;
+            set
+            {
+                UpdateProperty(ref themePressedColorFactor, MathUtilities.Clamp(value, -100, 100));
+                UpdateThemeBrushes(themeType);
+            }
+        }
+
+        public int ThemeSelectedColorFactor
+        {
+            get => themeSelectedColorFactor;
+            set
+            {
+                UpdateProperty(ref themeSelectedColorFactor, MathUtilities.Clamp(value, -100, 100));
+                UpdateThemeBrushes(themeType);
+            }
+        }
+
         public bool UseSystemColorInsteadOfApplication
         {
             get => useSystemColorInsteadOfApplication;
@@ -321,10 +370,9 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             var ahslColor = AHSLColor.FromColor(color);
             var foreground = ColorsUtilities.GetForegroundColorDependingOnBackground(color);
 
-            var mouseOver = UpdateColor(ahslColor, l: ahslColor.L + mouseOverColorFactor).ToColor();
-            var inactive = UpdateColor(ahslColor, l: ahslColor.L - inactiveColorFactor).ToColor();
-            var pressed = UpdateColor(ahslColor, l: ahslColor.L - pressedColorFactor).ToColor();
-            var selected = UpdateColor(ahslColor, l: ahslColor.L - selectedColorFactor).ToColor();
+            var mouseOver = ColorsUtilities.UpdateColor(ahslColor, l: ahslColor.L - accentMouseOverColorFactor).ToColor();
+            var pressed = ColorsUtilities.UpdateColor(ahslColor, l: ahslColor.L - accentPressedColorFactor).ToColor();
+            var selected = ColorsUtilities.UpdateColor(ahslColor, l: ahslColor.L - accentSelectedColorFactor).ToColor();
 
             AccentBackground = new SolidColorBrush(color);
             AccentBorderBrush = new SolidColorBrush(color);
@@ -332,9 +380,7 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             AccentMouseOverBackground = new SolidColorBrush(mouseOver);
             AccentMouseOverBorderBrush = new SolidColorBrush(mouseOver);
             AccentMouseOverForeground = new SolidColorBrush(foreground);
-            AccentInactiveBackground = new SolidColorBrush(inactive);
-            AccentInactiveBorderBrush = new SolidColorBrush(inactive);
-            AccentInactiveForeground = new SolidColorBrush(foreground);
+            
             AccentPressedBackground = new SolidColorBrush(pressed);
             AccentPressedBorderBrush = new SolidColorBrush(pressed);
             AccentPressedForeground = new SolidColorBrush(foreground);
@@ -377,23 +423,35 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
 
             var ahslColor = AHSLColor.FromColor(background);
 
-            var mouseOver = UpdateColor(ahslColor,
+            var inactive = ColorsUtilities.UpdateColor(ahslColor,
                 l: ahslColor.S > 50
-                    ? ahslColor.S + mouseOverColorFactor
-                    : ahslColor.L - mouseOverColorFactor,
+                    ? ahslColor.S - themeInactiveColorFactor
+                    : ahslColor.L + themeInactiveColorFactor,
                 s: 0).ToColor();
 
-            var pressed = UpdateColor(ahslColor,
+            var inactiveForeground = ColorsUtilities.GetForegroundColorDependingOnBackground(inactive);
+
+            var mouseOver = ColorsUtilities.UpdateColor(ahslColor,
                 l: ahslColor.S > 50
-                    ? ahslColor.S - pressedColorFactor
-                    : ahslColor.L + pressedColorFactor,
+                    ? ahslColor.S - themeMouseOverColorFactor
+                    : ahslColor.L + themeMouseOverColorFactor,
                 s: 0).ToColor();
 
-            var selected = UpdateColor(ahslColor,
+            var pressed = ColorsUtilities.UpdateColor(ahslColor,
                 l: ahslColor.S > 50
-                    ? ahslColor.S - selectedColorFactor
-                    : ahslColor.L + selectedColorFactor,
+                    ? ahslColor.S - themePressedColorFactor
+                    : ahslColor.L + themePressedColorFactor,
                 s: 0).ToColor();
+
+            var selected = ColorsUtilities.UpdateColor(ahslColor,
+                l: ahslColor.S > 50
+                    ? ahslColor.S - themeSelectedColorFactor
+                    : ahslColor.L + themeSelectedColorFactor,
+                s: 0).ToColor();
+
+            InactiveBackground = new SolidColorBrush(inactive);
+            InactiveBorderBrush = new SolidColorBrush(inactive);
+            InactiveForeground = new SolidColorBrush(inactiveForeground);
 
             ThemeBackground = new SolidColorBrush(background);
             ThemeForeground = new SolidColorBrush(foreground);
@@ -407,27 +465,6 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
         }
 
         #endregion CONFIGURATION UPDATE
-
-        #region UTILITIES
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Update AHSL color model with new component values. </summary>
-        /// <param name="color"> AHSL color model. </param>
-        /// <param name="a"> Alpha. </param>
-        /// <param name="h"> Hue. </param>
-        /// <param name="s"> Saturation. </param>
-        /// <param name="l"> Lightness. </param>
-        /// <returns> Updated AHSL color model. </returns>
-        private AHSLColor UpdateColor(AHSLColor color, byte? a = null, int? h = null, int? s = null, int? l = null)
-        {
-            return new AHSLColor(
-                a.HasValue ? a.Value : color.A,
-                h.HasValue ? h.Value : color.H,
-                s.HasValue ? s.Value : color.S,
-                l.HasValue ? l.Value : color.L);
-        }
-
-        #endregion UTILITIES
 
     }
 }

@@ -14,6 +14,7 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
 
         private AppearanceManager instance;
         private object instanceLock = new object();
+        private AppearanceDataModel dataContext;
 
 
         //  GETTERS & SETTERS
@@ -32,6 +33,8 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
             }
         }
 
+        public AppearanceDataModel DataContext { get; private set; }
+
 
         //  METHODS
 
@@ -41,7 +44,7 @@ namespace chkam05.Tools.ControlsEx.Data.Appearance
         /// <summary> AppearanceManager private class constructor. </summary>
         private AppearanceManager()
         {
-            //
+            dataContext = new AppearanceDataModel();
         }
 
         #endregion CONSTRUCTORS
