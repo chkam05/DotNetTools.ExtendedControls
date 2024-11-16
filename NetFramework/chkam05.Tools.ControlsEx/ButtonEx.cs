@@ -1,10 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -161,7 +156,7 @@ namespace chkam05.Tools.ControlsEx
         static ButtonEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ButtonEx),
-                new FrameworkPropertyMetadata(typeof(ButtonEx)));
+                new FrameworkPropertyMetadata(typeof(ButtonEx))); 
         }
 
         #endregion CONSTRUCTORS

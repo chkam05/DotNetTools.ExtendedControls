@@ -22,11 +22,12 @@
             VerticalAlignment="Top">
 
             <cex:ButtonEx>
-                <Grid
-                    Background="Red">
-                    <TextBlock Text="Hello World"/>
-                </Grid>
+                <TextBlock Text="Hello World"/>
             </cex:ButtonEx>
+
+            <cex:ButtonExWithIcon>
+                <TextBlock Text="Hello World"/>
+            </cex:ButtonExWithIcon>
 
         </StackPanel>
 

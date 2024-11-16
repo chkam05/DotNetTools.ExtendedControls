@@ -5,8 +5,10 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonExWithIcon.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonExStyle}" TargetType="{x:Type local:ButtonEx}"/>
+    <Style BasedOn="{StaticResource ButtonExWithIconStyle}" TargetType="{x:Type local:ButtonExWithIcon}"/>
 
 </ResourceDictionary>
