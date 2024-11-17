@@ -23,7 +23,7 @@ OVERRIDED COMPONENTS
 - [ ] ScrollViewerEx
 - [ ] SliderEx
 - [ ] TabControlEx
-- [ ] TextBoxEx
+- [X] TextBoxEx
 - [X] ToggleButtonEx
 - [ ] TreeViewEx
 - [ ] TreeViewItemEx
