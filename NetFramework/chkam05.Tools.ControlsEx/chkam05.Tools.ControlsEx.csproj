@@ -67,6 +67,7 @@
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
     <Compile Include="Data\CheckMarkTypeIcon.cs" />
+    <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\NSWEPosition.cs" />
     <Compile Include="Data\Theme\ThemeDataModel.cs" />
     <Compile Include="Data\Theme\ThemeManager.cs" />
@@ -87,6 +88,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Resources\ColorsResources.cs" />
+    <Compile Include="TextBoxEx.cs" />
     <Compile Include="ToggleButtonEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\MathUtilities.cs" />
@@ -121,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextBoxEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -38,6 +38,8 @@
             <cex:ToggleButtonEx
                 Content="Hello World"/>
 
+            <cex:TextBoxEx/>
+
             <ComboBox>
                 <ComboBoxItem
                     Content="Mode 1"/>

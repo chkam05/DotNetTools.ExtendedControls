@@ -21,7 +21,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(BackgroundInactive),
             typeof(Brush),
             typeof(CheckBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.DarkInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
 
         public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(BackgroundMouseOver),
@@ -69,7 +69,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ForegroundInactive),
             typeof(Brush),
             typeof(CheckBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.DarkInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
 
         public static readonly DependencyProperty ForegroundMouseOverProperty = DependencyProperty.Register(
             nameof(ForegroundMouseOver),
