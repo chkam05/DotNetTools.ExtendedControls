@@ -4,8 +4,8 @@ OVERRIDED COMPONENTS
 - [X] ButtonEx
 - [ ] CalendarEx
 - [X] CheckBoxEx
-- [ ] ComboBoxEx
-- [ ] ComboBoxItemEx
+- [-] ComboBoxEx
+- [-] ComboBoxItemEx
 - [ ] ContextMenuEx
 - [ ] ContextMenuItemEx
 - [ ] DatePickerEx
@@ -24,7 +24,7 @@ OVERRIDED COMPONENTS
 - [ ] SliderEx
 - [ ] TabControlEx
 - [ ] TextBoxEx
-- [ ] ToggleButtonEx
+- [X] ToggleButtonEx
 - [ ] TreeViewEx
 - [ ] TreeViewItemEx
 - [ ] WindowEx
