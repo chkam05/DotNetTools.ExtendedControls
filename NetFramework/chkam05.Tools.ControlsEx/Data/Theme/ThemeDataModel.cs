@@ -42,7 +42,7 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
         
         private double opacityInactive = 0.56;
 
-        private ThemeType themeType = ThemeType.Dark;
+        private ThemeType themeType = ThemeType.Light;
         private Brush themeBackground;
         private Brush themeBackgroundMouseOver;
         private Brush themeBackgroundPressed;

@@ -62,6 +62,7 @@
     <Compile Include="ButtonEx.cs" />
     <Compile Include="ButtonExWithIcon.cs" />
     <Compile Include="CheckBoxEx.cs" />
+    <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
     <Compile Include="Data\CheckMarkTypeIcon.cs" />
     <Compile Include="Data\NSWEPosition.cs" />
@@ -98,9 +99,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Themes\ButtonEx.xaml">
       <SubType>Designer</SubType>

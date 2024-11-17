@@ -31,92 +31,9 @@
                 <TextBlock Text="Hello World"/>
             </cex:ButtonExWithIcon>
 
-            <CheckBox>
-                <TextBlock Text="Hello World"/>
-            </CheckBox>
-
-            <CheckBox/>
-
-            <StackPanel
-                Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="CheckboxBlank"/>
-                <materialDesign:PackIcon Kind="CheckboxMarked"/>
-                <materialDesign:PackIcon Kind="CheckboxBlankOff"/>
-                
-                <materialDesign:PackIcon Kind="None"/>
-                
-                <materialDesign:PackIcon Kind="CheckboxBlankCircle"/>
-                <materialDesign:PackIcon Kind="CheckboxMarkedCircle"/>
-                <materialDesign:PackIcon Kind="CircleOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxBlankOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxBlankOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxBlankOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxMarkedOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxBlankOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxBlankCircleOutline"/>
-                <materialDesign:PackIcon Kind="CheckCircleOutline"/>
-                <materialDesign:PackIcon Kind="CircleOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxBlankCircleOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxMarkedCircleOutline"/>
-                <materialDesign:PackIcon Kind="CircleOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxBlankOutline"/>
-                <materialDesign:PackIcon Kind="Check"/>
-                
-            </StackPanel>
-
-            <StackPanel
-                Orientation="Horizontal">
-
-                <materialDesign:PackIcon Kind="CheckboxesBlank"/>
-                <materialDesign:PackIcon Kind="CheckboxesMarked"/>
-                <materialDesign:PackIcon Kind="CheckboxBlankOff"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxesBlankCircle"/>
-                <materialDesign:PackIcon Kind="CheckboxesMarkedCircle"/>
-                <materialDesign:PackIcon Kind="CircleOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxesBlankOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxMultipleOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxBlankOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxesBlankOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxesMarkedOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxBlankOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxesBlankCircleOutline"/>
-                <materialDesign:PackIcon Kind="CheckboxesMarkedCircleOutline"/>
-                <materialDesign:PackIcon Kind="CircleOffOutline"/>
-
-                <materialDesign:PackIcon Kind="None"/>
-
-                <materialDesign:PackIcon Kind="CheckboxesBlankOutline"/>
-                <materialDesign:PackIcon Kind="CheckMultiple"/>
-
-            </StackPanel>
+            <cex:CheckBoxEx
+                CheckMarkTypeIcon="Filled"
+                Content="Hello World"/>
 
         </StackPanel>
 
