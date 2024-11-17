@@ -3,7 +3,7 @@ OVERRIDED COMPONENTS
 ------------------------------------------------------------
 - [X] ButtonEx
 - [ ] CalendarEx
-- [ ] CheckBoxEx
+- [X] CheckBoxEx
 - [ ] ComboBoxEx
 - [ ] ComboBoxItemEx
 - [ ] ContextMenuEx
@@ -24,6 +24,7 @@ OVERRIDED COMPONENTS
 - [ ] SliderEx
 - [ ] TabControlEx
 - [ ] TextBoxEx
+- [ ] ToggleButtonEx
 - [ ] TreeViewEx
 - [ ] TreeViewItemEx
 - [ ] WindowEx

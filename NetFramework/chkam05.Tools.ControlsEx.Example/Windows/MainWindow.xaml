@@ -10,10 +10,10 @@
     mc:Ignorable="d"
     Title="ControlsEx"
     Height="450"
-    Width="800">
+    Width="800"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Resources>
-        
     </Window.Resources>
 
     <Grid>
@@ -34,6 +34,14 @@
             <cex:CheckBoxEx
                 CheckMarkTypeIcon="Filled"
                 Content="Hello World"/>
+
+            <cex:ToggleButtonEx
+                Content="Hello World"/>
+
+            <ComboBox>
+                <ComboBoxItem
+                    Content="Mode 1"/>
+            </ComboBox>
 
         </StackPanel>
 

@@ -36,7 +36,6 @@
             
             <Trigger Property="IsKeyboardFocused" Value="True">
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
-                <Setter Property="BorderThickness" TargetName="border" Value="1"/>
             </Trigger>
             
             <Trigger Property="IsMouseOver" Value="true">
