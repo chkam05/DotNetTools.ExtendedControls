@@ -51,3 +51,38 @@ INTERNAL MESSAGES
 - [ ] InternalMessageBoxContainer
 - [ ] InternalMessageBox
 - [ ] ProgressInternalMessageBox
+
+------------------------------------------------------------
+ScrollBar:
+
+ButtonBackground
+ButtonBackgroundInactive
+ButtonBackgroundMouseOver
+ButtonBackgroundPressed
+ButtonBorderBrush
+ButtonBorderInactive
+ButtonBorderMouseOver
+ButtonBorderPressed
+ButtonBorderThickness
+ButtonCornerRadius
+ButtonMargin
+ButtonVisibility
+
+CornerRadius
+
+Foreground - Glyph
+ForegroundInactive - Glyph
+ForegroundMouseOver - Glyph
+ForegroundPressed - Glyph
+
+ThumbBackground
+ThumbBackgroundDragging
+ThumbBackgroundInactive
+ThumbBackgroundMouseOver
+ThumbBorderBrush
+ThumbBorderBrushDragging
+ThumbBorderBrushInactive
+ThumbBorderBrushMouseOver
+ThumbBorderThickness
+ThumbCornerRadius
+ThumbMargin

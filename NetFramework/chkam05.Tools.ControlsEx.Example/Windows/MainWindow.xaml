@@ -40,6 +40,9 @@
 
             <cex:TextBoxEx/>
 
+            <ScrollBar
+                Height="128"/>
+
             <ComboBox>
                 <ComboBoxItem
                     Content="Mode 1"/>

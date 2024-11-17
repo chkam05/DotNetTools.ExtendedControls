@@ -88,6 +88,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Resources\ColorsResources.cs" />
+    <Compile Include="ScrollBarEx.cs" />
     <Compile Include="TextBoxEx.cs" />
     <Compile Include="ToggleButtonEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
@@ -123,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ScrollBarEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
