@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chkam05.Tools.ControlsEx", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chkam05.Tools.ControlsEx.Example", "chkam05.Tools.ControlsEx.Example\chkam05.Tools.ControlsEx.Example.csproj", "{9193D7F6-8E15-4849-AA05-678E2CCC9A97}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementy rozwiązania", "Elementy rozwiązania", "{2B0D04BE-83F7-40D1-B5EC-B7FDE9B83AF0}"
+	ProjectSection(SolutionItems) = preProject
+		ToDo.txt = ToDo.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
