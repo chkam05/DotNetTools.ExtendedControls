@@ -31,7 +31,8 @@ namespace chkam05.Tools.ControlsEx.Example
         public App() : base()
         {
             ThemeManager = ThemeManager.Instance;
-            this.ThemeManager.DataContext.AppearanceColor = Colors.Green;
+            this.ThemeManager.DataContext.AppearanceColor = ColorsResources.Peaty.Color;
+            //this.ThemeManager.DataContext.AppearanceColor = ColorsResources.BrickRed.Color;
         }
 
         #endregion CONSTRUCTORS

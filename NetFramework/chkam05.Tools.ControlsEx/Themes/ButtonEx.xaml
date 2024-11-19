@@ -30,7 +30,7 @@
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
-                <Setter Property="Opacity" TargetName="border" Value="{Binding InactiveOpacity, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
             </Trigger>
             
@@ -59,8 +59,8 @@
         <Setter Property="BackgroundPressed" Value="{Binding DataContext.AccentBackgroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-        <Setter Property="BorderBrushPressed" Value="{Binding DataContext.AccentBackgroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushPressed" Value="{Binding DataContext.AccentBorderBrushPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>

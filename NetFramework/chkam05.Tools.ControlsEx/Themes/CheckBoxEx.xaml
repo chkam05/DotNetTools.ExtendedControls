@@ -68,7 +68,7 @@
             
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground" TargetName="checkMark" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
-                <Setter Property="Opacity" TargetName="border" Value="{Binding InactiveOpacity, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
             </Trigger>
 
@@ -117,7 +117,7 @@
         <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BackgroundMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BackgroundPressed" Value="{Binding DataContext.AccentBackgroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
@@ -125,6 +125,7 @@
         <Setter Property="ForegroundMouseOver" Value="{Binding DataContext.ThemeForegroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ForegroundPressed" Value="{Binding DataContext.ThemeForegroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Template" Value="{StaticResource CheckBoxEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>

@@ -1,10 +1,12 @@
 ﻿using chkam05.Tools.ControlsEx.Resources;
+using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
@@ -21,11 +23,23 @@ namespace chkam05.Tools.ControlsEx
             typeof(ScrollBarEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.LightBackground)));
 
+        public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
+            nameof(BackgroundMouseOver),
+            typeof(Brush),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightBackground)));
+
         public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
             nameof(BorderBrushInactive),
             typeof(Brush),
             typeof(ScrollBarEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.LightBackground)));
+
+        public static readonly DependencyProperty BorderBrushMouseOverProperty = DependencyProperty.Register(
+            nameof(BorderBrushMouseOver),
+            typeof(Brush),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorMouseOver)));
 
         public static readonly DependencyProperty ButtonBackgroundProperty = DependencyProperty.Register(
             nameof(ButtonBackground),
@@ -69,11 +83,17 @@ namespace chkam05.Tools.ControlsEx
             typeof(ScrollBarEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorMouseOver)));
 
-        public static readonly DependencyProperty ButtonBorderBrusPressedProperty = DependencyProperty.Register(
-            nameof(ButtonBorderBrusPressed),
+        public static readonly DependencyProperty ButtonBorderBrushPressedProperty = DependencyProperty.Register(
+            nameof(ButtonBorderBrushPressed),
             typeof(Brush),
             typeof(ScrollBarEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorPressed)));
+
+        public static readonly DependencyProperty ButtonBorderThicknessProperty = DependencyProperty.Register(
+            nameof(ButtonBorderThickness),
+            typeof(Thickness),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(new Thickness(1)));
 
         public static readonly DependencyProperty ButtonCornerRadiusProperty = DependencyProperty.Register(
             nameof(ButtonCornerRadius),
@@ -81,11 +101,23 @@ namespace chkam05.Tools.ControlsEx
             typeof(ScrollBarEx),
             new PropertyMetadata(new CornerRadius(4)));
 
+        public static readonly DependencyProperty ButtonHorizontalWidthProperty = DependencyProperty.Register(
+            nameof(ButtonHorizontalWidth),
+            typeof(double),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(16d));
+
         public static readonly DependencyProperty ButtonMarginProperty = DependencyProperty.Register(
             nameof(ButtonMargin),
             typeof(Thickness),
             typeof(ScrollBarEx),
             new PropertyMetadata(new Thickness(1)));
+
+        public static readonly DependencyProperty ButtonVerticalHeightProperty = DependencyProperty.Register(
+            nameof(ButtonVerticalHeight),
+            typeof(double),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(16d));
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
@@ -110,6 +142,30 @@ namespace chkam05.Tools.ControlsEx
             typeof(Brush),
             typeof(ScrollBarEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorForeground)));
+
+        public static readonly DependencyProperty OpacityInactiveProperty = DependencyProperty.Register(
+            nameof(OpacityInactive),
+            typeof(double),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(0.56d));
+
+        public static readonly DependencyProperty StyleButtonProperty = DependencyProperty.Register(
+            nameof(StyleButton),
+            typeof(Style),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(GetGenericStyleRepeatButton()));
+
+        public static readonly DependencyProperty StyleThumbHorizontalProperty = DependencyProperty.Register(
+            nameof(StyleThumbHorizontal),
+            typeof(Style),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(GetGenericStyleThumbHorizontal()));
+
+        public static readonly DependencyProperty StyleThumbVerticalProperty = DependencyProperty.Register(
+            nameof(StyleThumbVertical),
+            typeof(Style),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(GetGenericStyleThumbVertical()));
 
         public static readonly DependencyProperty ThumbBackgroundProperty = DependencyProperty.Register(
             nameof(ThumbBackground),
@@ -159,6 +215,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(ScrollBarEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorMouseOver)));
 
+        public static readonly DependencyProperty ThumbBorderThicknessProperty = DependencyProperty.Register(
+            nameof(ThumbBorderThickness),
+            typeof(Thickness),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(new Thickness(1)));
+
         public static readonly DependencyProperty ThumbCornerRadiusProperty = DependencyProperty.Register(
             nameof(ThumbCornerRadius),
             typeof(CornerRadius),
@@ -169,7 +231,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ThumbMargin),
             typeof(Thickness),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new Thickness(4,2,4,2)));
+            new PropertyMetadata(new Thickness(1)));
 
         public static readonly DependencyProperty UseSystemDimensionsProperty = DependencyProperty.Register(
             nameof(UseSystemDimensions),
@@ -186,10 +248,22 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(BackgroundInactiveProperty, value);
         }
 
+        public Brush BackgroundMouseOver
+        {
+            get => (Brush)GetValue(BackgroundMouseOverProperty);
+            set => SetValue(BackgroundMouseOverProperty, value);
+        }
+
         public Brush BorderBrushInactive
         {
             get => (Brush)GetValue(BorderBrushInactiveProperty);
             set => SetValue(BorderBrushInactiveProperty, value);
+        }
+
+        public Brush BorderBrushMouseOver
+        {
+            get => (Brush)GetValue(BorderBrushMouseOverProperty);
+            set => SetValue(BorderBrushMouseOverProperty, value);
         }
 
         public Brush ButtonBackground
@@ -234,10 +308,16 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ButtonBorderBrushMouseOverProperty, value);
         }
 
-        public Brush ButtonBorderBrusPressed
+        public Brush ButtonBorderBrushPressed
         {
-            get => (Brush)GetValue(ButtonBorderBrusPressedProperty);
-            set => SetValue(ButtonBorderBrusPressedProperty, value);
+            get => (Brush)GetValue(ButtonBorderBrushPressedProperty);
+            set => SetValue(ButtonBorderBrushPressedProperty, value);
+        }
+
+        public Thickness ButtonBorderThickness
+        {
+            get => (Thickness)GetValue(ButtonBorderThicknessProperty);
+            set => SetValue(ButtonBorderThicknessProperty, value);
         }
 
         public CornerRadius ButtonCornerRadius
@@ -246,10 +326,22 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ButtonCornerRadiusProperty, value);
         }
 
+        public double ButtonHorizontalWidth
+        {
+            get => (double)GetValue(ButtonHorizontalWidthProperty);
+            set => SetValue(ButtonHorizontalWidthProperty, Math.Max(0, value));
+        }
+
         public Thickness ButtonMargin
         {
             get => (Thickness)GetValue(ButtonMarginProperty);
             set => SetValue(ButtonMarginProperty, value);
+        }
+
+        public double ButtonVerticalHeight
+        {
+            get => (double)GetValue(ButtonVerticalHeightProperty);
+            set => SetValue(ButtonVerticalHeightProperty, Math.Max(0, value));
         }
 
         public CornerRadius CornerRadius
@@ -274,6 +366,30 @@ namespace chkam05.Tools.ControlsEx
         {
             get => (Brush)GetValue(ForegroundPressedProperty);
             set => SetValue(ForegroundPressedProperty, value);
+        }
+
+        public double OpacityInactive
+        {
+            get => (double)GetValue(OpacityInactiveProperty);
+            set => SetValue(OpacityInactiveProperty, MathUtilities.Clamp(value, 0d, 1d));
+        }
+
+        public Style StyleButton
+        {
+            get => (Style)GetValue(StyleButtonProperty);
+            set => SetValue(StyleButtonProperty, value);
+        }
+
+        public Style StyleThumbHorizontal
+        {
+            get => (Style)GetValue(StyleThumbHorizontalProperty);
+            set => SetValue(StyleThumbHorizontalProperty, value);
+        }
+        
+        public Style StyleThumbVertical
+        {
+            get => (Style)GetValue(StyleThumbVerticalProperty);
+            set => SetValue(StyleThumbVerticalProperty, value);
         }
 
         public Brush ThumbBackground
@@ -324,6 +440,12 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ThumbBorderBrushMouseOverProperty, value);
         }
 
+        public Thickness ThumbBorderThickness
+        {
+            get => (Thickness)GetValue(ThumbBorderThicknessProperty);
+            set => SetValue(ThumbBorderThicknessProperty, value);
+        }
+
         public CornerRadius ThumbCornerRadius
         {
             get => (CornerRadius)GetValue(ThumbCornerRadiusProperty);
@@ -348,7 +470,7 @@ namespace chkam05.Tools.ControlsEx
         #region CONSTRUCTORS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Static ScrollBarEx class constructor. </summary>
+        /// <summary> ScrollBarEx class constructor. </summary>
         static ScrollBarEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ScrollBarEx),
@@ -356,6 +478,31 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion CONSTRUCTORS
+
+        #region STYLES
+
+        protected static Style GetGenericStyleRepeatButton()
+        {
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary["ScrollBarEx.RepeatButtonExStyle"] as Style;
+        }
+
+        protected static Style GetGenericStyleThumbHorizontal()
+        {
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary["ScrollBarEx.ThumbExHorizontalStyle"] as Style;
+        }
+
+        protected static Style GetGenericStyleThumbVertical()
+        {
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary["ScrollBarEx.ThumbExVerticalStyle"] as Style;
+        }
+
+        #endregion STYLES
 
     }
 }

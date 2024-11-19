@@ -55,7 +55,7 @@
                 <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="Foreground" TargetName="previewTextBlock" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
-                <Setter Property="Opacity" TargetName="border" Value="{Binding InactiveOpacity, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="TextElement.Foreground" TargetName="PART_ContentHost" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
             </Trigger>
             
@@ -78,10 +78,10 @@
         <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BackgroundMouseOver" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BackgroundSelected" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-        <Setter Property="BorderBrushSelected" Value="{Binding DataContext.AccentBackgroundSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushSelected" Value="{Binding DataContext.AccentBorderBrushSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
@@ -91,6 +91,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="PreviewTextForeground" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>

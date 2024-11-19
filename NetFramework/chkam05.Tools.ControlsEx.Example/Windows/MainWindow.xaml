@@ -23,7 +23,8 @@
             Margin="8"
             VerticalAlignment="Top">
 
-            <cex:ButtonEx>
+            <cex:ButtonEx
+                IsEnabled="False">
                 <TextBlock Text="Hello World"/>
             </cex:ButtonEx>
 
@@ -40,8 +41,21 @@
 
             <cex:TextBoxEx/>
 
-            <ScrollBar
-                Height="128"/>
+            <StackPanel
+                Orientation="Horizontal">
+
+                <cex:ScrollBarEx
+                    Height="128"/>
+
+                <StackPanel
+                    Orientation="Vertical">
+                    
+                    <cex:ScrollBarEx
+                        Orientation="Horizontal"
+                        Width="160"/>
+                </StackPanel>
+
+            </StackPanel>
 
             <ComboBox>
                 <ComboBoxItem

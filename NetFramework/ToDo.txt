@@ -18,17 +18,20 @@ OVERRIDED COMPONENTS
 - [ ] MenuItemEx
 - [ ] ProgressBarEx
 - [ ] RadioButtonEx
+- [X] RepeatButtonEx
 - [ ] RichTextBoxEx
-- [ ] ScrollBarEx
+- [X] ScrollBarEx
 - [ ] ScrollViewerEx
 - [ ] SliderEx
 - [ ] TabControlEx
+- [X] ThumbEx
 - [X] TextBoxEx
 - [X] ToggleButtonEx
 - [ ] TreeViewEx
 - [ ] TreeViewItemEx
 - [ ] WindowEx
 
+7/29
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------
@@ -40,6 +43,7 @@ CUSTOM COMPONENTS
 - [ ] HamburgerMenuEx
 - [ ] SettingsMenuItemEx
 
+1/7
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------
@@ -52,37 +56,5 @@ INTERNAL MESSAGES
 - [ ] InternalMessageBox
 - [ ] ProgressInternalMessageBox
 
+0/8
 ------------------------------------------------------------
-ScrollBar:
-
-ButtonBackground
-ButtonBackgroundInactive
-ButtonBackgroundMouseOver
-ButtonBackgroundPressed
-ButtonBorderBrush
-ButtonBorderInactive
-ButtonBorderMouseOver
-ButtonBorderPressed
-ButtonBorderThickness
-ButtonCornerRadius
-ButtonMargin
-ButtonVisibility
-
-CornerRadius
-
-Foreground - Glyph
-ForegroundInactive - Glyph
-ForegroundMouseOver - Glyph
-ForegroundPressed - Glyph
-
-ThumbBackground
-ThumbBackgroundDragging
-ThumbBackgroundInactive
-ThumbBackgroundMouseOver
-ThumbBorderBrush
-ThumbBorderBrushDragging
-ThumbBorderBrushInactive
-ThumbBorderBrushMouseOver
-ThumbBorderThickness
-ThumbCornerRadius
-ThumbMargin
