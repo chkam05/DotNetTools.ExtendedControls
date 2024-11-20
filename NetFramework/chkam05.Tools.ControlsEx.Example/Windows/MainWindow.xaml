@@ -61,7 +61,8 @@
 
                 </StackPanel>
 
-                <ComboBox>
+                <ComboBox
+                    IsEditable="True">
                     <ComboBoxItem
                         Content="Mode 1"/>
                 </ComboBox>
