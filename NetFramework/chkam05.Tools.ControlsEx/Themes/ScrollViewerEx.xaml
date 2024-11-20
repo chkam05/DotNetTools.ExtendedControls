@@ -1,0 +1,117 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <conv:InnerCornerRadiusConverter x:Key="InnerCornerRadiusConverter"/>
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <ControlTemplate x:Key="ScrollViewerEx.ControlTemplate" TargetType="{x:Type local:ScrollViewerEx}">
+        <Border
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerBackground}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border
+                    x:Name="Corner"
+                    Background="{TemplateBinding CornerBackground}"
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="0">
+                    <Border.CornerRadius>
+                        <MultiBinding
+                            Converter="{StaticResource InnerCornerRadiusConverter}"
+                            ConverterParameter="topLeft:0;topRight:0;bottomLeft:0">
+                            <Binding
+                                Path="CornerRadius"
+                                Mode="OneWay"
+                                RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ScrollViewerEx}}"/>
+                            <Binding
+                                Path="Margin"
+                                Mode="OneWay"
+                                ElementName="Corner"/>
+                        </MultiBinding>
+                    </Border.CornerRadius>
+                </Border>
+
+                <ScrollContentPresenter
+                    x:Name="PART_ScrollContentPresenter"
+                    CanContentScroll="{TemplateBinding CanContentScroll}"
+                    CanHorizontallyScroll="False"
+                    CanVerticallyScroll="False"
+                    Content="{TemplateBinding Content}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Margin="{TemplateBinding Padding}" />
+
+                <local:ScrollBarEx
+                    x:Name="PART_VerticalScrollBar"
+                    AutomationProperties.AutomationId="VerticalScrollBar"
+                    Cursor="Arrow"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Maximum="{TemplateBinding ScrollableHeight}"
+                    Minimum="0"
+                    MaxWidth="{TemplateBinding VerticalScrollBarWidth}"
+                    Style="{TemplateBinding VerticalScrollBarStyle}"
+                    Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                    ViewportSize="{TemplateBinding ViewportHeight}"
+                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                    Width="{TemplateBinding VerticalScrollBarWidth}"/>
+
+                <local:ScrollBarEx
+                    x:Name="PART_HorizontalScrollBar"
+                    AutomationProperties.AutomationId="HorizontalScrollBar"
+                    Cursor="Arrow"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Height="{TemplateBinding HorizontalScrollBarHeight}"
+                    MaxHeight="{TemplateBinding HorizontalScrollBarHeight}"
+                    Maximum="{TemplateBinding ScrollableWidth}"
+                    Minimum="0"
+                    Orientation="Horizontal"
+                    Style="{TemplateBinding HorizontalScrollBarStyle}"
+                    Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                    ViewportSize="{TemplateBinding ViewportWidth}"
+                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="ScrollViewerExStyle" TargetType="{x:Type local:ScrollViewerEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerBackground" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="Template" Value="{StaticResource ScrollViewerEx.ControlTemplate}"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

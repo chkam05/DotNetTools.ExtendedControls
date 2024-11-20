@@ -13,6 +13,9 @@ namespace chkam05.Tools.ControlsEx.Converters
 {
     public class CheckMarkTypePackIconConverter : IValueConverter
     {
+
+        //  CONST
+
         private static readonly Dictionary<CheckMarkTypeIcon, PackIconKind[]> checkMarkTypeIcons = new Dictionary<CheckMarkTypeIcon, PackIconKind[]>()
         {
             { CheckMarkTypeIcon.Default, new[] { PackIconKind.CheckboxBlankOutline, PackIconKind.Check } },
@@ -29,6 +32,9 @@ namespace chkam05.Tools.ControlsEx.Converters
             { CheckMarkTypeIcon.MultipleOutline, new[] { PackIconKind.CheckboxesBlankOutline, PackIconKind.CheckboxesMarkedOutline, PackIconKind.CheckboxBlankOffOutline } },
             { CheckMarkTypeIcon.MutlipleOutlineCircle, new[] { PackIconKind.CheckboxesBlankCircleOutline, PackIconKind.CheckboxesMarkedCircleOutline, PackIconKind.CircleOffOutline } },
         };
+
+
+        //  METHODS
 
         //  --------------------------------------------------------------------------------
         /// <summary> Converts CheckMarkTypeIcon value to check mark PackIconKind. </summary>
@@ -47,7 +53,6 @@ namespace chkam05.Tools.ControlsEx.Converters
 
             return GetCheckMarkIconKind(CheckMarkTypeIcon.Default, isChecked, isDisabled);
         }
-
 
         //  --------------------------------------------------------------------------------
         /// <summary> Converts a value. </summary>

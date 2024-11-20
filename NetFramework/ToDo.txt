@@ -21,7 +21,7 @@ OVERRIDED COMPONENTS
 - [X] RepeatButtonEx
 - [ ] RichTextBoxEx
 - [X] ScrollBarEx
-- [ ] ScrollViewerEx
+- [X] ScrollViewerEx
 - [ ] SliderEx
 - [ ] TabControlEx
 - [X] ThumbEx

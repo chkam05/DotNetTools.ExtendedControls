@@ -65,6 +65,7 @@
     <Compile Include="CheckBoxEx.cs" />
     <Compile Include="ComboBoxEx.cs" />
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
+    <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
     <Compile Include="Data\CheckMarkTypeIcon.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
@@ -90,11 +91,13 @@
     <Compile Include="RepeatButtonEx.cs" />
     <Compile Include="Resources\ColorsResources.cs" />
     <Compile Include="ScrollBarEx.cs" />
+    <Compile Include="ScrollViewerEx.cs" />
     <Compile Include="TextBoxEx.cs" />
     <Compile Include="ThumbEx.cs" />
     <Compile Include="ToggleButtonEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\MathUtilities.cs" />
+    <Compile Include="Utilities\ObjectUtilities.cs" />
     <Compile Include="Utilities\SystemThemeManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ScrollBarEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ScrollViewerEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

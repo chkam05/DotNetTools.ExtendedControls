@@ -115,7 +115,8 @@
                     x:Name="PART_LineUpButton"
                     Command="{x:Static ScrollBar.LineUpCommand}"
                     IsEnabled="{TemplateBinding IsMouseOver}"
-                    Style="{TemplateBinding StyleButton}">
+                    Style="{TemplateBinding StyleButton}"
+                    Visibility="{TemplateBinding ButtonVisibility}">
 
                     <materialDesign:PackIcon
                         x:Name="ArrowTop"
@@ -145,6 +146,7 @@
 
                     <Track.Thumb>
                         <local:ThumbEx
+                            x:Name="thumb"
                             Style="{TemplateBinding StyleThumbVertical}"/>
                     </Track.Thumb>
                 </Track>
@@ -154,7 +156,8 @@
                     Command="{x:Static ScrollBar.LineDownCommand}"
                     IsEnabled="{TemplateBinding IsMouseOver}"
                     Grid.Row="2"
-                    Style="{TemplateBinding StyleButton}">
+                    Style="{TemplateBinding StyleButton}"
+                    Visibility="{TemplateBinding ButtonVisibility}">
 
                     <materialDesign:PackIcon
                         x:Name="ArrowBottom"
@@ -167,6 +170,11 @@
         </Border>
 
         <ControlTemplate.Triggers>
+            <Trigger Property="ButtonVisibility" Value="Collapsed">
+                <Setter Property="MaxHeight" TargetName="upRow" Value="0"/>
+                <Setter Property="MaxHeight" TargetName="downRow" Value="0"/>
+            </Trigger>
+            
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ScrollBarEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ScrollBarEx}}}"/>
@@ -210,7 +218,8 @@
                     x:Name="PART_LineLeftButton"
                     Command="{x:Static ScrollBar.LineLeftCommand}"
                     IsEnabled="{TemplateBinding IsMouseOver}"
-                    Style="{TemplateBinding StyleButton}">
+                    Style="{TemplateBinding StyleButton}"
+                    Visibility="{TemplateBinding ButtonVisibility}">
 
                     <materialDesign:PackIcon
                         x:Name="ArrowLeft"
@@ -239,6 +248,7 @@
 
                     <Track.Thumb>
                         <local:ThumbEx
+                            x:Name="thumb"
                             Style="{TemplateBinding StyleThumbHorizontal}"/>
                     </Track.Thumb>
                 </Track>
@@ -248,7 +258,8 @@
                     Command="{x:Static ScrollBar.LineRightCommand}"
                     Grid.Column="2"
                     IsEnabled="{TemplateBinding IsMouseOver}"
-                    Style="{TemplateBinding StyleButton}">
+                    Style="{TemplateBinding StyleButton}"
+                    Visibility="{TemplateBinding ButtonVisibility}">
 
                     <materialDesign:PackIcon
                         x:Name="ArrowRight"
@@ -261,6 +272,11 @@
         </Border>
         
         <ControlTemplate.Triggers>
+            <Trigger Property="ButtonVisibility" Value="Collapsed">
+                <Setter Property="MaxWidth" TargetName="leftColumn" Value="0"/>
+                <Setter Property="MaxWidth" TargetName="rightColumn" Value="0"/>
+            </Trigger>
+            
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ScrollBarEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ScrollBarEx}}}"/>
@@ -300,7 +316,7 @@
         <Setter Property="ForegroundPressed" Value="{Binding DataContext.AccentForegroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Height" Value="Auto"/>
         <Setter Property="MinHeight" Value="0"/>
-        <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+        <Setter Property="MinWidth" Value="12"/>
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
         <Setter Property="ThumbBackground" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
@@ -312,7 +328,7 @@
         <Setter Property="ThumbBorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ThumbBorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Template" Value="{StaticResource ScrollBarExStyle.VerticalControlTemplate}"/>
-        <Setter Property="Width" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+        <Setter Property="Width" Value="12"/>
         
         <Style.Triggers>
             <Trigger Property="UseSystemDimensions" Value="true">
@@ -321,9 +337,9 @@
             </Trigger>
 
             <Trigger Property="Orientation" Value="Horizontal">
-                <Setter Property="Height" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                <Setter Property="Height" Value="12"/>
                 <Setter Property="MinWidth" Value="0"/>
-                <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                <Setter Property="MinHeight" Value="12"/>
                 <Setter Property="Template" Value="{StaticResource ScrollBarExStyle.HorizontalControlTemplate}"/>
                 <Setter Property="Width" Value="Auto"/>
             </Trigger>

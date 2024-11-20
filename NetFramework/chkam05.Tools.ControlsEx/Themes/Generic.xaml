@@ -9,6 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CheckBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RepeatButtonEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ThumbEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ToggleButtonEx.xaml"/>
@@ -19,6 +20,7 @@
     <Style BasedOn="{StaticResource CheckBoxExStyle}" TargetType="{x:Type local:CheckBoxEx}"/>
     <Style BasedOn="{StaticResource RepeatButtonExStyle}" TargetType="{x:Type local:RepeatButtonEx}"/>
     <Style BasedOn="{StaticResource ScrollBarExStyle}" TargetType="{x:Type local:ScrollBarEx}"/>
+    <Style BasedOn="{StaticResource ScrollViewerExStyle}" TargetType="{x:Type local:ScrollViewerEx}"/>
     <Style BasedOn="{StaticResource TextBoxExStyle}" TargetType="{x:Type local:TextBoxEx}"/>
     <Style BasedOn="{StaticResource ThumbExStyle}" TargetType="{x:Type local:ThumbEx}"/>
     <Style BasedOn="{StaticResource ToggleButtonExStyle}" TargetType="{x:Type local:ToggleButtonEx}"/>

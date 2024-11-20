@@ -18,51 +18,57 @@
 
     <Grid>
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            VerticalAlignment="Top">
-
-            <cex:ButtonEx
-                IsEnabled="False">
-                <TextBlock Text="Hello World"/>
-            </cex:ButtonEx>
-
-            <cex:ButtonExWithIcon>
-                <TextBlock Text="Hello World"/>
-            </cex:ButtonExWithIcon>
-
-            <cex:CheckBoxEx
-                CheckMarkTypeIcon="Filled"
-                Content="Hello World"/>
-
-            <cex:ToggleButtonEx
-                Content="Hello World"/>
-
-            <cex:TextBoxEx/>
+        <cex:ScrollViewerEx
+            HorizontalScrollBarVisibility="Visible"
+            VerticalScrollBarVisibility="Visible">
 
             <StackPanel
-                Orientation="Horizontal">
+                HorizontalAlignment="Left"
+                Margin="8"
+                VerticalAlignment="Top">
 
-                <cex:ScrollBarEx
-                    Height="128"/>
+                <cex:ButtonEx
+                    IsEnabled="False">
+                    <TextBlock Text="Hello World"/>
+                </cex:ButtonEx>
+
+                <cex:ButtonExWithIcon>
+                    <TextBlock Text="Hello World"/>
+                </cex:ButtonExWithIcon>
+
+                <cex:CheckBoxEx
+                    CheckMarkTypeIcon="Filled"
+                    Content="Hello World"/>
+
+                <cex:ToggleButtonEx
+                    Content="Hello World"/>
+
+                <cex:TextBoxEx/>
 
                 <StackPanel
-                    Orientation="Vertical">
-                    
+                    Orientation="Horizontal">
+
                     <cex:ScrollBarEx
-                        Orientation="Horizontal"
-                        Width="160"/>
+                        Height="128"/>
+
+                    <StackPanel
+                        Orientation="Vertical">
+
+                        <cex:ScrollBarEx
+                            Orientation="Horizontal"
+                            Width="160"/>
+                    </StackPanel>
+
                 </StackPanel>
+
+                <ComboBox>
+                    <ComboBoxItem
+                        Content="Mode 1"/>
+                </ComboBox>
 
             </StackPanel>
 
-            <ComboBox>
-                <ComboBoxItem
-                    Content="Mode 1"/>
-            </ComboBox>
-
-        </StackPanel>
+        </cex:ScrollViewerEx>
 
     </Grid>
     

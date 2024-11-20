@@ -119,6 +119,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(ScrollBarEx),
             new PropertyMetadata(16d));
 
+        public static readonly DependencyProperty ButtonVisibilityProperty = DependencyProperty.Register(
+            nameof(ButtonVisibility),
+            typeof(Visibility),
+            typeof(ScrollBarEx),
+            new PropertyMetadata(Visibility.Collapsed));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -153,19 +159,19 @@ namespace chkam05.Tools.ControlsEx
             nameof(StyleButton),
             typeof(Style),
             typeof(ScrollBarEx),
-            new PropertyMetadata(GetGenericStyleRepeatButton()));
+            new PropertyMetadata(GetGenericRepeatButtonStyle()));
 
         public static readonly DependencyProperty StyleThumbHorizontalProperty = DependencyProperty.Register(
             nameof(StyleThumbHorizontal),
             typeof(Style),
             typeof(ScrollBarEx),
-            new PropertyMetadata(GetGenericStyleThumbHorizontal()));
+            new PropertyMetadata(GetGenericThumbHorizontalStyle()));
 
         public static readonly DependencyProperty StyleThumbVerticalProperty = DependencyProperty.Register(
             nameof(StyleThumbVertical),
             typeof(Style),
             typeof(ScrollBarEx),
-            new PropertyMetadata(GetGenericStyleThumbVertical()));
+            new PropertyMetadata(GetGenericThumbVerticalStyle()));
 
         public static readonly DependencyProperty ThumbBackgroundProperty = DependencyProperty.Register(
             nameof(ThumbBackground),
@@ -344,6 +350,12 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ButtonVerticalHeightProperty, Math.Max(0, value));
         }
 
+        public Visibility ButtonVisibility
+        {
+            get => (Visibility)GetValue(ButtonVisibilityProperty);
+            set => SetValue(ButtonVisibilityProperty, value);
+        }
+
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
@@ -481,21 +493,30 @@ namespace chkam05.Tools.ControlsEx
 
         #region STYLES
 
-        protected static Style GetGenericStyleRepeatButton()
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get generic RepeatButtonEx style from resources. </summary>
+        /// <returns> RepeatButtonEx style. </returns>
+        protected static Style GetGenericRepeatButtonStyle()
         {
             var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml", UriKind.Absolute);
             var resourceDictionary = new ResourceDictionary { Source = uri };
             return resourceDictionary["ScrollBarEx.RepeatButtonExStyle"] as Style;
         }
 
-        protected static Style GetGenericStyleThumbHorizontal()
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get generic ThumbEx horizontal style from resources. </summary>
+        /// <returns> ThumbEx style. </returns>
+        protected static Style GetGenericThumbHorizontalStyle()
         {
             var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml", UriKind.Absolute);
             var resourceDictionary = new ResourceDictionary { Source = uri };
             return resourceDictionary["ScrollBarEx.ThumbExHorizontalStyle"] as Style;
         }
 
-        protected static Style GetGenericStyleThumbVertical()
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get generic ThumbEx vertical style from resources. </summary>
+        /// <returns> ThumbEx style. </returns>
+        protected static Style GetGenericThumbVerticalStyle()
         {
             var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml", UriKind.Absolute);
             var resourceDictionary = new ResourceDictionary { Source = uri };
