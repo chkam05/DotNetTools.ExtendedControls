@@ -64,6 +64,7 @@
     <Compile Include="ButtonExWithIcon.cs" />
     <Compile Include="CheckBoxEx.cs" />
     <Compile Include="ComboBoxEx.cs" />
+    <Compile Include="ComboBoxItemEx.cs" />
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
     <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
@@ -125,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ComboBoxEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ComboBoxItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -61,15 +61,13 @@
 
                 </StackPanel>
 
-                <ComboBox
-                    IsEditable="True">
-                    <ComboBoxItem
-                        Content="Mode 1"/>
-                </ComboBox>
-
                 <cex:ComboBoxEx>
-                    <ComboBoxItem
-                        Content="Mode 1"/>
+                    <cex:ComboBoxItemEx
+                        Content="ComboBoxItemEx 1"/>
+                    <cex:ComboBoxItemEx
+                        Content="ComboBoxItemEx 2"/>
+                    <cex:ComboBoxItemEx
+                        Content="ComboBoxItemEx 3"/>
                 </cex:ComboBoxEx>
 
             </StackPanel>

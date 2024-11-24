@@ -6,72 +6,84 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx
 {
-    public class ThumbEx : Thumb
+    public class ComboBoxItemEx : ComboBoxItem
     {
 
         //  DEPENDENCY PROPERTIES
 
-        public static readonly DependencyProperty BackgroundDraggingProperty = DependencyProperty.Register(
-            nameof(BackgroundDragging),
-            typeof(Brush),
-            typeof(ThumbEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorPressed)));
-
         public static readonly DependencyProperty BackgroundInactiveProperty = DependencyProperty.Register(
             nameof(BackgroundInactive),
             typeof(Brush),
-            typeof(ThumbEx),
+            typeof(ComboBoxItemEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
 
         public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(BackgroundMouseOver),
             typeof(Brush),
-            typeof(ThumbEx),
+            typeof(ComboBoxItemEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorMouseOver)));
 
-        public static readonly DependencyProperty BorderBrushDraggingProperty = DependencyProperty.Register(
-            nameof(BorderBrushDragging),
+        public static readonly DependencyProperty BackgroundSelectedProperty = DependencyProperty.Register(
+            nameof(BackgroundSelected),
             typeof(Brush),
-            typeof(ThumbEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorPressed)));
+            typeof(ComboBoxItemEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorSelected)));
 
         public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
             nameof(BorderBrushInactive),
             typeof(Brush),
-            typeof(ThumbEx),
+            typeof(ComboBoxItemEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
 
         public static readonly DependencyProperty BorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(BorderBrushMouseOver),
             typeof(Brush),
-            typeof(ThumbEx),
+            typeof(ComboBoxItemEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorMouseOver)));
+
+        public static readonly DependencyProperty BorderBrushSelectedProperty = DependencyProperty.Register(
+            nameof(BorderBrushSelected),
+            typeof(Brush),
+            typeof(ComboBoxItemEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorSelected)));
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
-            typeof(ThumbEx),
+            typeof(ComboBoxItemEx),
             new PropertyMetadata(new CornerRadius(4)));
+
+        public static readonly DependencyProperty ForegroundInactiveProperty = DependencyProperty.Register(
+           nameof(ForegroundInactive),
+           typeof(Brush),
+           typeof(ComboBoxItemEx),
+           new PropertyMetadata(new SolidColorBrush(ColorsResources.LightForeground)));
+
+        public static readonly DependencyProperty ForegroundMouseOverProperty = DependencyProperty.Register(
+            nameof(ForegroundMouseOver),
+            typeof(Brush),
+            typeof(ComboBoxItemEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorForeground)));
+
+        public static readonly DependencyProperty ForegroundSelectedProperty = DependencyProperty.Register(
+            nameof(ForegroundSelected),
+            typeof(Brush),
+            typeof(ComboBoxItemEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorForeground)));
 
         public static readonly DependencyProperty OpacityInactiveProperty = DependencyProperty.Register(
             nameof(OpacityInactive),
             typeof(double),
-            typeof(ThumbEx),
+            typeof(ComboBoxItemEx),
             new PropertyMetadata(0.56d));
 
 
         //  GETTERS & SETTERS
-
-        public Brush BackgroundDragging
-        {
-            get => (Brush)GetValue(BackgroundDraggingProperty);
-            set => SetValue(BackgroundDraggingProperty, value);
-        }
 
         public Brush BackgroundInactive
         {
@@ -85,10 +97,10 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(BackgroundMouseOverProperty, value);
         }
 
-        public Brush BorderBrushDragging
+        public Brush BackgroundSelected
         {
-            get => (Brush)GetValue(BorderBrushDraggingProperty);
-            set => SetValue(BorderBrushDraggingProperty, value);
+            get => (Brush)GetValue(BackgroundSelectedProperty);
+            set => SetValue(BackgroundSelectedProperty, value);
         }
 
         public Brush BorderBrushInactive
@@ -103,10 +115,34 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(BorderBrushMouseOverProperty, value);
         }
 
+        public Brush BorderBrushSelected
+        {
+            get => (Brush)GetValue(BorderBrushSelectedProperty);
+            set => SetValue(BorderBrushSelectedProperty, value);
+        }
+
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        public Brush ForegroundInactive
+        {
+            get => (Brush)GetValue(ForegroundInactiveProperty);
+            set => SetValue(ForegroundInactiveProperty, value);
+        }
+
+        public Brush ForegroundMouseOver
+        {
+            get => (Brush)GetValue(ForegroundMouseOverProperty);
+            set => SetValue(ForegroundMouseOverProperty, value);
+        }
+
+        public Brush ForegroundSelected
+        {
+            get => (Brush)GetValue(ForegroundSelectedProperty);
+            set => SetValue(ForegroundSelectedProperty, value);
         }
 
         public double OpacityInactive
@@ -121,11 +157,11 @@ namespace chkam05.Tools.ControlsEx
         #region CONSTRUCTORS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> ThumbEx class constructor. </summary>
-        static ThumbEx()
+        /// <summary> ComboBoxItemEx class constructor. </summary>
+        static ComboBoxItemEx()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ThumbEx),
-                new FrameworkPropertyMetadata(typeof(ThumbEx)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBoxItemEx),
+                new FrameworkPropertyMetadata(typeof(ComboBoxItemEx)));
         }
 
         #endregion CONSTRUCTORS

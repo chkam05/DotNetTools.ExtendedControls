@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Resources;
+using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -381,7 +382,7 @@ namespace chkam05.Tools.ControlsEx
         public double OpacityInactive
         {
             get => (double)GetValue(OpacityInactiveProperty);
-            set => SetValue(OpacityInactiveProperty, value);
+            set => SetValue(OpacityInactiveProperty, MathUtilities.Clamp(value, 0d, 1d));
         }
 
         public Style ToggleButtonExStyle
@@ -404,6 +405,18 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion CONSTRUCTORS
+
+        #region ITEMS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Creates or identifies the element used to display the specified item. </summary>
+        /// <returns> The element used to display the specified item. </returns>
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new ComboBoxItemEx();
+        }
+
+        #endregion ITEMS
 
         #region STYLES
 
