@@ -67,6 +67,11 @@
                         Content="Mode 1"/>
                 </ComboBox>
 
+                <cex:ComboBoxEx>
+                    <ComboBoxItem
+                        Content="Mode 1"/>
+                </cex:ComboBoxEx>
+
             </StackPanel>
 
         </cex:ScrollViewerEx>

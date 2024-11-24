@@ -7,6 +7,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonExWithIcon.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CheckBoxEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RepeatButtonEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerEx.xaml"/>
@@ -18,6 +19,7 @@
     <Style BasedOn="{StaticResource ButtonExStyle}" TargetType="{x:Type local:ButtonEx}"/>
     <Style BasedOn="{StaticResource ButtonExWithIconStyle}" TargetType="{x:Type local:ButtonExWithIcon}"/>
     <Style BasedOn="{StaticResource CheckBoxExStyle}" TargetType="{x:Type local:CheckBoxEx}"/>
+    <Style BasedOn="{StaticResource ComboBoxExStyle}" TargetType="{x:Type local:ComboBoxEx}"/>
     <Style BasedOn="{StaticResource RepeatButtonExStyle}" TargetType="{x:Type local:RepeatButtonEx}"/>
     <Style BasedOn="{StaticResource ScrollBarExStyle}" TargetType="{x:Type local:ScrollBarEx}"/>
     <Style BasedOn="{StaticResource ScrollViewerExStyle}" TargetType="{x:Type local:ScrollViewerEx}"/>
