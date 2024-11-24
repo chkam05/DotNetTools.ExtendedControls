@@ -183,11 +183,23 @@ namespace chkam05.Tools.ControlsEx
             typeof(ComboBoxEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.LightForeground)));
 
+        public static readonly DependencyProperty EditableTextBoxStyleProperty = DependencyProperty.Register(
+            nameof(EditableTextBoxStyle),
+            typeof(Style),
+            typeof(ComboBoxEx),
+            new PropertyMetadata(GetEditableTextBoxStyle()));
+
         public static readonly DependencyProperty OpacityInactiveProperty = DependencyProperty.Register(
             nameof(OpacityInactive),
             typeof(double),
             typeof(ComboBoxEx),
             new PropertyMetadata(0.56d));
+
+        public static readonly DependencyProperty ToggleButtonExStyleProperty = DependencyProperty.Register(
+            nameof(ToggleButtonExStyle),
+            typeof(Style),
+            typeof(ComboBoxEx),
+            new PropertyMetadata(GetToggleButtonExStyle()));
 
 
         //  GETTERS & SETTERS
@@ -360,10 +372,22 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ForegroundMouseOverProperty, value);
         }
 
+        public Style EditableTextBoxStyle
+        {
+            get => (Style)GetValue(EditableTextBoxStyleProperty);
+            set => SetValue(EditableTextBoxStyleProperty, value);
+        }
+
         public double OpacityInactive
         {
             get => (double)GetValue(OpacityInactiveProperty);
             set => SetValue(OpacityInactiveProperty, value);
+        }
+
+        public Style ToggleButtonExStyle
+        {
+            get => (Style) GetValue(ToggleButtonExStyleProperty);
+            set => SetValue(ToggleButtonExStyleProperty, value);
         }
 
 
@@ -380,6 +404,30 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion CONSTRUCTORS
+
+        #region STYLES
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get generic EditableTextBox style from resources. </summary>
+        /// <returns> RepeatButtonEx style. </returns>
+        protected static Style GetEditableTextBoxStyle()
+        {
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary["ComboBoxEx.EditableTextBoxStyle"] as Style;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get generic ToggleButtonEx style from resources. </summary>
+        /// <returns> RepeatButtonEx style. </returns>
+        protected static Style GetToggleButtonExStyle()
+        {
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary["ComboBoxEx.ToggleButtonExStyle"] as Style;
+        }
+
+        #endregion STYLES
 
     }
 }

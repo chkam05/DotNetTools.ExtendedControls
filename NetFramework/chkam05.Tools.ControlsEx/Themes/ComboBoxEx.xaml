@@ -144,14 +144,14 @@
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                         Margin="{TemplateBinding Padding}"
-                        Style="{StaticResource ComboBoxEx.EditableTextBoxStyle}"
+                        Style="{TemplateBinding EditableTextBoxStyle}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
                     <local:ToggleButtonEx
                         x:Name="toggleButton"
                         Grid.Column="1"
                         IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                        Style="{StaticResource ComboBoxEx.ToggleButtonExStyle}">
+                        Style="{TemplateBinding ToggleButtonExStyle}">
 
                         <materialDesign:PackIcon
                             Foreground="{TemplateBinding ButtonForeground}"
@@ -307,7 +307,7 @@
                         x:Name="toggleButton"
                         Grid.Column="1"
                         IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                        Style="{StaticResource ComboBoxEx.ToggleButtonExStyle}">
+                        Style="{TemplateBinding ToggleButtonExStyle}">
 
                         <materialDesign:PackIcon
                             Foreground="{TemplateBinding ButtonForeground}"
