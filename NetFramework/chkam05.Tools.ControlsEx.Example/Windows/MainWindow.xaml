@@ -183,6 +183,18 @@
 
                 </StackPanel>
 
+                <TextBlock
+                    Text="ListViews:"/>
+
+                <ListView>
+                    <ListViewItem Style="{DynamicResource ListViewItemExStyle}"
+                        Content="ListViewItem 1"/>
+                    <ListViewItem
+                        Content="ListViewItem 2"/>
+                    <ListViewItem
+                        Content="ListViewItem 3"/>
+                </ListView>
+
             </StackPanel>
 
         </cex:ScrollViewerEx>

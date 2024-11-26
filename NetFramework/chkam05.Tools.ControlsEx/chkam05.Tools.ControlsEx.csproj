@@ -76,6 +76,8 @@
     <Compile Include="Data\Theme\ThemeType.cs" />
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
+    <Compile Include="ListViewEx.cs" />
+    <Compile Include="ListViewItemEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -134,6 +136,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ListViewEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ListViewItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
