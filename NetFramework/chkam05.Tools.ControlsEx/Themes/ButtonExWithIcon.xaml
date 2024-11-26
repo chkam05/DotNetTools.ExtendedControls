@@ -60,16 +60,30 @@
         </Border>
 
         <ControlTemplate.Triggers>
-            <Trigger Property="HasContent" Value="false">
-                <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed"/>
-                <Setter TargetName="packIcon" Property="Grid.Column" Value="0"/>
-                <Setter TargetName="packIcon" Property="Grid.Row" Value="0"/>
-                <Setter TargetName="packIcon" Property="Margin" Value="0"/>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
             </Trigger>
 
-            <Trigger Property="IconKind" Value="{x:Static materialDesign:PackIconKind.None}">
-                <Setter TargetName="contentPresenter" Property="Margin" Value="0"/>
-                <Setter TargetName="packIcon" Property="Visibility" Value="Collapsed"/>
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+            </Trigger>
+            
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding ForegroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
             </Trigger>
 
             <MultiTrigger>
@@ -116,30 +130,16 @@
                 <Setter TargetName="packIcon" Property="Grid.Row" Value="1"/>
             </MultiTrigger>
 
-            <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+            <Trigger Property="IconKind" Value="{x:Static materialDesign:PackIconKind.None}">
+                <Setter TargetName="contentPresenter" Property="Margin" Value="0"/>
+                <Setter TargetName="packIcon" Property="Visibility" Value="Collapsed"/>
             </Trigger>
 
-            <Trigger Property="IsKeyboardFocused" Value="true">
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-            </Trigger>
-
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-            </Trigger>
-
-            <Trigger Property="IsPressed" Value="true">
-                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding ForegroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonExWithIcon}}}"/>
+            <Trigger Property="HasContent" Value="false">
+                <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed"/>
+                <Setter TargetName="packIcon" Property="Grid.Column" Value="0"/>
+                <Setter TargetName="packIcon" Property="Grid.Row" Value="0"/>
+                <Setter TargetName="packIcon" Property="Margin" Value="0"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

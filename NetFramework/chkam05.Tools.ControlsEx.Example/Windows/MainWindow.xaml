@@ -27,48 +27,161 @@
                 Margin="8"
                 VerticalAlignment="Top">
 
-                <cex:ButtonEx
-                    IsEnabled="False">
-                    <TextBlock Text="Hello World"/>
-                </cex:ButtonEx>
-
-                <cex:ButtonExWithIcon>
-                    <TextBlock Text="Hello World"/>
-                </cex:ButtonExWithIcon>
-
-                <cex:CheckBoxEx
-                    CheckMarkTypeIcon="Filled"
-                    Content="Hello World"/>
-
-                <cex:ToggleButtonEx
-                    Content="Hello World"/>
-
-                <cex:TextBoxEx/>
+                <TextBlock
+                    Text="Buttons:"/>
 
                 <StackPanel
                     Orientation="Horizontal">
 
+                    <cex:ButtonEx
+                        Content="Hello World"
+                        IsEnabled="False"/>
+
+                    <cex:ButtonEx
+                        Content="Hello World"
+                        IsEnabled="True"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Text="Buttons with Icons:"/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <cex:ButtonExWithIcon
+                        Content="Hello World"
+                        IsEnabled="False"/>
+
+                    <cex:ButtonExWithIcon
+                        Content="Hello World"
+                        IsEnabled="True"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Text="CheckBoxes:"/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <cex:CheckBoxEx
+                        CheckMarkTypeIcon="Filled"
+                        Content="Hello World"
+                        IsEnabled="False"/>
+                    
+                    <cex:CheckBoxEx
+                        CheckMarkTypeIcon="Filled"
+                        Content="Hello World"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Text="ToggleButtons:"/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <cex:ToggleButtonEx
+                        Content="Hello World"
+                        IsEnabled="False"/>
+                    
+                    <cex:ToggleButtonEx
+                        Content="Hello World"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Text="TextBoxes:"/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <cex:TextBoxEx
+                        IsEnabled="False"
+                        PreviewText="Disabled TextBox ..."/>
+
+                    <cex:TextBoxEx/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Text="ScrollBars:"/>
+
+                <StackPanel
+                    Orientation="Vertical">
+
                     <cex:ScrollBarEx
-                        Height="128"/>
+                        IsEnabled="False"
+                        Orientation="Horizontal"/>
+                    
+                    <cex:ScrollBarEx
+                        Orientation="Horizontal"/>
 
                     <StackPanel
-                        Orientation="Vertical">
+                        Orientation="Horizontal">
 
                         <cex:ScrollBarEx
-                            Orientation="Horizontal"
-                            Width="160"/>
+                            Height="64"
+                            IsEnabled="False"/>
+                        
+                        <cex:ScrollBarEx
+                            Height="64"/>
+
                     </StackPanel>
 
                 </StackPanel>
 
-                <cex:ComboBoxEx>
-                    <cex:ComboBoxItemEx
-                        Content="ComboBoxItemEx 1"/>
-                    <cex:ComboBoxItemEx
-                        Content="ComboBoxItemEx 2"/>
-                    <cex:ComboBoxItemEx
-                        Content="ComboBoxItemEx 3"/>
-                </cex:ComboBoxEx>
+                <TextBlock
+                    Text="ComboBoxes:"/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+                
+                    <cex:ComboBoxEx
+                        IsEnabled="False"
+                        Width="128">
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 1"/>
+                    </cex:ComboBoxEx>
+
+                    <cex:ComboBoxEx
+                        Width="128">
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 1"/>
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 2"
+                            IsEnabled="False"/>
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 3"/>
+                    </cex:ComboBoxEx>
+                    
+                </StackPanel>
+                
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <cex:ComboBoxEx
+                        IsEditable="True"
+                        IsEnabled="False"
+                        Width="128">
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 1"/>
+                    </cex:ComboBoxEx>
+
+                    <cex:ComboBoxEx
+                        IsEditable="True"
+                        Width="128">
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 1"/>
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 2"
+                            IsEnabled="False"/>
+                        <cex:ComboBoxItemEx
+                            Content="ComboBoxItemEx 3"/>
+                    </cex:ComboBoxEx>
+
+                </StackPanel>
 
             </StackPanel>
 

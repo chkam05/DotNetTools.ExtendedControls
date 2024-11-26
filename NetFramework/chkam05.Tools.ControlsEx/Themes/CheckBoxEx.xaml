@@ -61,39 +61,10 @@
         </Border>
 
         <ControlTemplate.Triggers>
-            <Trigger Property="HasContent" Value="false">
-                <Setter Property="Margin" TargetName="checkMark" Value="0"/>
-                <Setter Property="Visibility" TargetName="contentPresenter" Value="Collapsed"/>
-            </Trigger>
-            
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground" TargetName="checkMark" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
                 <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
-            </Trigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsEnabled" Value="false"/>
-                    <Condition Property="IsChecked" Value="{x:Null}"/>
-                </MultiTrigger.Conditions>
-                <Setter
-                    Property="Kind"
-                    TargetName="checkMark"
-                    Value="{Binding CheckMarkTypeIcon, 
-                        RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}},
-                        Converter={StaticResource CheckMarkTypePackIconConverter},
-                        ConverterParameter=disabled}"/>
-            </MultiTrigger>
-
-            <Trigger Property="IsChecked" Value="true">
-                <Setter
-                    Property="Kind"
-                    TargetName="checkMark"
-                    Value="{Binding CheckMarkTypeIcon, 
-                        RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}},
-                        Converter={StaticResource CheckMarkTypePackIconConverter},
-                        ConverterParameter=checked}"/>
             </Trigger>
 
             <Trigger Property="IsKeyboardFocused" Value="true">
@@ -109,6 +80,35 @@
                 <Setter Property="Foreground" TargetName="checkMark" Value="{Binding BackgroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}}}"/>
             </Trigger>
+
+            <Trigger Property="HasContent" Value="false">
+                <Setter Property="Margin" TargetName="checkMark" Value="0"/>
+                <Setter Property="Visibility" TargetName="contentPresenter" Value="Collapsed"/>
+            </Trigger>
+            
+            <Trigger Property="IsChecked" Value="true">
+                <Setter
+                    Property="Kind"
+                    TargetName="checkMark"
+                    Value="{Binding CheckMarkTypeIcon, 
+                        RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}},
+                        Converter={StaticResource CheckMarkTypePackIconConverter},
+                        ConverterParameter=checked}"/>
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="false"/>
+                    <Condition Property="IsChecked" Value="{x:Null}"/>
+                </MultiTrigger.Conditions>
+                <Setter
+                    Property="Kind"
+                    TargetName="checkMark"
+                    Value="{Binding CheckMarkTypeIcon, 
+                        RelativeSource={RelativeSource AncestorType={x:Type local:CheckBoxEx}},
+                        Converter={StaticResource CheckMarkTypePackIconConverter},
+                        ConverterParameter=disabled}"/>
+            </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

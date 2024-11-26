@@ -37,20 +37,8 @@
             </Grid>
 
         </Border>
-        
+
         <ControlTemplate.Triggers>
-            <Trigger Property="Text" Value="">
-                <Setter Property="Visibility" TargetName="previewTextBlock" Value="Visible"/>
-            </Trigger>
-            
-            <Trigger Property="TextWrapping" Value="Wrap">
-                <Setter Property="VerticalScrollBarVisibility" TargetName="PART_ContentHost" Value="Auto"/>
-            </Trigger>
-
-            <Trigger Property="TextWrapping" Value="WrapWithOverflow">
-                <Setter Property="VerticalScrollBarVisibility" TargetName="PART_ContentHost" Value="Auto"/>
-            </Trigger>
-
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
@@ -58,7 +46,11 @@
                 <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="TextElement.Foreground" TargetName="PART_ContentHost" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
             </Trigger>
-            
+
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
+            </Trigger>
+
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" TargetName="border" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
@@ -66,8 +58,16 @@
                 <Setter Property="TextBlock.Foreground" TargetName="PART_ContentHost" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
             </Trigger>
 
-            <Trigger Property="IsKeyboardFocused" Value="true">
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Visibility" TargetName="previewTextBlock" Value="Visible"/>
+            </Trigger>
+
+            <Trigger Property="TextWrapping" Value="Wrap">
+                <Setter Property="VerticalScrollBarVisibility" TargetName="PART_ContentHost" Value="Auto"/>
+            </Trigger>
+
+            <Trigger Property="TextWrapping" Value="WrapWithOverflow">
+                <Setter Property="VerticalScrollBarVisibility" TargetName="PART_ContentHost" Value="Auto"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

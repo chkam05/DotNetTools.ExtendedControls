@@ -25,7 +25,6 @@
         </Border>
 
         <ControlTemplate.Triggers>
-
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxItemEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxItemEx}}}"/>
@@ -48,7 +47,6 @@
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxItemEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxItemEx}}}"/>
             </Trigger>
-
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
