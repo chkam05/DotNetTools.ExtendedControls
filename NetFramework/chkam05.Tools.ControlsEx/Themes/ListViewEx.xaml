@@ -17,21 +17,26 @@
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
             SnapsToDevicePixels="true">
             
-            <ScrollViewer
+            <local:ScrollViewerEx
                 Focusable="false"
-                Padding="{TemplateBinding Padding}">
+                Padding="{TemplateBinding Padding}"
+                Style="{TemplateBinding ScrollViewerStyle}">
                 
                 <ItemsPresenter
+                    x:Name="itemsPresenter"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-            </ScrollViewer>
+            </local:ScrollViewerEx>
         </Border>
         
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Background}"/>
-                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Border}"/>
+                <Setter Property="Background" TargetName="Bd" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="Opacity" TargetName="Bd" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="itemsPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
             </Trigger>
             
             <MultiTrigger>
@@ -45,10 +50,13 @@
     </ControlTemplate>
 
     <Style x:Key="ListViewExStyle" TargetType="{x:Type local:ListViewEx}">
-        <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>

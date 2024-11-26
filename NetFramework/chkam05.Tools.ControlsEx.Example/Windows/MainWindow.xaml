@@ -186,14 +186,44 @@
                 <TextBlock
                     Text="ListViews:"/>
 
-                <ListView>
-                    <ListViewItem Style="{DynamicResource ListViewItemExStyle}"
+                <cex:ListViewEx
+                    IsEnabled="False"
+                    MaxHeight="64">
+                    <ListViewItem
                         Content="ListViewItem 1"/>
                     <ListViewItem
                         Content="ListViewItem 2"/>
                     <ListViewItem
                         Content="ListViewItem 3"/>
-                </ListView>
+                    <ListViewItem
+                        Content="ListViewItem 4"/>
+                    <ListViewItem
+                        Content="ListViewItem 5"/>
+                    <ListViewItem
+                        Content="ListViewItem 6"/>
+                </cex:ListViewEx>
+
+                <cex:ListViewEx
+                    MaxHeight="64">
+                    <ListViewItem
+                        Content="ListViewItem 1"/>
+                    <ListViewItem
+                        Content="ListViewItem 2"/>
+                    <ListViewItem
+                        Content="ListViewItem 3"/>
+                    <ListViewItem
+                        Content="ListViewItem 4"/>
+                    <ListViewItem
+                        Content="ListViewItem 5"/>
+                    <ListViewItem
+                        Content="ListViewItem 6"/>
+                </cex:ListViewEx>
+
+                <!--ListView>
+                    <ListView.View>
+                        <GridView/>
+                    </ListView.View>
+                </ListView-->
 
             </StackPanel>
 
