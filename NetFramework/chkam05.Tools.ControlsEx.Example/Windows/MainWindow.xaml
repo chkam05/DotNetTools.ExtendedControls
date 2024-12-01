@@ -6,14 +6,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Windows"
     xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:data="clr-namespace:chkam05.Tools.ControlsEx.Example.Data"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
     Title="ControlsEx"
     Height="450"
-    Width="800"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    Width="800">
 
     <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
@@ -69,7 +77,7 @@
                         CheckMarkTypeIcon="Filled"
                         Content="Hello World"
                         IsEnabled="False"/>
-                    
+
                     <cex:CheckBoxEx
                         CheckMarkTypeIcon="Filled"
                         Content="Hello World"/>
@@ -85,7 +93,7 @@
                     <cex:ToggleButtonEx
                         Content="Hello World"
                         IsEnabled="False"/>
-                    
+
                     <cex:ToggleButtonEx
                         Content="Hello World"/>
 
@@ -114,7 +122,7 @@
                     <cex:ScrollBarEx
                         IsEnabled="False"
                         Orientation="Horizontal"/>
-                    
+
                     <cex:ScrollBarEx
                         Orientation="Horizontal"/>
 
@@ -124,7 +132,7 @@
                         <cex:ScrollBarEx
                             Height="64"
                             IsEnabled="False"/>
-                        
+
                         <cex:ScrollBarEx
                             Height="64"/>
 
@@ -137,7 +145,7 @@
 
                 <StackPanel
                     Orientation="Horizontal">
-                
+
                     <cex:ComboBoxEx
                         IsEnabled="False"
                         Width="128">
@@ -155,9 +163,9 @@
                         <cex:ComboBoxItemEx
                             Content="ComboBoxItemEx 3"/>
                     </cex:ComboBoxEx>
-                    
+
                 </StackPanel>
-                
+
                 <StackPanel
                     Orientation="Horizontal">
 
@@ -189,35 +197,90 @@
                 <cex:ListViewEx
                     IsEnabled="False"
                     MaxHeight="64">
-                    <ListViewItem
-                        Content="ListViewItem 1"/>
-                    <ListViewItem
-                        Content="ListViewItem 2"/>
-                    <ListViewItem
-                        Content="ListViewItem 3"/>
-                    <ListViewItem
-                        Content="ListViewItem 4"/>
-                    <ListViewItem
-                        Content="ListViewItem 5"/>
-                    <ListViewItem
-                        Content="ListViewItem 6"/>
+                    <cex:ListViewEx.Items>
+                        <cex:ListViewItemEx
+                            Content="ListViewItem 1"/>
+                        <cex:ListViewItemEx
+                            Content="ListViewItem 2"/>
+                        <cex:ListViewItemEx
+                            Content="ListViewItem 3"/>
+                    </cex:ListViewEx.Items>
                 </cex:ListViewEx>
 
                 <cex:ListViewEx
                     MaxHeight="64">
-                    <ListViewItem
-                        Content="ListViewItem 1"/>
-                    <ListViewItem
-                        Content="ListViewItem 2"/>
-                    <ListViewItem
-                        Content="ListViewItem 3"/>
-                    <ListViewItem
-                        Content="ListViewItem 4"/>
-                    <ListViewItem
-                        Content="ListViewItem 5"/>
-                    <ListViewItem
-                        Content="ListViewItem 6"/>
+                    <cex:ListViewEx.Items>
+                        <cex:ListViewItemEx
+                            Content="ListViewItem 1"/>
+                        <cex:ListViewItemEx
+                            IsEnabled="False"
+                            Content="ListViewItem 2"/>
+                        <cex:ListViewItemEx
+                            Content="ListViewItem 3"/>
+                        <cex:ListViewItemEx
+                            IsEnabled="False"
+                            Content="ListViewItem 4"/>
+                        <cex:ListViewItemEx
+                            Content="ListViewItem 5"/>
+                        <cex:ListViewItemEx
+                            Content="ListViewItem 6"/>
+                    </cex:ListViewEx.Items>
                 </cex:ListViewEx>
+
+                <cex:GridViewEx
+                    MaxHeight="64">
+
+                    <cex:GridViewEx.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Country" Width="128">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Country}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Capital" Width="128">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Capital}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </cex:GridViewEx.View>
+                    <cex:GridViewEx.Items>
+                        <cex:GridViewItemEx>
+                            <cex:ListViewItemEx.Content>
+                                <data:CountryInfo Country="USA" Capital="Washington D.C."/>
+                            </cex:ListViewItemEx.Content>
+                        </cex:GridViewItemEx>
+                        <cex:GridViewItemEx>
+                            <cex:ListViewItemEx.Content>
+                                <data:CountryInfo Country="Germany" Capital="Berlin"/>
+                            </cex:ListViewItemEx.Content>
+                        </cex:GridViewItemEx>
+                        <cex:GridViewItemEx>
+                            <cex:ListViewItemEx.Content>
+                                <data:CountryInfo Country="France" Capital="Paris"/>
+                            </cex:ListViewItemEx.Content>
+                        </cex:GridViewItemEx>
+                        <cex:GridViewItemEx
+                            IsEnabled="False">
+                            <cex:ListViewItemEx.Content>
+                                <data:CountryInfo Country="Poland" Capital="Warsaw"/>
+                            </cex:ListViewItemEx.Content>
+                        </cex:GridViewItemEx>
+                        <cex:GridViewItemEx>
+                            <cex:ListViewItemEx.Content>
+                                <data:CountryInfo Country="Czech Republic" Capital="Prague"/>
+                            </cex:ListViewItemEx.Content>
+                        </cex:GridViewItemEx>
+                    </cex:GridViewEx.Items>
+                </cex:GridViewEx>
 
                 <!--ListView>
                     <ListView.View>

@@ -2,6 +2,7 @@
 using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,14 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ScrollViewerStyleProperty, value);
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new ViewBase View
+        {
+            get => base.View;
+            set => throw new NotSupportedException("Setting 'View' is not supported in ListViewEx.");
+        }
+
 
         //  METHODS
 
@@ -102,9 +111,31 @@ namespace chkam05.Tools.ControlsEx
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ListViewEx),
                 new FrameworkPropertyMetadata(typeof(ListViewEx)));
+
+            ViewProperty.OverrideMetadata(
+                typeof(ListViewEx),
+                new FrameworkPropertyMetadata(
+                    null,
+                    FrameworkPropertyMetadataOptions.None,
+                    null,
+                    null
+                )
+            );
         }
 
         #endregion CONSTRUCTORS
+
+        #region ITEMS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Creates or identifies the element used to display the specified item. </summary>
+        /// <returns> The element used to display the specified item. </returns>
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new ListViewItemEx();
+        }
+
+        #endregion ITEMS
 
         #region STYLES
 

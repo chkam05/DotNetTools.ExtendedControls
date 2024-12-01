@@ -1,0 +1,61 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <ControlTemplate x:Key="GridViewItemEx.ControlTemplate" TargetType="{x:Type local:GridViewItemEx}">
+        <Border
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            Padding="{TemplateBinding Padding}"
+            SnapsToDevicePixels="true">
+
+            <GridViewRowPresenter
+                x:Name="contentPresenter"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                TextBlock.Foreground="{TemplateBinding Foreground}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushSelected, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="GridViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:GridViewItemEx}">
+        <Setter Property="Template" Value="{StaticResource GridViewItemEx.ControlTemplate}"/>
+    </Style>
+
+</ResourceDictionary>

@@ -9,6 +9,8 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CheckBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxItemEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RepeatButtonEx.xaml"/>
@@ -24,6 +26,8 @@
     <Style BasedOn="{StaticResource CheckBoxExStyle}" TargetType="{x:Type local:CheckBoxEx}"/>
     <Style BasedOn="{StaticResource ComboBoxExStyle}" TargetType="{x:Type local:ComboBoxEx}"/>
     <Style BasedOn="{StaticResource ComboBoxItemExStyle}" TargetType="{x:Type local:ComboBoxItemEx}"/>
+    <Style BasedOn="{StaticResource GridViewExStyle}" TargetType="{x:Type local:GridViewEx}"/>
+    <Style BasedOn="{StaticResource GridViewItemExStyle}" TargetType="{x:Type local:GridViewItemEx}"/>
     <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}"/>
     <Style BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:ListViewItemEx}"/>
     <Style BasedOn="{StaticResource RepeatButtonExStyle}" TargetType="{x:Type local:RepeatButtonEx}"/>

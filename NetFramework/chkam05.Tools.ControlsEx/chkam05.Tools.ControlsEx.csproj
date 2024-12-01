@@ -76,6 +76,8 @@
     <Compile Include="Data\Theme\ThemeType.cs" />
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
+    <Compile Include="GridViewEx.cs" />
+    <Compile Include="GridViewItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
     <Compile Include="ListViewItemEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -136,6 +138,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\GridViewExColumnHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\GridViewEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\GridViewItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

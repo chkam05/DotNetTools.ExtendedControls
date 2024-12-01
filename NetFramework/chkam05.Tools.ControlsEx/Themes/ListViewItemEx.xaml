@@ -6,78 +6,68 @@
 
     <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
 
-    <Style x:Key="FocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
-    <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#1F26A0DA"/>
-    <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
-    <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#3D26A0DA"/>
-    <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FF26A0DA"/>
-    <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3DDADADA"/>
-    <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
-
     <ControlTemplate x:Key="ListViewItemEx.ControlTemplate" TargetType="{x:Type local:ListViewItemEx}">
         <Border
-            x:Name="Bd"
+            x:Name="border"
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
             Padding="{TemplateBinding Padding}"
             SnapsToDevicePixels="true">
-            
+
             <ContentPresenter
+                x:Name="contentPresenter"
                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                TextBlock.Foreground="{TemplateBinding Foreground}"
                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
         </Border>
-        
+
         <ControlTemplate.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
-                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
-            </MultiTrigger>
-            
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
-                    <Condition Property="IsSelected" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
-                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
-            </MultiTrigger>
-            
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
-                    <Condition Property="IsSelected" Value="True"/>
-                </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
-                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
-            </MultiTrigger>
-            
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushSelected, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="ListViewItemExStyle" TargetType="{x:Type local:ListViewItemEx}">
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundSelected" Value="{Binding DataContext.AccentBackgroundSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushSelected" Value="{Binding DataContext.AccentBorderBrushSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundMouseOver" Value="{Binding DataContext.AccentForegroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundSelected" Value="{Binding DataContext.AccentForegroundSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Padding" Value="4,1"/>
+        <Setter Property="Margin" Value="2,1"/>
+        <Setter Property="Padding" Value="4,2"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template" Value="{StaticResource ListViewItemEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
