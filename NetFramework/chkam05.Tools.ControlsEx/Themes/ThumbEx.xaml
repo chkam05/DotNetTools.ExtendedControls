@@ -38,8 +38,15 @@
     </ControlTemplate>
     
     <Style x:Key="ThumbExStyle" TargetType="{x:Type local:ThumbEx}">
-        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Background" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundDragging" Value="{Binding DataContext.AccentBackgroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushDragging" Value="{Binding DataContext.AccentBorderBrushPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.AccentForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Template" Value="{StaticResource ThumbEx.ControlTemplate}"/>
     </Style>

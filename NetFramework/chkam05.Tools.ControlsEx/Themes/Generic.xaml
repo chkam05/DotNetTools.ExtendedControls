@@ -9,6 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CheckBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxItemEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GeometryThumbEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewEx.xaml"/>
@@ -16,6 +17,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RepeatButtonEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/SliderEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ThumbEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ToggleButtonEx.xaml"/>
@@ -26,6 +28,7 @@
     <Style BasedOn="{StaticResource CheckBoxExStyle}" TargetType="{x:Type local:CheckBoxEx}"/>
     <Style BasedOn="{StaticResource ComboBoxExStyle}" TargetType="{x:Type local:ComboBoxEx}"/>
     <Style BasedOn="{StaticResource ComboBoxItemExStyle}" TargetType="{x:Type local:ComboBoxItemEx}"/>
+    <Style BasedOn="{StaticResource GeometryThumbExStyle}" TargetType="{x:Type local:GeometryThumbEx}"/>
     <Style BasedOn="{StaticResource GridViewExStyle}" TargetType="{x:Type local:GridViewEx}"/>
     <Style BasedOn="{StaticResource GridViewItemExStyle}" TargetType="{x:Type local:GridViewItemEx}"/>
     <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}"/>
@@ -33,6 +36,7 @@
     <Style BasedOn="{StaticResource RepeatButtonExStyle}" TargetType="{x:Type local:RepeatButtonEx}"/>
     <Style BasedOn="{StaticResource ScrollBarExStyle}" TargetType="{x:Type local:ScrollBarEx}"/>
     <Style BasedOn="{StaticResource ScrollViewerExStyle}" TargetType="{x:Type local:ScrollViewerEx}"/>
+    <Style BasedOn="{StaticResource SliderExStyle}" TargetType="{x:Type local:SliderEx}"/>
     <Style BasedOn="{StaticResource TextBoxExStyle}" TargetType="{x:Type local:TextBoxEx}"/>
     <Style BasedOn="{StaticResource ThumbExStyle}" TargetType="{x:Type local:ThumbEx}"/>
     <Style BasedOn="{StaticResource ToggleButtonExStyle}" TargetType="{x:Type local:ToggleButtonEx}"/>

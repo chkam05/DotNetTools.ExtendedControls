@@ -67,6 +67,7 @@
     <Compile Include="ComboBoxItemEx.cs" />
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
     <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
+    <Compile Include="Converters\ThicknessModifierConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
     <Compile Include="Data\CheckMarkTypeIcon.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Data\Theme\ThemeType.cs" />
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
+    <Compile Include="GeometryThumbEx.cs" />
     <Compile Include="GridViewEx.cs" />
     <Compile Include="GridViewItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Resources\ColorsResources.cs" />
     <Compile Include="ScrollBarEx.cs" />
     <Compile Include="ScrollViewerEx.cs" />
+    <Compile Include="SliderEx.cs" />
     <Compile Include="TextBoxEx.cs" />
     <Compile Include="ThumbEx.cs" />
     <Compile Include="ToggleButtonEx.cs" />
@@ -141,6 +144,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\GeometryThumbEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\GridViewExColumnHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ScrollViewerEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\SliderEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

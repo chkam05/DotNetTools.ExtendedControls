@@ -35,199 +35,51 @@
                 Margin="8"
                 VerticalAlignment="Top">
 
-                <TextBlock
-                    Text="Buttons:"/>
+                <cex:GeometryThumbEx
+                    Height="64"
+                    Width="64"/>
 
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:ButtonEx
-                        Content="Hello World"
-                        IsEnabled="False"/>
-
-                    <cex:ButtonEx
-                        Content="Hello World"
-                        IsEnabled="True"/>
-
-                </StackPanel>
-
-                <TextBlock
-                    Text="Buttons with Icons:"/>
-
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:ButtonExWithIcon
-                        Content="Hello World"
-                        IsEnabled="False"/>
-
-                    <cex:ButtonExWithIcon
-                        Content="Hello World"
-                        IsEnabled="True"/>
-
-                </StackPanel>
-
-                <TextBlock
-                    Text="CheckBoxes:"/>
-
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:CheckBoxEx
-                        CheckMarkTypeIcon="Filled"
-                        Content="Hello World"
-                        IsEnabled="False"/>
-
-                    <cex:CheckBoxEx
-                        CheckMarkTypeIcon="Filled"
-                        Content="Hello World"/>
-
-                </StackPanel>
-
-                <TextBlock
-                    Text="ToggleButtons:"/>
-
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:ToggleButtonEx
-                        Content="Hello World"
-                        IsEnabled="False"/>
-
-                    <cex:ToggleButtonEx
-                        Content="Hello World"/>
-
-                </StackPanel>
-
-                <TextBlock
-                    Text="TextBoxes:"/>
-
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:TextBoxEx
-                        IsEnabled="False"
-                        PreviewText="Disabled TextBox ..."/>
-
-                    <cex:TextBoxEx/>
-
-                </StackPanel>
-
-                <TextBlock
-                    Text="ScrollBars:"/>
-
-                <StackPanel
-                    Orientation="Vertical">
-
-                    <cex:ScrollBarEx
-                        IsEnabled="False"
-                        Orientation="Horizontal"/>
-
-                    <cex:ScrollBarEx
-                        Orientation="Horizontal"/>
-
-                    <StackPanel
-                        Orientation="Horizontal">
-
-                        <cex:ScrollBarEx
-                            Height="64"
-                            IsEnabled="False"/>
-
-                        <cex:ScrollBarEx
-                            Height="64"/>
-
-                    </StackPanel>
-
-                </StackPanel>
-
-                <TextBlock
-                    Text="ComboBoxes:"/>
-
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:ComboBoxEx
-                        IsEnabled="False"
-                        Width="128">
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 1"/>
-                    </cex:ComboBoxEx>
-
-                    <cex:ComboBoxEx
-                        Width="128">
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 1"/>
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 2"
-                            IsEnabled="False"/>
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 3"/>
-                    </cex:ComboBoxEx>
-
-                </StackPanel>
-
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:ComboBoxEx
-                        IsEditable="True"
-                        IsEnabled="False"
-                        Width="128">
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 1"/>
-                    </cex:ComboBoxEx>
-
-                    <cex:ComboBoxEx
-                        IsEditable="True"
-                        Width="128">
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 1"/>
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 2"
-                            IsEnabled="False"/>
-                        <cex:ComboBoxItemEx
-                            Content="ComboBoxItemEx 3"/>
-                    </cex:ComboBoxEx>
-
-                </StackPanel>
-
-                <TextBlock
-                    Text="ListViews:"/>
-
-                <cex:ListViewEx
+                <cex:SliderEx
                     IsEnabled="False"
-                    MaxHeight="64">
-                    <cex:ListViewEx.Items>
-                        <cex:ListViewItemEx
-                            Content="ListViewItem 1"/>
-                        <cex:ListViewItemEx
-                            Content="ListViewItem 2"/>
-                        <cex:ListViewItemEx
-                            Content="ListViewItem 3"/>
-                    </cex:ListViewEx.Items>
-                </cex:ListViewEx>
+                    TickPlacement="TopLeft"
+                    Width="160"/>
 
-                <cex:ListViewEx
-                    MaxHeight="64">
-                    <cex:ListViewEx.Items>
-                        <cex:ListViewItemEx
-                            Content="ListViewItem 1"/>
-                        <cex:ListViewItemEx
-                            IsEnabled="False"
-                            Content="ListViewItem 2"/>
-                        <cex:ListViewItemEx
-                            Content="ListViewItem 3"/>
-                        <cex:ListViewItemEx
-                            IsEnabled="False"
-                            Content="ListViewItem 4"/>
-                        <cex:ListViewItemEx
-                            Content="ListViewItem 5"/>
-                        <cex:ListViewItemEx
-                            Content="ListViewItem 6"/>
-                    </cex:ListViewEx.Items>
-                </cex:ListViewEx>
+                <cex:SliderEx
+                    IsSelectionRangeEnabled="True"
+                    SelectionStart="2"
+                    SelectionEnd="8"
+                    TickPlacement="Both"
+                    Maximum="10"
+                    Minimum="0"
+                    Value="5"
+                    Width="160"
+                    Height="64"/>
 
-                <cex:GridViewEx
+                <cex:SliderEx
+                    TickPlacement="BottomRight"
+                    Width="160"/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <cex:SliderEx
+                        Orientation="Vertical"
+                        TickPlacement="TopLeft"
+                        Height="160"/>
+
+                    <cex:SliderEx
+                        Orientation="Vertical"
+                        TickPlacement="Both"
+                        Height="160"/>
+
+                    <cex:SliderEx
+                        Orientation="Vertical"
+                        TickPlacement="BottomRight"
+                        Height="160"/>
+
+                </StackPanel>
+
+                <!--cex:GridViewEx
                     MaxHeight="64">
 
                     <cex:GridViewEx.View>
@@ -280,13 +132,7 @@
                             </cex:ListViewItemEx.Content>
                         </cex:GridViewItemEx>
                     </cex:GridViewEx.Items>
-                </cex:GridViewEx>
-
-                <!--ListView>
-                    <ListView.View>
-                        <GridView/>
-                    </ListView.View>
-                </ListView-->
+                </cex:GridViewEx-->
 
             </StackPanel>
 

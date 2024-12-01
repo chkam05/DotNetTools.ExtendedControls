@@ -10,10 +10,12 @@ OVERRIDED COMPONENTS
 - [ ] ContextMenuItemEx
 - [ ] DatePickerEx
 - [ ] ExpanderEx
+- [-] GridViewEx
+- [-] GridViewItemEx
 - [ ] ListBoxEx
 - [ ] ListBoxItemEx
-- [ ] ListViewEx
-- [ ] ListViewItemEx
+- [X] ListViewEx
+- [X] ListViewItemEx
 - [ ] MenuEx
 - [ ] MenuItemEx
 - [ ] ProgressBarEx
@@ -22,7 +24,7 @@ OVERRIDED COMPONENTS
 - [ ] RichTextBoxEx
 - [X] ScrollBarEx
 - [X] ScrollViewerEx
-- [ ] SliderEx
+- [X] SliderEx
 - [ ] TabControlEx
 - [X] ThumbEx
 - [X] TextBoxEx
@@ -31,7 +33,7 @@ OVERRIDED COMPONENTS
 - [ ] TreeViewItemEx
 - [ ] WindowEx
 
-10/29
+13/31
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------
@@ -40,10 +42,11 @@ CUSTOM COMPONENTS
 - [ ] ColorPickerEx
 - [ ] DirectoryViewerEx
 - [ ] FileViewerEx
+- [X] GeometryThumbEx
 - [ ] HamburgerMenuEx
 - [ ] SettingsMenuItemEx
 
-1/7
+2/8
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------
