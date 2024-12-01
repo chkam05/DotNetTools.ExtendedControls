@@ -135,6 +135,29 @@
             CornerRadius="{TemplateBinding CornerRadius}"
             SnapsToDevicePixels="true">
 
+            <!--Grid HorizontalAlignment="Left">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:GridViewEx},Path=View.Columns}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <local:ScrollViewerEx
+                    x:Name="itemsPresenter"
+                    Style="{TemplateBinding ScrollViewerStyle}">
+
+                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </local:ScrollViewerEx>
+            </Grid-->
+
             <local:ScrollViewerEx
                 Style="{StaticResource GridViewEx.ScrollViewerExStyle}">
 
@@ -160,7 +183,6 @@
 
     <Style x:Key="GridViewExStyle" BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:GridViewEx}">
         <Setter Property="GridView.ColumnHeaderContainerStyle" Value="{StaticResource GridViewEx.ColumnHeaderStyle}"/>
-        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Template" Value="{StaticResource GridViewEx.ControlTemplate}"/>
     </Style>
 
