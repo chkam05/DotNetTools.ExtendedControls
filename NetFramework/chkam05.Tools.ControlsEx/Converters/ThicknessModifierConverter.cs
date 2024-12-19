@@ -81,19 +81,19 @@ namespace chkam05.Tools.ControlsEx.Converters
                 switch (parameterKey)
                 {
                     case LEFT_PARAM_KEY:
-                        left = ProcessParameter(left, parameter);
+                        left = ProcessParameter(left, parameter, thickness);
                         break;
 
                     case TOP_PARAM_KEY:
-                        top = ProcessParameter(top, parameter);
+                        top = ProcessParameter(top, parameter, thickness);
                         break;
 
                     case RIGHT_PARAM_KEY:
-                        right = ProcessParameter(right, parameter);
+                        right = ProcessParameter(right, parameter, thickness);
                         break;
 
                     case BOTTOM_PARAM_KEY:
-                        bottom = ProcessParameter(bottom, parameter);
+                        bottom = ProcessParameter(bottom, parameter, thickness);
                         break;
                 }
             }
@@ -105,17 +105,29 @@ namespace chkam05.Tools.ControlsEx.Converters
         /// <summary> Modifies single attribute of Thickness using additional parameters. </summary>
         /// <param name="value"> Thickness single attribute. </param>
         /// <param name="parameter"> Additional modification parameter. </param>
+        /// <param name="thickness"> The Thickness value. </param>
         /// <returns> Modified Thickness attribute. </returns>
-        private double ProcessParameter(double value, string parameter)
+        private double ProcessParameter(double value, string parameter, Thickness thickness)
         {
             if (!string.IsNullOrEmpty(parameter))
             {
                 if (operators.Any(o => parameter.Contains(o)))
                 {
                     var values = parameter.Split(operators, StringSplitOptions.RemoveEmptyEntries)
-                        .Where(v => double.TryParse(v, out double dv))
-                        .Select(v => double.Parse(v))
+                        .Select(v =>
+                        {
+                            if (double.TryParse(v, out double dv))
+                                return dv;
+
+                            if (parametersKeys.Contains(v.ToUpper()))
+                                return GetSide(thickness, v.ToUpper());
+
+                            return (double?)null;
+                        })
+                        .Where(v => v.HasValue)
+                        .Select(v => v.Value)
                         .ToList();
+
                     var opers = parameter.Select(c => operators.Any(o => o == $"{c}")).ToString();
 
                     if (!values.Any() || !opers.Any())
@@ -156,10 +168,38 @@ namespace chkam05.Tools.ControlsEx.Converters
                 {
                     return paramValue;
                 }
+                else if (parametersKeys.Contains(parameter.ToUpper()))
+                {
+                    return GetSide(thickness, parameter.ToUpper());
+                }
             }
 
             return value;
         }
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get thickness side value from thickness by side key. </summary>
+        /// <param name="thickness"> The Thickness whose value is to be extracted. </param>
+        /// <param name="key"> Thickness angle definition key. </param>
+        /// <returns> Thickness single attribute or 0. </returns>
+        private double GetSide(Thickness thickness, string key)
+        {
+            switch (key)
+            {
+                case LEFT_PARAM_KEY:
+                    return thickness.Left;
+
+                case TOP_PARAM_KEY:
+                    return thickness.Top;
+
+                case RIGHT_PARAM_KEY:
+                    return thickness.Right;
+
+                case BOTTOM_PARAM_KEY:
+                    return thickness.Bottom;
+            }
+
+            return 0;
+        }
     }
 }

@@ -35,50 +35,6 @@
                 Margin="8"
                 VerticalAlignment="Top">
 
-                <cex:GeometryThumbEx
-                    Height="64"
-                    Width="64"/>
-
-                <cex:SliderEx
-                    IsEnabled="False"
-                    TickPlacement="TopLeft"
-                    Width="160"/>
-
-                <cex:SliderEx
-                    IsSelectionRangeEnabled="True"
-                    SelectionStart="2"
-                    SelectionEnd="8"
-                    TickPlacement="Both"
-                    Maximum="10"
-                    Minimum="0"
-                    Value="5"
-                    Width="160"
-                    Height="64"/>
-
-                <cex:SliderEx
-                    TickPlacement="BottomRight"
-                    Width="160"/>
-
-                <StackPanel
-                    Orientation="Horizontal">
-
-                    <cex:SliderEx
-                        Orientation="Vertical"
-                        TickPlacement="TopLeft"
-                        Height="160"/>
-
-                    <cex:SliderEx
-                        Orientation="Vertical"
-                        TickPlacement="Both"
-                        Height="160"/>
-
-                    <cex:SliderEx
-                        Orientation="Vertical"
-                        TickPlacement="BottomRight"
-                        Height="160"/>
-
-                </StackPanel>
-
                 <!--cex:GridViewEx
                     MaxHeight="64">
 

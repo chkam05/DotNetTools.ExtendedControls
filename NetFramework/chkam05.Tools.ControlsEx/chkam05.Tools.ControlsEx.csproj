@@ -77,11 +77,13 @@
     <Compile Include="Data\Theme\ThemeType.cs" />
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
+    <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
     <Compile Include="GridViewEx.cs" />
     <Compile Include="GridViewItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
     <Compile Include="ListViewItemEx.cs" />
+    <Compile Include="ProgressBarEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,14 +97,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RadioButtonEx.cs" />
     <Compile Include="RepeatButtonEx.cs" />
     <Compile Include="Resources\ColorsResources.cs" />
     <Compile Include="ScrollBarEx.cs" />
     <Compile Include="ScrollViewerEx.cs" />
     <Compile Include="SliderEx.cs" />
+    <Compile Include="TabControlEx.cs" />
+    <Compile Include="TabItemEx.cs" />
     <Compile Include="TextBoxEx.cs" />
     <Compile Include="ThumbEx.cs" />
     <Compile Include="ToggleButtonEx.cs" />
+    <Compile Include="TreeViewEx.cs" />
+    <Compile Include="TreeViewItemEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\MathUtilities.cs" />
     <Compile Include="Utilities\ObjectUtilities.cs" />
@@ -140,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\ExpanderEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +179,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\ProgressBarEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\RadioButtonEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\RepeatButtonEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +203,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\TabControlEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TabItemEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\TextBoxEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +220,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ToggleButtonEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TreeViewEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TreeViewItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

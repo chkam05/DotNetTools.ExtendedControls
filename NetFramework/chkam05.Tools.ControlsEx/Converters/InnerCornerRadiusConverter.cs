@@ -25,6 +25,10 @@ namespace chkam05.Tools.ControlsEx.Converters
         {
             TOP_LEFT_PARAM_KEY, TOP_RIGHT_PARAM_KEY, BOTTOM_RIGHT_PARAM_KEY, BOTTOM_LEFT_PARAM_KEY
         };
+        private static readonly string[] distanceKeys = new string[]
+        {
+            "T", "THICKNESS"
+        };
 
 
         //  METHODS
@@ -40,21 +44,20 @@ namespace chkam05.Tools.ControlsEx.Converters
         {
             if (ObjectUtilities.GetValue(values, out CornerRadius outerCornerRadius))
             {
-                if (ObjectUtilities.GetValue(values, out Thickness innerThickness))
-                {
-                    if (parameter is string strParameter)
-                    {
-                        return ModifyWithParameter(outerCornerRadius, innerThickness, strParameter.ToUpper().Split(';'));
-                    }
+                var innerThickness = ObjectUtilities.GetValue(values, out Thickness tempInnerThickness)
+                    ? tempInnerThickness
+                    : new Thickness(0);
 
-                    return new CornerRadius(
-                        outerCornerRadius.TopLeft - Math.Max(innerThickness.Left, innerThickness.Top),
-                        outerCornerRadius.TopRight - Math.Max(innerThickness.Top, innerThickness.Right),
-                        outerCornerRadius.BottomRight - Math.Max(innerThickness.Right, innerThickness.Bottom),
-                        outerCornerRadius.BottomLeft - Math.Max(innerThickness.Bottom, innerThickness.Left));
+                if (parameter is string strParameter)
+                {
+                    return ModifyWithParameter(outerCornerRadius, innerThickness, strParameter.ToUpper().Split(';'));
                 }
 
-                return outerCornerRadius;
+                return new CornerRadius(
+                    outerCornerRadius.TopLeft - Math.Max(innerThickness.Left, innerThickness.Top),
+                    outerCornerRadius.TopRight - Math.Max(innerThickness.Top, innerThickness.Right),
+                    outerCornerRadius.BottomRight - Math.Max(innerThickness.Right, innerThickness.Bottom),
+                    outerCornerRadius.BottomLeft - Math.Max(innerThickness.Bottom, innerThickness.Left));
             }
 
             return null;
@@ -97,19 +100,19 @@ namespace chkam05.Tools.ControlsEx.Converters
                 switch (parameterKey)
                 {
                     case TOP_LEFT_PARAM_KEY:
-                        topLeft = ProcessParameter(topLeft, topLeftDistance, parameterKey, parameter);
+                        topLeft = ProcessParameter(topLeft, topLeftDistance, parameterKey, parameter, outerCornerRadius);
                         break;
 
                     case TOP_RIGHT_PARAM_KEY:
-                        topRight = ProcessParameter(topRight, topRightDistance, parameterKey, parameter);
+                        topRight = ProcessParameter(topRight, topRightDistance, parameterKey, parameter, outerCornerRadius);
                         break;
 
                     case BOTTOM_RIGHT_PARAM_KEY:
-                        bottomRight = ProcessParameter(bottomRight, bottomRightDistance, parameterKey, parameter);
+                        bottomRight = ProcessParameter(bottomRight, bottomRightDistance, parameterKey, parameter, outerCornerRadius);
                         break;
 
                     case BOTTOM_LEFT_PARAM_KEY:
-                        bottomLeft = ProcessParameter(bottomLeft, bottomLeftDistance, parameterKey, parameter);
+                        bottomLeft = ProcessParameter(bottomLeft, bottomLeftDistance, parameterKey, parameter, outerCornerRadius);
                         break;
                 }
             }
@@ -123,17 +126,32 @@ namespace chkam05.Tools.ControlsEx.Converters
         /// <param name="distance"> Distance between CornerRadius and inner object. </param>
         /// <param name="key"> CornerRadius angle definition key. </param>
         /// <param name="parameter"> Additional modification parameter. </param>
+        /// <param name="outerCornerRadius"> The outer CornerRadius value. </param>
         /// <returns> Modified CornerRadius attribute. </returns>
-        private double ProcessParameter(double value, double distance, string key, string parameter)
+        private double ProcessParameter(double value, double distance, string key, string parameter, CornerRadius outerCornerRadius)
         {
             if (!string.IsNullOrEmpty(parameter))
             {
                 if (operators.Any(o => parameter.Contains(o)))
                 {
                     var values = parameter.Split(operators, StringSplitOptions.RemoveEmptyEntries)
-                        .Where(v => double.TryParse(v, out double dv))
-                        .Select(v => double.Parse(v))
+                        .Select(v =>
+                        {
+                            if (double.TryParse(v, out double dv))
+                                return dv;
+
+                            if (distanceKeys.Contains(v.ToUpper()))
+                                return distance;
+
+                            if (parametersKeys.Contains(v.ToUpper()))
+                                return GetCorner(outerCornerRadius, v.ToUpper());
+
+                            return (double?)null;
+                        })
+                        .Where(v => v.HasValue)
+                        .Select(v => v.Value)
                         .ToList();
+
                     var opers = parameter.Select(c => operators.Any(o => o == $"{c}")).ToString();
 
                     if (!values.Any() || !opers.Any())
@@ -174,6 +192,10 @@ namespace chkam05.Tools.ControlsEx.Converters
                 {
                     return paramValue;
                 }
+                else if (parametersKeys.Contains(parameter.ToUpper()))
+                {
+                    return GetCorner(outerCornerRadius, parameter.ToUpper());
+                }
                 else if (parametersKeys.Contains(key))
                 {
                     return value;
@@ -183,5 +205,29 @@ namespace chkam05.Tools.ControlsEx.Converters
             return value - distance;
         }
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get corner radius side value from corner radius by side key. </summary>
+        /// <param name="cornerRadius"> The Corner radius whose value is to be extracted. </param>
+        /// <param name="key"> CornerRadius angle definition key. </param>
+        /// <returns> Corner radius single attribute or 0. </returns>
+        private double GetCorner(CornerRadius cornerRadius, string key)
+        {
+            switch (key)
+            {
+                case TOP_LEFT_PARAM_KEY:
+                    return cornerRadius.TopLeft;
+
+                case TOP_RIGHT_PARAM_KEY:
+                    return cornerRadius.TopRight;
+
+                case BOTTOM_RIGHT_PARAM_KEY:
+                    return cornerRadius.BottomRight;
+
+                case BOTTOM_LEFT_PARAM_KEY:
+                    return cornerRadius.BottomLeft;
+            }
+
+            return 0;
+        }
     }
 }
