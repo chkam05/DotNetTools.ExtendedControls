@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
@@ -71,16 +70,23 @@
                     Placement="Bottom"
                     PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                     PlacementTarget="{Binding ElementName=templateRoot}">
-                    
+
                     <Border
                         x:Name="SubMenuBorder"
                         Background="{TemplateBinding SubMenuBackground}"
                         BorderBrush="{TemplateBinding SubMenuBorderBrush}"
-                        BorderThickness="{TemplateBinding SubMenuBorderThickness}">
-                        
+                        BorderThickness="{TemplateBinding SubMenuBorderThickness}"
+                        CornerRadius="{TemplateBinding SubMenuCornerRadius}">
+
                         <local:ScrollViewerEx
-                            x:Name="SubMenuScrollViewer">
-                            
+                            x:Name="SubMenuScrollViewer"
+                            Background="Transparent"
+                            BorderBrush="{x:Null}"
+                            BorderThickness="0"
+                            CornerRadius="{TemplateBinding SubMenuCornerRadius}"
+                            Padding="{TemplateBinding SubMenuPadding}"
+                            Style="{TemplateBinding ScrollViewerStyle}">
+
                             <Grid
                                 Background="Transparent"
                                 RenderOptions.ClearTypeHint="Enabled">
@@ -342,10 +348,17 @@
                         x:Name="SubMenuBorder"
                         Background="{TemplateBinding SubMenuBackground}"
                         BorderBrush="{TemplateBinding SubMenuBorderBrush}"
-                        BorderThickness="{TemplateBinding SubMenuBorderThickness}">
+                        BorderThickness="{TemplateBinding SubMenuBorderThickness}"
+                        CornerRadius="{TemplateBinding SubMenuCornerRadius}">
 
                         <local:ScrollViewerEx
-                            x:Name="SubMenuScrollViewer">
+                            x:Name="SubMenuScrollViewer"
+                            Background="Transparent"
+                            BorderBrush="{x:Null}"
+                            BorderThickness="0"
+                            CornerRadius="{TemplateBinding SubMenuCornerRadius}"
+                            Padding="{TemplateBinding SubMenuPadding}"
+                            Style="{TemplateBinding ScrollViewerStyle}">
 
                             <Grid
                                 Background="Transparent"
@@ -551,6 +564,8 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{StaticResource MenuItemEx.ControlTemplate}"/>
+        <Setter Property="SubMenuBackground" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="SubMenuBorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">

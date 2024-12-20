@@ -1,0 +1,80 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <ControlTemplate x:Key="ContextMenuEx.ControlTemplate" TargetType="{x:Type local:ContextMenuEx}">
+        <Themes:SystemDropShadowChrome
+            x:Name="Shdw"
+            Color="Transparent"
+            SnapsToDevicePixels="True">
+
+            <Border
+                x:Name="ContextMenuBorder"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+
+                <local:ScrollViewerEx
+                    x:Name="ContextMenuScrollViewer"
+                    Background="Transparent"
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Margin="{TemplateBinding Padding}"
+                    Style="{TemplateBinding ScrollViewerStyle}">
+
+                    <Grid
+                        Background="Transparent"
+                        RenderOptions.ClearTypeHint="Enabled">
+
+                        <Canvas
+                            Height="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="0">
+
+                            <Rectangle
+                                x:Name="OpaqueRect"
+                                Fill="Transparent"
+                                Height="{Binding ActualHeight, ElementName=ContextMenuBorder}"
+                                Width="{Binding ActualWidth, ElementName=ContextMenuBorder}"/>
+                        </Canvas>
+
+                        <ItemsPresenter
+                            x:Name="ItemsPresenter"
+                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        
+                    </Grid>
+                </local:ScrollViewerEx>
+            </Border>
+        </Themes:SystemDropShadowChrome>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="HasDropShadow" Value="True">
+                <Setter Property="Margin" TargetName="Shdw" Value="0,0,5,5"/>
+            </Trigger>
+
+            <Trigger Property="CanContentScroll" SourceName="ContextMenuScrollViewer" Value="False">
+                <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=ContextMenuScrollViewer}"/>
+                <Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=ContextMenuScrollViewer}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ContextMenuExStyle" TargetType="{x:Type local:ContextMenuEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template" Value="{StaticResource ContextMenuEx.ControlTemplate}"/>
+    </Style>
+
+</ResourceDictionary>

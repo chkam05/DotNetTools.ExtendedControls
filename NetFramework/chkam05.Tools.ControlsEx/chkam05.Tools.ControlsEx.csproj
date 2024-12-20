@@ -65,6 +65,8 @@
     <Compile Include="CheckBoxEx.cs" />
     <Compile Include="ComboBoxEx.cs" />
     <Compile Include="ComboBoxItemEx.cs" />
+    <Compile Include="ContextMenuEx.cs" />
+    <Compile Include="ContextMenuItemEx.cs" />
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
     <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
     <Compile Include="Converters\MinMaxDimensionConverter.cs" />
@@ -157,6 +159,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ComboBoxItemEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ContextMenuEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ContextMenuItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

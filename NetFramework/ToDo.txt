@@ -6,8 +6,8 @@ OVERRIDED COMPONENTS
 - [X] CheckBoxEx
 - [X] ComboBoxEx
 - [X] ComboBoxItemEx
-- [ ] ContextMenuEx
-- [ ] ContextMenuItemEx
+- [X] ContextMenuEx
+- [X] ContextMenuItemEx
 - [ ] DatePickerEx
 - [X] ExpanderEx
 - [-] GridViewEx
@@ -34,7 +34,7 @@ OVERRIDED COMPONENTS
 - [X] TreeViewItemEx
 - [ ] WindowEx
 
-24/32
+26/32
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------
@@ -51,7 +51,7 @@ CUSTOM COMPONENTS
 - [X] UpDownDoubleEx
 - [X] UpDownLongEx
 
-5/12
+6/12
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------

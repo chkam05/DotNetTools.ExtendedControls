@@ -113,6 +113,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(MenuItemEx),
             new PropertyMetadata(0.56d));
 
+        public static readonly DependencyProperty ScrollViewerStyleProperty = DependencyProperty.Register(
+            nameof(ScrollViewerStyle),
+            typeof(Style),
+            typeof(MenuItemEx),
+            new PropertyMetadata(GetGenericScrollViewerExStyle()));
+
         public static readonly DependencyProperty ShortcutPaddingProperty = DependencyProperty.Register(
             nameof(ShortcutPadding),
             typeof(Thickness),
@@ -133,6 +139,18 @@ namespace chkam05.Tools.ControlsEx
 
         public static readonly DependencyProperty SubMenuBorderThicknessProperty = DependencyProperty.Register(
             nameof(SubMenuBorderThickness),
+            typeof(Thickness),
+            typeof(MenuItemEx),
+            new PropertyMetadata(new Thickness(1)));
+
+        public static readonly DependencyProperty SubMenuCornerRadiusProperty = DependencyProperty.Register(
+            nameof(SubMenuCornerRadius),
+            typeof(CornerRadius),
+            typeof(MenuItemEx),
+            new PropertyMetadata(new CornerRadius(4)));
+
+        public static readonly DependencyProperty SubMenuPaddingProperty = DependencyProperty.Register(
+            nameof(SubMenuPadding),
             typeof(Thickness),
             typeof(MenuItemEx),
             new PropertyMetadata(new Thickness(1)));
@@ -236,6 +254,12 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(OpacityInactiveProperty, MathUtilities.Clamp(value, 0d, 1d));
         }
 
+        public Style ScrollViewerStyle
+        {
+            get => (Style)GetValue(ScrollViewerStyleProperty);
+            set => SetValue(ScrollViewerStyleProperty, value);
+        }
+
         public Thickness ShortcutPadding
         {
             get => (Thickness)GetValue(ShortcutPaddingProperty);
@@ -260,6 +284,18 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(SubMenuBorderThicknessProperty, value);
         }
 
+        public CornerRadius SubMenuCornerRadius
+        {
+            get => (CornerRadius)GetValue(SubMenuCornerRadiusProperty);
+            set => SetValue(SubMenuCornerRadiusProperty, value);
+        }
+
+        public Thickness SubMenuPadding
+        {
+            get => (Thickness)GetValue(SubMenuPaddingProperty);
+            set => SetValue(SubMenuPaddingProperty, value);
+        }
+
 
         //  METHODS
 
@@ -274,6 +310,20 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion CONSTRUCTORS
+
+        #region STYLES
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get generic ScrollBarEx style from resources. </summary>
+        /// <returns> ScrollBarEx style. </returns>
+        protected static Style GetGenericScrollViewerExStyle()
+        {
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary["ScrollViewerExStyle"] as Style;
+        }
+
+        #endregion STYLES
 
     }
 }
