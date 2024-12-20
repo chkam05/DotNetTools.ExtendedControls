@@ -15,6 +15,8 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ProgressBarEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RadioButtonEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RepeatButtonEx.xaml"/>
@@ -41,6 +43,8 @@
     <Style BasedOn="{StaticResource GridViewItemExStyle}" TargetType="{x:Type local:GridViewItemEx}"/>
     <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}"/>
     <Style BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:ListViewItemEx}"/>
+    <Style BasedOn="{StaticResource MenuExStyle}" TargetType="{x:Type local:MenuEx}"/>
+    <Style BasedOn="{StaticResource MenuItemExStyle}" TargetType="{x:Type local:MenuItemEx}"/>
     <Style BasedOn="{StaticResource ProgressBarExStyle}" TargetType="{x:Type local:ProgressBarEx}"/>
     <Style BasedOn="{StaticResource RadioButtonExStyle}" TargetType="{x:Type local:RadioButtonEx}"/>
     <Style BasedOn="{StaticResource RepeatButtonExStyle}" TargetType="{x:Type local:RepeatButtonEx}"/>

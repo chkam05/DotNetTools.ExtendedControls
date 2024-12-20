@@ -83,6 +83,8 @@
     <Compile Include="GridViewItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
     <Compile Include="ListViewItemEx.cs" />
+    <Compile Include="MenuEx.cs" />
+    <Compile Include="MenuItemEx.cs" />
     <Compile Include="ProgressBarEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -176,6 +178,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ListViewItemEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MenuEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MenuItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

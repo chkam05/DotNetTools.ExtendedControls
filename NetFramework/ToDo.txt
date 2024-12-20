@@ -16,8 +16,8 @@ OVERRIDED COMPONENTS
 - [ ] ListBoxItemEx
 - [X] ListViewEx
 - [X] ListViewItemEx
-- [ ] MenuEx
-- [ ] MenuItemEx
+- [X] MenuEx
+- [X] MenuItemEx
 - [X] ProgressBarEx
 - [X] RadioButtonEx
 - [X] RepeatButtonEx
