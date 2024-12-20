@@ -392,6 +392,7 @@
         <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ForegroundMouseOver" Value="{Binding DataContext.ThemeForegroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>

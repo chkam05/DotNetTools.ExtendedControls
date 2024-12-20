@@ -109,8 +109,8 @@ namespace chkam05.Tools.ControlsEx
 
         //  VARIABLES
 
-        protected bool localFocused = false;
-        protected TextChangedEventArgs textChangedEventArgs = null;
+        internal bool localFocused = false;
+        internal TextChangedEventArgs textChangedEventArgs = null;
 
 
         //  GETTERS & SETTERS

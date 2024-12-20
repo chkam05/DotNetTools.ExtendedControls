@@ -1,0 +1,151 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <conv:MinMaxDimensionConverter x:Key="MinMaxDimensionConverter"/>
+    <conv:ToggleTypePackIconConverter x:Key="ToggleTypePackIconConverter"/>
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <ControlTemplate x:Key="ToggleEx.ControlTemplate" TargetType="{x:Type local:ToggleEx}">
+        <Border
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            SnapsToDevicePixels="true">
+
+            <Grid>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter
+                    x:Name="contentPresenter"
+                    ClipToBounds="True"
+                    Focusable="False"
+                    Grid.Column="0"
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    Margin="{TemplateBinding Padding}"
+                    RecognizesAccessKey="True"
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Visibility="Collapsed"/>
+
+                <materialDesign:PackIcon
+                    x:Name="toggleIcon"
+                    Foreground="{TemplateBinding ToggleBrush}"
+                    HorizontalAlignment="Center"
+                    Kind="{Binding ToggleType,
+                        Mode=OneWay,
+                        RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}},
+                        Converter={StaticResource ToggleTypePackIconConverter}}"
+                    Margin="0,0,2,0"
+                    VerticalAlignment="Center">
+
+                    <materialDesign:PackIcon.Height>
+                        <MultiBinding
+                            Converter="{StaticResource MinMaxDimensionConverter}"
+                            ConverterParameter="min">
+                            <Binding
+                                Path="ActualHeight"
+                                Mode="OneWay"
+                                RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ToggleEx}}"/>
+                            <Binding
+                                Path="ActualWidth"
+                                Mode="OneWay"
+                                RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ToggleEx}}"/>
+                        </MultiBinding>
+                    </materialDesign:PackIcon.Height>
+                    
+                    <materialDesign:PackIcon.Width>
+                        <MultiBinding
+                            Converter="{StaticResource MinMaxDimensionConverter}"
+                            ConverterParameter="min">
+                            <Binding
+                                Path="ActualHeight"
+                                Mode="OneWay"
+                                RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ToggleEx}}"/>
+                            <Binding
+                                Path="ActualWidth"
+                                Mode="OneWay"
+                                RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ToggleEx}}"/>
+                        </MultiBinding>
+                    </materialDesign:PackIcon.Width>
+                    
+                </materialDesign:PackIcon>
+
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleIcon" Value="{Binding ToggleBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="HasContent" Value="true">
+                <Setter Property="Visibility" TargetName="contentPresenter" Value="Visible"/>
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="true">
+                <Setter Property="Foreground" TargetName="toggleIcon" Value="{Binding ToggleBrushChecked, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+                <Setter Property="Kind" TargetName="toggleIcon" Value="{Binding ToggleType,
+                    Mode=OneWay,
+                    RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}},
+                    Converter={StaticResource ToggleTypePackIconConverter},
+                    ConverterParameter=checked}"/>
+            </Trigger>
+
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding ToggleBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" TargetName="toggleIcon" Value="{Binding ToggleBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Foreground" TargetName="toggleIcon" Value="{Binding ToggleBrushPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundPressed, RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}}}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ToggleExStyle" TargetType="{x:Type local:ToggleEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.AccentForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundChecked" Value="{Binding DataContext.AccentForegroundSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundMouseOver" Value="{Binding DataContext.AccentForegroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundPressed" Value="{Binding DataContext.AccentForegroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="ToggleBrush" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ToggleBrushChecked" Value="{Binding DataContext.AccentBackgroundSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ToggleBrushInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ToggleBrushMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ToggleBrushPressed" Value="{Binding DataContext.AccentBackgroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Template" Value="{StaticResource ToggleEx.ControlTemplate}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Width" Value="32"/>
+    </Style>
+
+</ResourceDictionary>

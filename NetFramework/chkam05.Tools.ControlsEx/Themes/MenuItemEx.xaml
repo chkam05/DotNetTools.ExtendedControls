@@ -547,6 +547,7 @@
         <Setter Property="ForegroundMouseOver" Value="{Binding DataContext.AccentForegroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ForegroundSelected" Value="{Binding DataContext.AccentForegroundSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{StaticResource MenuItemEx.ControlTemplate}"/>

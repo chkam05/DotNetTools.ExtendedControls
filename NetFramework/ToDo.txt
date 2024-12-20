@@ -46,10 +46,12 @@ CUSTOM COMPONENTS
 - [X] GeometryThumbEx
 - [ ] HamburgerMenuEx
 - [ ] SettingsMenuItemEx
-- [ ] SwitcherEx
-- [ ] UpDownEx
+- [X] ToggleEx
+- [X] UpDownEx
+- [X] UpDownDoubleEx
+- [X] UpDownLongEx
 
-2/10
+5/12
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------

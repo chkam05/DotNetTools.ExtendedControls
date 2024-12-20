@@ -47,6 +47,7 @@
         <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Foreground" Value="{Binding DataContext.AccentForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Template" Value="{StaticResource ThumbEx.ControlTemplate}"/>
     </Style>

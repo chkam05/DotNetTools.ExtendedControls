@@ -157,6 +157,7 @@
         <Setter Property="HeaderBackground" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HeaderBorderBrush" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Template" Value="{StaticResource TabControlEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>

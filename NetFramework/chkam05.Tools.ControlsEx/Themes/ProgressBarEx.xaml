@@ -138,6 +138,7 @@
         <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="MinHeight" Value="16"/>
         <Setter Property="MinWidth" Value="64"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Template" Value="{StaticResource ProgressBarEx.ControlTemplate}"/>
     </Style>

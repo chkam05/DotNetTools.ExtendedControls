@@ -317,6 +317,7 @@
         <Setter Property="Height" Value="Auto"/>
         <Setter Property="MinHeight" Value="0"/>
         <Setter Property="MinWidth" Value="12"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
         <Setter Property="ThumbBackground" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>

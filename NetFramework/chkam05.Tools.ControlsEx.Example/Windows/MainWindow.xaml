@@ -44,12 +44,6 @@
                 Margin="8"
                 VerticalAlignment="Top">
 
-                <cex:ListBoxEx>
-                    <cex:ListBoxItemEx Content="Hello World"/>
-                    <cex:ListBoxItemEx Content="Test"/>
-                    <cex:ListBoxItemEx Content="Temp"/>
-                </cex:ListBoxEx>
-
                 <!--cex:GridViewEx
                     MaxHeight="64">
 

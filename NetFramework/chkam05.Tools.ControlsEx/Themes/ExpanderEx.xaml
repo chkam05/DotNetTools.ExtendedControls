@@ -248,6 +248,7 @@
         <Setter Property="HeaderBorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HeaderBorderBrushPressed" Value="{Binding DataContext.AccentBorderBrushPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="Template" Value="{StaticResource ExpanderEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>

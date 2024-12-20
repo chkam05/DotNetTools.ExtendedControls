@@ -110,6 +110,7 @@
         <Setter Property="ForegroundSelected" Value="{Binding DataContext.AccentForegroundSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Margin" Value="0"/>
+        <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="Template" Value="{StaticResource TabItemEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>

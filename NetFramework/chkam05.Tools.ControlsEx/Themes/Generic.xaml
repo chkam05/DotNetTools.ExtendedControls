@@ -29,9 +29,12 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TabItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ThumbEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ToggleButtonEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ToggleEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewItemEx.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ToggleButtonEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownDoubleEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownLongEx.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonExStyle}" TargetType="{x:Type local:ButtonEx}"/>
@@ -59,8 +62,11 @@
     <Style BasedOn="{StaticResource TabItemExStyle}" TargetType="{x:Type local:TabItemEx}"/>
     <Style BasedOn="{StaticResource TextBoxExStyle}" TargetType="{x:Type local:TextBoxEx}"/>
     <Style BasedOn="{StaticResource ThumbExStyle}" TargetType="{x:Type local:ThumbEx}"/>
+    <Style BasedOn="{StaticResource ToggleButtonExStyle}" TargetType="{x:Type local:ToggleButtonEx}"/>
+    <Style BasedOn="{StaticResource ToggleExStyle}" TargetType="{x:Type local:ToggleEx}"/>
     <Style BasedOn="{StaticResource TreeViewExStyle}" TargetType="{x:Type local:TreeViewEx}"/>
     <Style BasedOn="{StaticResource TreeViewItemExStyle}" TargetType="{x:Type local:TreeViewItemEx}"/>
-    <Style BasedOn="{StaticResource ToggleButtonExStyle}" TargetType="{x:Type local:ToggleButtonEx}"/>
+    <Style BasedOn="{StaticResource UpDownDoubleExStyle}" TargetType="{x:Type local:UpDownDoubleEx}"/>
+    <Style BasedOn="{StaticResource UpDownLongExStyle}" TargetType="{x:Type local:UpDownLongEx}"/>
 
 </ResourceDictionary>
