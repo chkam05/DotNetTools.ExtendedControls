@@ -34,7 +34,18 @@
                 HorizontalAlignment="Left"
                 Margin="8"
                 VerticalAlignment="Top">
-                
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <Calendar/>
+
+                    <cex:CalendarEx/>
+
+                </StackPanel>
+
+                <DatePicker/>
+
                 <!--cex:GridViewEx
                     MaxHeight="64">
 

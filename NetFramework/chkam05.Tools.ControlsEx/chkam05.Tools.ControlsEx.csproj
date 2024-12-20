@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="ButtonEx.cs" />
     <Compile Include="ButtonExWithIcon.cs" />
+    <Compile Include="CalendarEx.cs" />
     <Compile Include="CheckBoxEx.cs" />
     <Compile Include="ComboBoxEx.cs" />
     <Compile Include="ComboBoxItemEx.cs" />
@@ -147,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ButtonExWithIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CalendarEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
