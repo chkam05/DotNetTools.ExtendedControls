@@ -4,44 +4,36 @@
     xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerEx.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
-
     <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
 
-    <ControlTemplate x:Key="ListViewEx.ControlTemplate" TargetType="{x:Type local:ListViewEx}">
+    <ControlTemplate x:Key="ListBoxEx.ControlTemplate" TargetType="{x:Type local:ListBoxEx}">
         <Border
-        x:Name="Bd"
-        Background="{TemplateBinding Background}"
-        BorderBrush="{TemplateBinding BorderBrush}"
-        BorderThickness="{TemplateBinding BorderThickness}"
-        CornerRadius="{TemplateBinding CornerRadius}"
-        SnapsToDevicePixels="true">
-
+            x:Name="Bd"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            SnapsToDevicePixels="true">
+            
             <local:ScrollViewerEx
-                Background="Transparent"
-                BorderBrush="Transparent"
-                BorderThickness="0"
-                CornerRadius="{TemplateBinding CornerRadius}"
                 Focusable="false"
                 Padding="{TemplateBinding Padding}"
                 Style="{TemplateBinding ScrollViewerStyle}">
-
+                
                 <ItemsPresenter
                     x:Name="itemsPresenter"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
             </local:ScrollViewerEx>
         </Border>
-
+        
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Background" TargetName="Bd" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
-                <Setter Property="Opacity" TargetName="Bd" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
-                <Setter Property="TextElement.Foreground" TargetName="itemsPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="Background" TargetName="Bd" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListBoxEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListBoxEx}}}"/>
+                <Setter Property="Opacity" TargetName="Bd" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListBoxEx}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="itemsPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListBoxEx}}}"/>
             </Trigger>
-
+            
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsGrouping" Value="true"/>
@@ -52,7 +44,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="ListViewExStyle" TargetType="{x:Type local:ListViewEx}">
+    <Style x:Key="ListBoxExStyle" TargetType="{x:Type local:ListBoxEx}">
         <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
@@ -65,8 +57,8 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="Template" Value="{StaticResource ListViewEx.ControlTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource ListBoxEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
-    
+
 </ResourceDictionary>

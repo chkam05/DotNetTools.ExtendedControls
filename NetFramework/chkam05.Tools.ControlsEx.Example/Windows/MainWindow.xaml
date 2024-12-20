@@ -21,6 +21,15 @@
                 <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="FocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -34,6 +43,12 @@
                 HorizontalAlignment="Left"
                 Margin="8"
                 VerticalAlignment="Top">
+
+                <cex:ListBoxEx>
+                    <cex:ListBoxItemEx Content="Hello World"/>
+                    <cex:ListBoxItemEx Content="Test"/>
+                    <cex:ListBoxItemEx Content="Temp"/>
+                </cex:ListBoxEx>
 
                 <!--cex:GridViewEx
                     MaxHeight="64">
@@ -93,100 +108,6 @@
             </StackPanel>
 
         </cex:ScrollViewerEx>
-
-        <cex:MenuEx
-            VerticalAlignment="Top">
-
-            <cex:MenuItemEx
-                Header="File">
-
-                <cex:MenuItemEx
-                    IconKind="File"
-                    InputGestureText="Ctrl+N"
-                    Header="New"/>
-
-                <cex:MenuItemEx
-                    Header="Open"/>
-
-                <cex:MenuItemEx
-                    Header="Save"/>
-
-                <cex:MenuItemEx
-                    Header="Close"/>
-
-            </cex:MenuItemEx>
-
-            <cex:MenuItemEx
-                Header="Test">
-
-                <cex:MenuItemEx
-                    IsCheckable="True"
-                    InputGestureText="Ctrl+R"
-                    Header="Checkbox"/>
-                
-                <cex:MenuItemEx
-                    IsEnabled="False"
-                    Header="Disabled"/>
-
-                <cex:MenuItemEx
-                    IconKind="Abc"
-                    InputGestureText="Ctrl+S"
-                    Header="Submenu">
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 1"
-                        InputGestureText="Ctrl+X"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 2"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 3"/>
-                    
-                    <cex:MenuItemEx
-                        Header="Submenu Item 4"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 5"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 6"/>
-                    
-                    <cex:MenuItemEx
-                        Header="Submenu Item 7"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 8"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 9"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 10"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 11"/>
-
-                    <cex:MenuItemEx
-                        Header="Submenu Item 12"/>
-
-                </cex:MenuItemEx>
-
-                <Separator/>
-
-                <cex:MenuItemEx
-                    Header="Separated"/>
-
-            </cex:MenuItemEx>
-
-            <cex:MenuItemEx
-                Header="Help"/>
-
-            <cex:MenuItemEx
-                IsEnabled="False"
-                Header="Disabled"/>
-
-        </cex:MenuEx>
 
     </Grid>
     

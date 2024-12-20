@@ -12,8 +12,8 @@ OVERRIDED COMPONENTS
 - [X] ExpanderEx
 - [-] GridViewEx
 - [-] GridViewItemEx
-- [ ] ListBoxEx
-- [ ] ListBoxItemEx
+- [X] ListBoxEx
+- [X] ListBoxItemEx
 - [X] ListViewEx
 - [X] ListViewItemEx
 - [X] MenuEx
@@ -34,7 +34,7 @@ OVERRIDED COMPONENTS
 - [X] TreeViewItemEx
 - [ ] WindowEx
 
-22/32
+24/32
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------

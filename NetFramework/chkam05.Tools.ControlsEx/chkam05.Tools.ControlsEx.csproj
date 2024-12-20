@@ -81,6 +81,8 @@
     <Compile Include="GeometryThumbEx.cs" />
     <Compile Include="GridViewEx.cs" />
     <Compile Include="GridViewItemEx.cs" />
+    <Compile Include="ListBoxEx.cs" />
+    <Compile Include="ListBoxItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
     <Compile Include="ListViewItemEx.cs" />
     <Compile Include="MenuEx.cs" />
@@ -170,6 +172,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\GridViewItemEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ListBoxEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ListBoxItemEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
