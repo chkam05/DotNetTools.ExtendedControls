@@ -93,8 +93,6 @@
     <Compile Include="DatePickerEx.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
-    <Compile Include="GridViewEx.cs" />
-    <Compile Include="GridViewItemEx.cs" />
     <Compile Include="ListBoxEx.cs" />
     <Compile Include="ListBoxItemEx.cs" />
     <Compile Include="ListViewEx.cs" />

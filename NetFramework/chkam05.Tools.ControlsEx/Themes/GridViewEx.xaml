@@ -56,11 +56,15 @@
                 </Border>
 
                 <DockPanel
+                    ClipToBounds="True"
                     Grid.Column="0"
                     Grid.Row="0"
-                    Margin="{TemplateBinding Padding}">
+                    Margin="{TemplateBinding Padding}"
+                    SnapsToDevicePixels="True">
 
-                    <ScrollViewer
+                    <local:ScrollViewerEx
+                        Background="{Binding HeaderBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"
+                        CornerRadius="{TemplateBinding CornerBackground}"
                         DockPanel.Dock="Top"
                         Focusable="False"
                         HorizontalScrollBarVisibility="Hidden"
@@ -77,7 +81,7 @@
                             Margin="0"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
 
-                    </ScrollViewer>
+                    </local:ScrollViewerEx>
 
                     <ScrollContentPresenter
                         Name="PART_ScrollContentPresenter"
@@ -126,7 +130,7 @@
         <Setter Property="Template" Value="{StaticResource GridViewEx.ScrollViewerEx.ControlTemplate}"/>
     </Style>
 
-    <ControlTemplate x:Key="GridViewEx.ControlTemplate" TargetType="{x:Type local:GridViewEx}">
+    <ControlTemplate x:Key="GridViewEx.ControlTemplate" TargetType="{x:Type local:ListViewEx}">
         <Border
             x:Name="Bd"
             Background="{TemplateBinding Background}"
@@ -135,44 +139,21 @@
             CornerRadius="{TemplateBinding CornerRadius}"
             SnapsToDevicePixels="true">
 
-            <!--Grid HorizontalAlignment="Left">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=local:GridViewEx},Path=View.Columns}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-
-                <local:ScrollViewerEx
-                    x:Name="itemsPresenter"
-                    Style="{TemplateBinding ScrollViewerStyle}">
-
-                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                </local:ScrollViewerEx>
-            </Grid-->
-
             <local:ScrollViewerEx
                 Style="{StaticResource GridViewEx.ScrollViewerExStyle}">
 
                 <ItemsPresenter
-                x:Name="itemsPresenter"/>
+                    x:Name="itemsPresenter"/>
 
             </local:ScrollViewerEx>
         </Border>
 
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Background" TargetName="Bd" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="Opacity" TargetName="Bd" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="TextElement.Foreground" TargetName="itemsPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewEx}}}"/>
+                <Setter Property="Background" TargetName="Bd" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="Opacity" TargetName="Bd" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="itemsPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewEx}}}"/>
             </Trigger>
 
             <Trigger Property="IsGrouping" Value="true">
@@ -181,8 +162,29 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="GridViewExStyle" BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:GridViewEx}">
+    <Style x:Key="GridViewExStyle" BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}">
+        <Setter Property="ColumnGripperBackground" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnGripperBackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnGripperBackgroundMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnGripperBackgroundPressed" Value="{Binding DataContext.AccentBackgroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnGripperBorderBrush" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnGripperBorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnGripperBorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnGripperBorderBrushPressed" Value="{Binding DataContext.AccentBorderBrushPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBackground" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBackgroundMouseOver" Value="{Binding DataContext.AccentBackgroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBackgroundPressed" Value="{Binding DataContext.AccentBackgroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderBorderBrushPressed" Value="{Binding DataContext.AccentBorderBrushPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderForeground" Value="{Binding DataContext.AccentForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderForegroundMouseOver" Value="{Binding DataContext.AccentForegroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ColumnHeaderForegroundPressed" Value="{Binding DataContext.AccentForegroundPressed, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="GridView.ColumnHeaderContainerStyle" Value="{StaticResource GridViewEx.ColumnHeaderStyle}"/>
+        <Setter Property="HeaderBackground" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Template" Value="{StaticResource GridViewEx.ControlTemplate}"/>
     </Style>
 

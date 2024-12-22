@@ -10,11 +10,11 @@
         <Grid>
             <Border
                 x:Name="Border" 
-                Background="{Binding ColumnHeaderBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BorderBrush="{Binding ColumnHeaderBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BorderThickness="{Binding ColumnHeaderBorderThickness, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                Padding="{Binding ColumnHeaderPadding, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}">
+                Background="{Binding ColumnHeaderBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BorderBrush="{Binding ColumnHeaderBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BorderThickness="{Binding ColumnHeaderBorderThickness, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                CornerRadius="{Binding ColumnHeaderCornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                Padding="{Binding ColumnHeaderPadding, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}">
 
                 <ContentPresenter
                     x:Name="HeaderContent"
@@ -23,56 +23,58 @@
                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                     RecognizesAccessKey="True"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                    TextBlock.Foreground="{TemplateBinding Foreground}"
-                    TextBlock.TextAlignment="{Binding ColumnHeaderForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
+                    TextBlock.Foreground="{Binding ColumnHeaderForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                    TextBlock.TextAlignment="{Binding ColumnTextAlignment, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Border>
 
             <local:ThumbEx
                 x:Name="PART_HeaderGripper"
-                Background="{Binding ColumnGripperBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BackgroundDragging="{Binding ColumnGripperBackgroundPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BackgroundInactive="{Binding ColumnGripperBackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BackgroundMouseOver="{Binding ColumnGripperBackgroundMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BorderBrush="{Binding ColumnGripperBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BorderBrushDragging="{Binding ColumnGripperBorderBrushPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BorderBrushInactive="{Binding ColumnGripperBorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BorderBrushMouseOver="{Binding ColumnGripperBorderBrushMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
-                BorderThickness="{Binding ColumnGripperBorderThickness, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}" 
+                Background="{Binding ColumnGripperBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BackgroundDragging="{Binding ColumnGripperBackgroundPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BackgroundInactive="{Binding ColumnGripperBackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BackgroundMouseOver="{Binding ColumnGripperBackgroundMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BorderBrush="{Binding ColumnGripperBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BorderBrushDragging="{Binding ColumnGripperBorderBrushPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BorderBrushInactive="{Binding ColumnGripperBorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BorderBrushMouseOver="{Binding ColumnGripperBorderBrushMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
+                BorderThickness="{Binding ColumnGripperBorderThickness, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}" 
                 CornerRadius="0"
                 HorizontalAlignment="Right"
-                Width="{Binding ColumnHeaderGripperWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
+                Margin="2"
+                Width="{Binding ColumnGripperWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
         </Grid>
+
         <ControlTemplate.Triggers>
-
-            <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="Opacity" TargetName="Border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="TextElement.Foreground" TargetName="HeaderContent" Value="{Binding ColumnHeaderForegroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-            </Trigger>
-
-            <Trigger Property="HasContent" Value="False">
-                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-            </Trigger>
-
             <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="PART_HeaderGripper" Value="{Binding ColumnHeaderForegroundMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
+                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="PART_HeaderGripper" Value="{Binding ColumnHeaderForegroundMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
             </Trigger>
 
             <Trigger Property="IsPressed" Value="true">
-                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="PART_HeaderGripper" Value="{Binding ColumnHeaderForegroundPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:GridViewEx}}}"/>
+                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="PART_HeaderGripper" Value="{Binding ColumnHeaderForegroundPressed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
             </Trigger>
 
+            <Trigger Property="HasContent" Value="False">
+                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="Opacity" TargetName="Border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="HeaderContent" Value="{Binding ColumnHeaderForegroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderBackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderBorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="Opacity" TargetName="Border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="HeaderContent" Value="{Binding ColumnHeaderForegroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

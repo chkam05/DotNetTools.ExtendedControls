@@ -21,6 +21,12 @@
                 <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <x:Array x:Key="CountriesData" Type="{x:Type data:CountryInfo}">
+                <data:CountryInfo Country="John Doe" Capital="123 Main St" />
+                <data:CountryInfo Country="Jane Smith" Capital="456 Oak St" />
+                <data:CountryInfo Country="Mike Johnson" Capital="789 Pine St" />
+            </x:Array>
         </ResourceDictionary>
     </cex:WindowEx.Resources>
 
@@ -40,14 +46,6 @@
                 HorizontalAlignment="Left"
                 Margin="8"
                 VerticalAlignment="Top">
-
-                <RichTextBox
-                    Height="128"
-                    Width="256"/>
-
-                <cex:RichTextBoxEx
-                    Height="128"
-                    Width="256"/>
 
                 <!--cex:GridViewEx
                     MaxHeight="64">

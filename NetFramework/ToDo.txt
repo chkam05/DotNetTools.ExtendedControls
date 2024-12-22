@@ -10,8 +10,7 @@ OVERRIDED COMPONENTS
 - [X] ContextMenuItemEx
 - [X] DatePickerEx
 - [X] ExpanderEx
-- [-] GridViewEx
-- [-] GridViewItemEx
+- [ ] GroupBox
 - [X] ListBoxEx
 - [X] ListBoxItemEx
 - [X] ListViewEx
@@ -34,7 +33,7 @@ OVERRIDED COMPONENTS
 - [X] TreeViewItemEx
 - [X] WindowEx
 
-30/32
+30/31
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------

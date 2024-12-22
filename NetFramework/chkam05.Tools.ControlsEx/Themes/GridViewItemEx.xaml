@@ -10,7 +10,7 @@
 
     <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
 
-    <ControlTemplate x:Key="GridViewItemEx.ControlTemplate" TargetType="{x:Type local:GridViewItemEx}">
+    <ControlTemplate x:Key="GridViewItemEx.ControlTemplate" TargetType="{x:Type local:ListViewItemEx}">
         <Border
             x:Name="border"
             Background="{TemplateBinding Background}"
@@ -30,31 +30,31 @@
 
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
-                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
             </Trigger>
 
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushSelected, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushSelected, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundSelected, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
             </Trigger>
 
             <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
-                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:GridViewItemEx}}}"/>
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:ListViewItemEx}}}"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="GridViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:GridViewItemEx}">
+    <Style x:Key="GridViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:ListViewItemEx}">
         <Setter Property="Template" Value="{StaticResource GridViewItemEx.ControlTemplate}"/>
     </Style>
 
