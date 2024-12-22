@@ -86,6 +86,7 @@
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
     <Compile Include="Data\ToggleTypeIcon.cs" />
+    <Compile Include="DatePickerEx.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
     <Compile Include="GridViewEx.cs" />
@@ -173,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ContextMenuItemEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DatePickerEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

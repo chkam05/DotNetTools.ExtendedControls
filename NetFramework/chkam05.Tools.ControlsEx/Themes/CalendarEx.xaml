@@ -14,7 +14,7 @@
 
     <conv:InnerCornerRadiusConverter x:Key="InnerCornerRadiusConverter"/>
     <conv:MinMaxDimensionConverter x:Key="MinMaxDimensionConverter"/>
-    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>   
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
 
     <ControlTemplate x:Key="CalendarExButton.ControlTemplate" TargetType="CalendarButton">
         <Border
@@ -385,6 +385,15 @@
         </Grid>
 
         <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsEnabled,
+                    RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CalendarEx}}}"
+                    Value="False">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CalendarEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CalendarEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="border" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CalendarEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:CalendarEx}}}"/>
+            </DataTrigger>
+            
             <DataTrigger Binding="{Binding CalendarExHeaderPosition,
                     RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CalendarEx}}}"
                     Value="{x:Static data:CalendarExHeaderPosition.Bottom}">

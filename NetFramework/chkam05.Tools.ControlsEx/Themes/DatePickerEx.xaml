@@ -1,0 +1,193 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CalendarEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <conv:MinMaxDimensionConverter x:Key="MinMaxDimensionConverter"/>
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <Style x:Key="DatePickerEx.CalenderExStyle" BasedOn="{StaticResource CalendarExStyle}" TargetType="{x:Type local:CalendarEx}">
+        <Setter Property="HeaderNavigationButtonPosition" Value="Right"/>
+    </Style>
+
+    <ControlTemplate x:Key="DatePickerEx.DatePickerTextBox.ControlTemplate" TargetType="{x:Type DatePickerTextBox}">
+        <Grid>
+            <Border
+                x:Name="Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DatePickerEx}}}"
+                Padding="{TemplateBinding Padding}"
+                TextBlock.Foreground="{TemplateBinding Foreground}">
+
+                <Grid
+                    x:Name="WatermarkContent"
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+
+                    <TextBlock
+                        x:Name="PART_Watermark"
+                        Focusable="False"
+                        Foreground="{Binding PreviewTextForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DatePickerEx}}}"
+                        IsHitTestVisible="False"
+                        Opacity="0"
+                        Text="{Binding PreviewText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DatePickerEx}}}"/>
+
+                    <ScrollViewer
+                        x:Name="PART_ContentHost"
+                        Foreground="{TemplateBinding Foreground}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        Margin="0"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Opacity" TargetName="PART_Watermark" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="DatePickerEx.DatePickerTextBoxStyle" TargetType="{x:Type DatePickerTextBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template" Value="{StaticResource DatePickerEx.DatePickerTextBox.ControlTemplate}"/>
+    </Style>
+
+    <ControlTemplate x:Key="DatePickerEx.ControlTemplate" TargetType="{x:Type local:DatePickerEx}">
+        <Grid
+            x:Name="PART_Root">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border
+                x:Name="contentBorder"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Grid.Row="0"
+                Padding="{TemplateBinding Padding}">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <local:ButtonExWithIcon
+                        x:Name="PART_Button"
+                        ContentMargin="0"
+                        Focusable="False"
+                        Foreground="{TemplateBinding Foreground}"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        IconKind="Calendar"
+                        MinHeight="0"
+                        MinWidth="0"
+                        Padding="1"
+                        Style="{TemplateBinding ButtonStyle}">
+
+                        <Border Height="0" Width="0"/>
+
+                    </local:ButtonExWithIcon>
+
+                    <DatePickerTextBox
+                        x:Name="PART_TextBox"
+                        Grid.Column="0"
+                        Focusable="{TemplateBinding Focusable}"
+                        Grid.Row="0"
+                        HorizontalContentAlignment="Stretch"
+                        Style="{StaticResource DatePickerEx.DatePickerTextBoxStyle}"
+                        VerticalContentAlignment="Center"/>
+
+                </Grid>
+
+            </Border>
+
+            <Grid
+                x:Name="PART_DisabledVisual"
+                Grid.Row="1"
+                IsHitTestVisible="False">
+
+                <Popup
+                    x:Name="PART_Popup"
+                    AllowsTransparency="True"
+                    Placement="Bottom"
+                    PlacementTarget="{Binding ElementName=contentBorder}"
+                    StaysOpen="False"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DatePickerEx}}}"/>
+            </Grid>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="false">
+                <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+            </DataTrigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="contentBorder" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="contentBorder" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+                <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+                <Setter Property="Opacity" TargetName="contentBorder" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="BorderBrush" TargetName="contentBorder" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+            </Trigger>
+
+            <DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=PART_TextBox}" Value="true">
+                <Setter Property="BorderBrush" TargetName="contentBorder" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+            </DataTrigger>
+
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" TargetName="contentBorder" Value="{Binding BackgroundMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="contentBorder" Value="{Binding BorderBrushMouseOver, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+                <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding PreviewTextForeground, RelativeSource={RelativeSource AncestorType={x:Type local:DatePickerEx}}}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="DatePickerExStyle" TargetType="{x:Type local:DatePickerEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundMouseOver" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundSelected" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushMouseOver" Value="{Binding DataContext.AccentBorderBrushMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushSelected" Value="{Binding DataContext.AccentBorderBrushSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CalendarExStyle" Value="{StaticResource DatePickerEx.CalenderExStyle}"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundMouseOver" Value="{Binding DataContext.ThemeForegroundMouseOver, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundSelected" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="IsTodayHighlighted" Value="True"/>
+        <Setter Property="Padding" Value="4,1,1,1"/>
+        <Setter Property="PreviewTextForeground" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="SelectedDateFormat" Value="Short"/>
+        <Setter Property="Template" Value="{StaticResource DatePickerEx.ControlTemplate}"/>
+    </Style>
+
+</ResourceDictionary>

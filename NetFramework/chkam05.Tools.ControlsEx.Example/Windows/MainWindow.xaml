@@ -21,6 +21,7 @@
                 <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
     </Window.Resources>
 
@@ -48,6 +49,8 @@
                 </StackPanel>
 
                 <DatePicker/>
+
+                <cex:DatePickerEx/>
 
                 <!--cex:GridViewEx
                     MaxHeight="64">
