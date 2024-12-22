@@ -40,7 +40,10 @@
 
                     <Calendar/>
 
-                    <cex:CalendarEx/>
+                    <cex:CalendarEx
+                        HeaderNavigationButtonPosition="Right"
+                        Height="256"
+                        Width="160"/>
 
                 </StackPanel>
 

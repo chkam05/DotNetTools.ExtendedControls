@@ -74,6 +74,7 @@
     <Compile Include="Converters\ThicknessModifierConverter.cs" />
     <Compile Include="Converters\ToggleTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
+    <Compile Include="Data\CalendarExHeaderPosition.cs" />
     <Compile Include="Data\CheckMarkTypeIcon.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
