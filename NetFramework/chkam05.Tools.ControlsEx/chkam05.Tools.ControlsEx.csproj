@@ -118,6 +118,7 @@
     <Compile Include="RadioButtonEx.cs" />
     <Compile Include="RepeatButtonEx.cs" />
     <Compile Include="Resources\ColorsResources.cs" />
+    <Compile Include="RichTextBoxEx.cs" />
     <Compile Include="ScrollBarEx.cs" />
     <Compile Include="ScrollViewerEx.cs" />
     <Compile Include="SliderEx.cs" />
@@ -244,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\RepeatButtonEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\RichTextBoxEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

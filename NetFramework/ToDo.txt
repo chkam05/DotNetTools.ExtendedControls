@@ -21,7 +21,7 @@ OVERRIDED COMPONENTS
 - [X] ProgressBarEx
 - [X] RadioButtonEx
 - [X] RepeatButtonEx
-- [ ] RichTextBoxEx
+- [X] RichTextBoxEx
 - [X] ScrollBarEx
 - [X] ScrollViewerEx
 - [X] SliderEx
@@ -34,7 +34,7 @@ OVERRIDED COMPONENTS
 - [X] TreeViewItemEx
 - [X] WindowEx
 
-29/32
+30/32
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------

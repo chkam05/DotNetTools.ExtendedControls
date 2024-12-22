@@ -94,6 +94,7 @@
         <Setter Property="OpacityInactive" Value="{Binding DataContext.OpacityInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="PreviewTextForeground" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="SelectionBrush" Value="{Binding DataContext.AccentBorderBrushSelected, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{StaticResource TextBoxEx.ControlTemplate}"/>

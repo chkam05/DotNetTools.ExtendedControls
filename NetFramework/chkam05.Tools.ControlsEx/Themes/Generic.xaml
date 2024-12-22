@@ -26,6 +26,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ProgressBarEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RadioButtonEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RepeatButtonEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RichTextBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/SliderEx.xaml"/>
@@ -65,6 +66,7 @@
     <Style BasedOn="{StaticResource ProgressBarExStyle}" TargetType="{x:Type local:ProgressBarEx}"/>
     <Style BasedOn="{StaticResource RadioButtonExStyle}" TargetType="{x:Type local:RadioButtonEx}"/>
     <Style BasedOn="{StaticResource RepeatButtonExStyle}" TargetType="{x:Type local:RepeatButtonEx}"/>
+    <Style BasedOn="{StaticResource RichTextBoxExStyle}" TargetType="{x:Type local:RichTextBoxEx}"/>
     <Style BasedOn="{StaticResource ScrollBarExStyle}" TargetType="{x:Type local:ScrollBarEx}"/>
     <Style BasedOn="{StaticResource ScrollViewerExStyle}" TargetType="{x:Type local:ScrollViewerEx}"/>
     <Style BasedOn="{StaticResource SliderExStyle}" TargetType="{x:Type local:SliderEx}"/>
