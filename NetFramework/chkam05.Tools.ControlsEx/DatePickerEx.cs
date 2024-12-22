@@ -303,7 +303,7 @@ namespace chkam05.Tools.ControlsEx
         {
             var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/DatePickerEx.xaml", UriKind.Absolute);
             var resourceDictionary = new ResourceDictionary { Source = uri };
-            return resourceDictionary["CalendarEx.DatePickerEx.CalenderExStyle"] as Style;
+            return resourceDictionary["DatePickerEx.CalenderExStyle"] as Style;
         }
 
         #endregion STYLES

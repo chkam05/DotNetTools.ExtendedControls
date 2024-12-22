@@ -1,0 +1,226 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:data="clr-namespace:chkam05.Tools.ControlsEx.Data"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonExWithIcon.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <conv:NotConverter x:Key="NotConverter"/>
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <Style x:Key="WindowTitleBarEx.ButtonExWithIconStyle" BasedOn="{StaticResource ButtonExWithIconStyle}" TargetType="{x:Type local:ButtonExWithIcon}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowTitleBarEx}}}"/>
+        <Setter Property="IconHeight" Value="16"/>
+        <Setter Property="IconWidth" Value="16"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <ControlTemplate x:Key="WindowTitleBarEx.ControlTemplate" TargetType="{x:Type local:WindowTitleBarEx}">
+        <Border
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            Padding="{TemplateBinding Padding}"
+            SnapsToDevicePixels="True">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="contentColumn" Width="*"/>
+                    <ColumnDefinition x:Name="buttonsColumn" Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid
+                    x:Name="contentGrid"
+                    Grid.Column="0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="contentLeftColumn" Width="Auto"/>
+                        <ColumnDefinition x:Name="contentCenterColumn" Width="*"/>
+                        <ColumnDefinition x:Name="contentRightColumn" Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid
+                        x:Name="iconHolder"
+                        Grid.Column="0"
+                        Margin="{TemplateBinding IconPadding}">
+
+                        <Image
+                            x:Name="iconImage"
+                            Height="{Binding ActualHeight, ElementName=iconHolder}"
+                            Source="{TemplateBinding Icon}"
+                            Width="{Binding ActualHeight, ElementName=iconHolder}"/>
+
+                        <materialDesign:PackIcon
+                            x:Name="packIcon"
+                            Foreground="{TemplateBinding Foreground}"
+                            Height="{Binding ActualHeight, ElementName=iconHolder}"
+                            Kind="{TemplateBinding IconKind}"
+                            Width="{Binding ActualHeight, ElementName=iconHolder}"/>
+                    </Grid>
+
+                    <ContentPresenter
+                        x:Name="contentPresenter"
+                        Content="{TemplateBinding Content}"
+                        Grid.Column="1"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        Margin="{TemplateBinding ContentPadding}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Grid>
+
+                <Grid
+                    x:Name="buttonsGrid"
+                    Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <local:ButtonExWithIcon
+                        x:Name="minimizeButton"
+                        Grid.Column="0"
+                        Height="{Binding ActualHeight, ElementName=buttonsGrid}"
+                        IconKind="WindowMinimize"
+                        Margin="{TemplateBinding ButtonsMargin}"
+                        Style="{TemplateBinding ButtonsStyle}"
+                        Visibility="{TemplateBinding ButtonMinimizeVisibility}"
+                        Width="{Binding ActualHeight, ElementName=buttonsGrid}"/>
+
+                    <local:ButtonExWithIcon
+                        x:Name="maximizeButton"
+                        Grid.Column="1"
+                        Height="{Binding ActualHeight, ElementName=buttonsGrid}"
+                        IconKind="WindowMaximize"
+                        Margin="{TemplateBinding ButtonsMargin}"
+                        Style="{TemplateBinding ButtonsStyle}"
+                        Visibility="{TemplateBinding ButtonMaximizeVisibility}"
+                        Width="{Binding ActualHeight, ElementName=buttonsGrid}"/>
+
+                    <local:ButtonExWithIcon
+                        x:Name="closeButton"
+                        Grid.Column="2"
+                        Height="{Binding ActualHeight, ElementName=buttonsGrid}"
+                        IconKind="CloseThick"
+                        Margin="{TemplateBinding ButtonsMargin}"
+                        Style="{TemplateBinding ButtonsStyle}"
+                        Visibility="{TemplateBinding ButtonCloseVisibility}"
+                        Width="{Binding ActualHeight, ElementName=buttonsGrid}"/>
+
+                </Grid>
+                
+            </Grid>
+            
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:WindowTitleBarEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource AncestorType={x:Type local:WindowTitleBarEx}}}"/>
+                <Setter Property="Opacity" TargetName="border" Value="{Binding OpacityInactive, RelativeSource={RelativeSource AncestorType={x:Type local:WindowTitleBarEx}}}"/>
+                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:WindowTitleBarEx}}}"/>
+                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ForegroundInactive, RelativeSource={RelativeSource AncestorType={x:Type local:WindowTitleBarEx}}}"/>
+            </Trigger>
+
+            <Trigger Property="IconKind" Value="{x:Static materialDesign:PackIconKind.None}">
+                <Setter Property="Visibility" TargetName="packIcon" Value="Collapsed"/>
+            </Trigger>
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Icon, Converter={StaticResource NotConverter}, ConverterParameter={x:Null}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IconKind, Converter={StaticResource NotConverter}, ConverterParameter={x:Static materialDesign:PackIconKind.None}}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="iconImage" Value="Collapsed"/>
+            </MultiDataTrigger>
+
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter Property="Visibility" TargetName="iconImage" Value="Collapsed"/>
+            </Trigger>
+            
+            <Trigger Property="ButtonsPosition" Value="{x:Static data:TitleBarButtonPosition.Left}">
+                <Setter Property="Width" TargetName="contentColumn" Value="Auto"/>
+                <Setter Property="Width" TargetName="buttonsColumn" Value="*"/>
+                <Setter Property="Grid.Column" TargetName="minimizeButton" Value="2"/>
+                <Setter Property="Grid.Column" TargetName="closeButton" Value="0"/>
+            </Trigger>
+
+            <Trigger Property="IconPosition" Value="{x:Static data:TitleBarIconPosition.Right}">
+                <Setter Property="Grid.Column" TargetName="iconHolder" Value="2"/>
+            </Trigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IconSnapToContent" Value="true"/>
+                    <Condition Property="IconPosition" Value="Left"/>
+                    <Condition Property="HorizontalContentAlignment" Value="Center"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Width" TargetName="contentLeftColumn" Value="*"/>
+                <Setter Property="Width" TargetName="contentCenterColumn" Value="Auto"/>
+                <Setter Property="Width" TargetName="contentRightColumn" Value="*"/>
+                <Setter Property="HorizontalAlignment" TargetName="iconHolder" Value="Right"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IconSnapToContent" Value="true"/>
+                    <Condition Property="IconPosition" Value="Left"/>
+                    <Condition Property="HorizontalContentAlignment" Value="Right"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Width" TargetName="contentLeftColumn" Value="*"/>
+                <Setter Property="Width" TargetName="contentCenterColumn" Value="Auto"/>
+                <Setter Property="Width" TargetName="contentRightColumn" Value="Auto"/>
+                <Setter Property="HorizontalAlignment" TargetName="iconHolder" Value="Right"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IconSnapToContent" Value="true"/>
+                    <Condition Property="IconPosition" Value="Right"/>
+                    <Condition Property="HorizontalContentAlignment" Value="Center"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Width" TargetName="contentLeftColumn" Value="*"/>
+                <Setter Property="Width" TargetName="contentCenterColumn" Value="Auto"/>
+                <Setter Property="Width" TargetName="contentRightColumn" Value="*"/>
+                <Setter Property="HorizontalAlignment" TargetName="iconHolder" Value="Left"/>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IconSnapToContent" Value="true"/>
+                    <Condition Property="IconPosition" Value="Right"/>
+                    <Condition Property="HorizontalContentAlignment" Value="Left"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Width" TargetName="contentLeftColumn" Value="Auto"/>
+                <Setter Property="Width" TargetName="contentCenterColumn" Value="Auto"/>
+                <Setter Property="Width" TargetName="contentRightColumn" Value="*"/>
+                <Setter Property="HorizontalAlignment" TargetName="iconHolder" Value="Left"/>
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <Style x:Key="WindowTitleBarExStyle" TargetType="{x:Type local:WindowTitleBarEx}">
+        <Setter Property="Background" Value="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.AccentForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Template" Value="{StaticResource WindowTitleBarEx.ControlTemplate}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    
+</ResourceDictionary>

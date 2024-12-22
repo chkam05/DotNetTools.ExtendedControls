@@ -14,10 +14,7 @@ using System.Windows.Shapes;
 
 namespace chkam05.Tools.ControlsEx.Example.Windows
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : WindowEx
     {
         public MainWindow(object args)
         {

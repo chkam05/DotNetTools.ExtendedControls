@@ -1,0 +1,231 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <conv:InnerCornerRadiusConverter x:Key="InnerCornerRadiusConverter"/>
+    <conv:ThicknessModifierConverter x:Key="ThicknessModifierConverter"/>
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <Style x:Key="WindowEx.ResizeBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+    </Style>
+    
+    <ControlTemplate x:Key="WindowEx.ControlTemplate" TargetType="{x:Type local:WindowEx}">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            SnapsToDevicePixels="True">
+
+            <Grid
+                x:Name="PART_Root">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <local:WindowTitleBarEx
+                    x:Name="titleBar"
+                    Content="{TemplateBinding Title}"
+                    CornerRadius="0"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Icon="{TemplateBinding Icon}"
+                    Style="{TemplateBinding WindowTitleBarExStyle}"
+                    Visibility="{TemplateBinding TitleBarVisibility}"/>
+
+                <Border
+                    x:Name="contentBorder"
+                    Background="Transparent"
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0"
+                    Grid.Column="1"
+                    Grid.Row="2">
+
+                    <Border.CornerRadius>
+                        <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}" ConverterParameter="TOPLEFT:0;TOPRIGHT:0;BOTTOMRIGHT:BOTTOMRIGHT-{0};BOTTOMLEFT:BOTTOMLEFT-{0}">
+                            <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                            <Binding Path="ResizeAreaSize" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                        </MultiBinding>
+                    </Border.CornerRadius>
+
+                    <ContentPresenter
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        TextBlock.Foreground="{TemplateBinding Foreground}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                </Border>
+
+                <Border
+                    x:Name="resizeTopBorder"
+                    Background="{TemplateBinding BorderBrush}"
+                    Cursor="SizeNS"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Height="{TemplateBinding ResizeAreaSize}"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"/>
+
+                <Border
+                    x:Name="resizeRightBorderH"
+                    Background="{TemplateBinding BorderBrush}"
+                    Cursor="SizeWE"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}"/>
+
+                <Border
+                    x:Name="resizeRightBorderC"
+                    Cursor="SizeWE"
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}"/>
+
+                <Border
+                    x:Name="resizeBottomBorder"
+                    Cursor="SizeNS"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Height="{TemplateBinding ResizeAreaSize}"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"/>
+
+                <Border
+                    x:Name="resizeLeftBorderH"
+                    Background="{TemplateBinding BorderBrush}"
+                    Cursor="SizeWE"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}"/>
+
+                <Border
+                    x:Name="resizeLeftBorderC"
+                    Cursor="SizeWE"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}"/>
+
+                <Border
+                    x:Name="resizeTopLeftBorder"
+                    Background="{TemplateBinding BorderBrush}"
+                    Cursor="SizeNWSE"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Height="{TemplateBinding ResizeAreaSize}"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}">
+
+                    <Border.CornerRadius>
+                        <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}" ConverterParameter="TOPLEFT;TOPRIGHT:0;BOTTOMRIGHT:0;BOTTOMLEFT:0">
+                            <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                        </MultiBinding>
+                    </Border.CornerRadius>
+
+                </Border>
+
+                <Border
+                    x:Name="resizeTopRightBorder"
+                    Background="{TemplateBinding BorderBrush}"
+                    Cursor="SizeNESW"
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Height="{TemplateBinding ResizeAreaSize}"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}">
+
+                    <Border.CornerRadius>
+                        <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}" ConverterParameter="TOPLEFT:0;TOPRIGHT;BOTTOMRIGHT:0;BOTTOMLEFT:0">
+                            <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                        </MultiBinding>
+                    </Border.CornerRadius>
+
+                </Border>
+
+                <Border
+                    x:Name="resizeBottomRightBorder"
+                    Cursor="SizeNWSE"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    Height="{TemplateBinding ResizeAreaSize}"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}">
+
+                    <Border.CornerRadius>
+                        <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}" ConverterParameter="TOPLEFT:0;TOPRIGHT:0;BOTTOMRIGHT;BOTTOMLEFT:0">
+                            <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                        </MultiBinding>
+                    </Border.CornerRadius>
+
+                </Border>
+
+                <Border
+                    x:Name="resizeBottomLeftBorder"
+                    Cursor="SizeNESW"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Height="{TemplateBinding ResizeAreaSize}"
+                    Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                    Width="{TemplateBinding ResizeAreaSize}">
+
+                    <Border.CornerRadius>
+                        <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}" ConverterParameter="TOPLEFT:0;TOPRIGHT:0;BOTTOMRIGHT:0;BOTTOMLEFT">
+                            <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                        </MultiBinding>
+                    </Border.CornerRadius>
+
+                </Border>
+
+            </Grid>
+            
+        </Border>
+        
+        <ControlTemplate.Triggers>
+            <Trigger Property="TitleBarVisibility" Value="Collapsed">
+                <Setter Property="Background" TargetName="resizeTopLeftBorder" Value="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}}"/>
+                <Setter Property="Background" TargetName="resizeTopBorder" Value="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}}"/>
+                <Setter Property="Background" TargetName="resizeTopRightBorder" Value="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}}"/>
+                <Setter Property="Background" TargetName="resizeRightBorderH" Value="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}}"/>
+                <Setter Property="Background" TargetName="resizeLeftBorderH" Value="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}}"/>
+                <Setter Property="CornerRadius" TargetName="contentBorder">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}" ConverterParameter="TOPLEFT:TOPLEFT-{0};TOPRIGHT:TOPRIGHT-{0};BOTTOMRIGHT:BOTTOMRIGHT-{0};BOTTOMLEFT:BOTTOMLEFT-{0}">
+                            <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                            <Binding Path="ResizeAreaSize" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WindowEx}}"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="WindowExStyle" TargetType="{x:Type local:WindowEx}">
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Template" Value="{StaticResource WindowEx.ControlTemplate}"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    </Style>
+
+</ResourceDictionary>

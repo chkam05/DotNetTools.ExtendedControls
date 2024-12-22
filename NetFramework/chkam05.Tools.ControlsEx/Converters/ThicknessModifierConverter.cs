@@ -128,7 +128,7 @@ namespace chkam05.Tools.ControlsEx.Converters
                         .Select(v => v.Value)
                         .ToList();
 
-                    var opers = parameter.Select(c => operators.Any(o => o == $"{c}")).ToString();
+                    var opers = parameter.Where(c => operators.Any(o => o == $"{c}")).ToArray();
 
                     if (!values.Any() || !opers.Any())
                         return value;
@@ -137,7 +137,7 @@ namespace chkam05.Tools.ControlsEx.Converters
                     var jumps = Math.Min(opers.Length, values.Count);
                     double result = firstOper ? -(values[0]) : values[0];
 
-                    for (int i = 1; i < (firstOper ? jumps - 1 : jumps); i++)
+                    for (int i = 1; i < (firstOper ? jumps - 1 : jumps) + 1; i++)
                     {
                         var nextValue = values[i];
                         var nextOper = opers[firstOper ? i : i - 1];

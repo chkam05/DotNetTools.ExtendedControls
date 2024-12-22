@@ -48,9 +48,13 @@ namespace chkam05.Tools.ControlsEx.Converters
                     ? tempInnerThickness
                     : new Thickness(0);
 
+                var innerValues = ObjectUtilities.GetValues(values, out IEnumerable<double> tempInnerValues)
+                    ? tempInnerValues.ToArray()
+                    : new double[0];
+
                 if (parameter is string strParameter)
                 {
-                    return ModifyWithParameter(outerCornerRadius, innerThickness, strParameter.ToUpper().Split(';'));
+                    return ModifyWithParameter(outerCornerRadius, innerThickness, strParameter.ToUpper().Split(';'), innerValues);
                 }
 
                 return new CornerRadius(
@@ -80,8 +84,9 @@ namespace chkam05.Tools.ControlsEx.Converters
         /// <param name="outerCornerRadius"> The outer CornerRadius value to modify. </param>
         /// <param name="innerThickness"> The inner object Thickness modificator. </param>
         /// <param name="parameters"> Array of additional modification parameters. </param>
+        /// <param name="innerValues"> Additional array of double values. </param>
         /// <returns> A modified CornerRadius. </returns>
-        private CornerRadius ModifyWithParameter(CornerRadius outerCornerRadius, Thickness innerThickness, string[] parameters)
+        private CornerRadius ModifyWithParameter(CornerRadius outerCornerRadius, Thickness innerThickness, string[] parameters, double[] innerValues)
         {
             var topLeft = outerCornerRadius.TopLeft;
             var topRight = outerCornerRadius.TopRight;
@@ -100,19 +105,19 @@ namespace chkam05.Tools.ControlsEx.Converters
                 switch (parameterKey)
                 {
                     case TOP_LEFT_PARAM_KEY:
-                        topLeft = ProcessParameter(topLeft, topLeftDistance, parameterKey, parameter, outerCornerRadius);
+                        topLeft = ProcessParameter(topLeft, topLeftDistance, parameterKey, parameter, innerValues, outerCornerRadius);
                         break;
 
                     case TOP_RIGHT_PARAM_KEY:
-                        topRight = ProcessParameter(topRight, topRightDistance, parameterKey, parameter, outerCornerRadius);
+                        topRight = ProcessParameter(topRight, topRightDistance, parameterKey, parameter, innerValues, outerCornerRadius);
                         break;
 
                     case BOTTOM_RIGHT_PARAM_KEY:
-                        bottomRight = ProcessParameter(bottomRight, bottomRightDistance, parameterKey, parameter, outerCornerRadius);
+                        bottomRight = ProcessParameter(bottomRight, bottomRightDistance, parameterKey, parameter, innerValues, outerCornerRadius);
                         break;
 
                     case BOTTOM_LEFT_PARAM_KEY:
-                        bottomLeft = ProcessParameter(bottomLeft, bottomLeftDistance, parameterKey, parameter, outerCornerRadius);
+                        bottomLeft = ProcessParameter(bottomLeft, bottomLeftDistance, parameterKey, parameter, innerValues, outerCornerRadius);
                         break;
                 }
             }
@@ -126,9 +131,10 @@ namespace chkam05.Tools.ControlsEx.Converters
         /// <param name="distance"> Distance between CornerRadius and inner object. </param>
         /// <param name="key"> CornerRadius angle definition key. </param>
         /// <param name="parameter"> Additional modification parameter. </param>
+        /// <param name="innerValues"> Additional array of double values. </param>
         /// <param name="outerCornerRadius"> The outer CornerRadius value. </param>
         /// <returns> Modified CornerRadius attribute. </returns>
-        private double ProcessParameter(double value, double distance, string key, string parameter, CornerRadius outerCornerRadius)
+        private double ProcessParameter(double value, double distance, string key, string parameter, double[] innerValues, CornerRadius outerCornerRadius)
         {
             if (!string.IsNullOrEmpty(parameter))
             {
@@ -139,6 +145,12 @@ namespace chkam05.Tools.ControlsEx.Converters
                         {
                             if (double.TryParse(v, out double dv))
                                 return dv;
+
+                            if (v.Contains('{') && v.Contains('}'))
+                            {
+                                int innerValueKey = int.Parse(v.Replace("{", "").Replace("}", ""));
+                                return innerValues[innerValueKey];
+                            }
 
                             if (distanceKeys.Contains(v.ToUpper()))
                                 return distance;
@@ -152,7 +164,7 @@ namespace chkam05.Tools.ControlsEx.Converters
                         .Select(v => v.Value)
                         .ToList();
 
-                    var opers = parameter.Select(c => operators.Any(o => o == $"{c}")).ToString();
+                    var opers = parameter.Where(c => operators.Any(o => o == $"{c}")).ToArray();
 
                     if (!values.Any() || !opers.Any())
                         return value;
@@ -161,7 +173,7 @@ namespace chkam05.Tools.ControlsEx.Converters
                     var jumps = Math.Min(opers.Length, values.Count);
                     double result = firstOper ? -(values[0]) : values[0];
 
-                    for (int i = 1; i < (firstOper ? jumps-1 : jumps); i++)
+                    for (int i = 1; i < (firstOper ? jumps-1 : jumps) + 1; i++)
                     {
                         var nextValue = values[i];
                         var nextOper = opers[firstOper ? i : i - 1];

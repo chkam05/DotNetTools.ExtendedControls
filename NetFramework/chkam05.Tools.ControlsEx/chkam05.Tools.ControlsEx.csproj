@@ -71,6 +71,7 @@
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
     <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
     <Compile Include="Converters\MinMaxDimensionConverter.cs" />
+    <Compile Include="Converters\NotConverter.cs" />
     <Compile Include="Converters\ThicknessModifierConverter.cs" />
     <Compile Include="Converters\ToggleTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
@@ -85,7 +86,10 @@
     <Compile Include="Data\Theme\ThemeType.cs" />
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
+    <Compile Include="Data\TitleBarButtonPosition.cs" />
+    <Compile Include="Data\TitleBarIconPosition.cs" />
     <Compile Include="Data\ToggleTypeIcon.cs" />
+    <Compile Include="Data\WindowExResizeDirection.cs" />
     <Compile Include="DatePickerEx.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
@@ -133,6 +137,8 @@
     <Compile Include="Utilities\ObjectUtilities.cs" />
     <Compile Include="Utilities\SystemThemeManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="WindowEx.cs" />
+    <Compile Include="WindowTitleBarEx.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -290,6 +296,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\UpDownLongEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\WindowEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\WindowTitleBarEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
