@@ -8,9 +8,11 @@
     xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
     xmlns:data="clr-namespace:chkam05.Tools.ControlsEx.Example.Data"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:cexVM="clr-namespace:chkam05.Tools.ControlsEx.ViewModels;assembly=chkam05.Tools.ControlsEx"
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="800"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
     Title="ControlsEx"
     Height="450"
     Width="800">
@@ -27,84 +29,104 @@
                 <data:CountryInfo Country="Jane Smith" Capital="456 Oak St" />
                 <data:CountryInfo Country="Mike Johnson" Capital="789 Pine St" />
             </x:Array>
+
+            <DataTemplate x:Key="HamburgerMenuEx.DataTemplate">
+                <Grid
+                    HorizontalAlignment="Stretch">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid
+                        x:Name="iconGrid"
+                        Grid.Column="0">
+
+                        <Image
+                            x:Name="iconImage"
+                            Height="{Binding ActualHeight, ElementName=iconGrid}"
+                            HorizontalAlignment="Stretch"
+                            Source="{Binding Icon}"
+                            VerticalAlignment="Stretch"
+                            Width="{Binding ActualHeight, ElementName=iconGrid}"/>
+
+                        <materialDesign:PackIcon
+                            x:Name="packIcon"
+                            HorizontalAlignment="Stretch"
+                            Height="{Binding ActualHeight, ElementName=iconGrid}"
+                            Kind="{Binding IconKind}"
+                            VerticalAlignment="Stretch"
+                            Width="{Binding ActualHeight, ElementName=iconGrid}"/>
+                    </Grid>
+
+                    <TextBlock
+                        FontWeight="Bold"
+                        FontSize="16"
+                        Grid.Column="1"
+                        Margin="4,0,0,0"
+                        Text="{Binding Title}"
+                        VerticalAlignment="Center"/>
+                </Grid>
+
+                <DataTemplate.Triggers>
+                    <!--MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding Path=Icon, Converter={StaticResource NotConverter}, ConverterParameter={x:Null}}" Value="True"/>
+                            <Condition Binding="{Binding Path=IconKind, Converter={StaticResource NotConverter}, ConverterParameter={x:Static materialDesign:PackIconKind.None}}" Value="True"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Visibility" TargetName="iconImage" Value="Collapsed"/>
+                    </MultiDataTrigger-->
+
+                    <DataTrigger Binding="{Binding Icon}" Value="{x:Null}">
+                        <Setter Property="Visibility" TargetName="iconImage" Value="Hidden"/>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding IconKind}" Value="{x:Static materialDesign:PackIconKind.None}">
+                        <Setter Property="Visibility" TargetName="packIcon" Value="Hidden"/>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
         </ResourceDictionary>
     </cex:WindowEx.Resources>
 
     <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <cex:ScrollViewerEx
-            Grid.Row="1"
-            HorizontalScrollBarVisibility="Visible"
-            VerticalScrollBarVisibility="Visible">
+        <cex:HamburgerMenuEx
+            Items="{Binding HamburgerMenuItems}"
+            Grid.Column="0"
+            Width="64"/>
 
-            <StackPanel
-                HorizontalAlignment="Left"
-                Margin="8"
-                VerticalAlignment="Top">
+        <Grid
+            Grid.Column="1">
 
-                <!--cex:GridViewEx
-                    MaxHeight="64">
+            <cex:ScrollViewerEx
+                Grid.Row="1"
+                HorizontalScrollBarVisibility="Visible"
+                VerticalScrollBarVisibility="Visible">
 
-                    <cex:GridViewEx.View>
-                        <GridView>
-                            <GridView.Columns>
-                                <GridViewColumn Header="Country" Width="128">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock
-                                                Text="{Binding Country}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Capital" Width="128">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock
-                                                Text="{Binding Capital}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView.Columns>
-                        </GridView>
-                    </cex:GridViewEx.View>
-                    <cex:GridViewEx.Items>
-                        <cex:GridViewItemEx>
-                            <cex:ListViewItemEx.Content>
-                                <data:CountryInfo Country="USA" Capital="Washington D.C."/>
-                            </cex:ListViewItemEx.Content>
-                        </cex:GridViewItemEx>
-                        <cex:GridViewItemEx>
-                            <cex:ListViewItemEx.Content>
-                                <data:CountryInfo Country="Germany" Capital="Berlin"/>
-                            </cex:ListViewItemEx.Content>
-                        </cex:GridViewItemEx>
-                        <cex:GridViewItemEx>
-                            <cex:ListViewItemEx.Content>
-                                <data:CountryInfo Country="France" Capital="Paris"/>
-                            </cex:ListViewItemEx.Content>
-                        </cex:GridViewItemEx>
-                        <cex:GridViewItemEx
-                            IsEnabled="False">
-                            <cex:ListViewItemEx.Content>
-                                <data:CountryInfo Country="Poland" Capital="Warsaw"/>
-                            </cex:ListViewItemEx.Content>
-                        </cex:GridViewItemEx>
-                        <cex:GridViewItemEx>
-                            <cex:ListViewItemEx.Content>
-                                <data:CountryInfo Country="Czech Republic" Capital="Prague"/>
-                            </cex:ListViewItemEx.Content>
-                        </cex:GridViewItemEx>
-                    </cex:GridViewEx.Items>
-                </cex:GridViewEx-->
+                <StackPanel
+                    HorizontalAlignment="Left"
+                    Margin="8"
+                    VerticalAlignment="Top">
 
-            </StackPanel>
+                    <cex:ListViewEx
+                        ItemTemplate="{StaticResource HamburgerMenuEx.DataTemplate}"
+                        ItemsSource="{Binding HamburgerMenuItems}"
+                        Width="36"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    </cex:ListViewEx>
 
-        </cex:ScrollViewerEx>
+                </StackPanel>
+
+            </cex:ScrollViewerEx>
+
+        </Grid>
 
     </Grid>
     

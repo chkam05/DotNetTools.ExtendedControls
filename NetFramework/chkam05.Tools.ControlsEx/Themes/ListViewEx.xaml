@@ -25,8 +25,10 @@
                 BorderThickness="0"
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Focusable="false"
+                HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                 Padding="{TemplateBinding Padding}"
-                Style="{TemplateBinding ScrollViewerStyle}">
+                Style="{TemplateBinding ScrollViewerStyle}"
+                VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
 
                 <ItemsPresenter
                     x:Name="itemsPresenter"

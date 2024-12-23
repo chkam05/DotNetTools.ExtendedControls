@@ -43,7 +43,7 @@ CUSTOM COMPONENTS
 - [ ] DirectoryViewerEx
 - [ ] FileViewerEx
 - [X] GeometryThumbEx
-- [ ] HamburgerMenuEx
+- [.] HamburgerMenuEx
 - [ ] SettingsMenuItemEx
 - [X] ToggleEx
 - [X] UpDownEx

@@ -80,6 +80,7 @@
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownLongValueChangedEventArgsEx.cs" />
+    <Compile Include="Data\HamburgerMenuItemType.cs" />
     <Compile Include="Data\NSWEPosition.cs" />
     <Compile Include="Data\Theme\ThemeDataModel.cs" />
     <Compile Include="Data\Theme\ThemeManager.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="DatePickerEx.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
+    <Compile Include="HamburgerMenuEx.cs" />
     <Compile Include="ListBoxEx.cs" />
     <Compile Include="ListBoxItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Utilities\ObjectUtilities.cs" />
     <Compile Include="Utilities\SystemThemeManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\HamburgerMenuItemViewModel.cs" />
     <Compile Include="WindowEx.cs" />
     <Compile Include="WindowTitleBarEx.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -207,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\GridViewItemEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\HamburgerMenuEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
