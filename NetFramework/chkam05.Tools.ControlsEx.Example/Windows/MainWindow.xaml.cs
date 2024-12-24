@@ -28,37 +28,13 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
 
         //  VARIABLES
 
-        private ObservableCollection<HamburgerMenuItemViewModel> hamburgerMenuItems;
-
-
         //  GETTERS & SETTERS
-
-        public ObservableCollection<HamburgerMenuItemViewModel> HamburgerMenuItems
-        {
-            get => hamburgerMenuItems;
-            set
-            {
-                hamburgerMenuItems = value;
-                hamburgerMenuItems.CollectionChanged += (s, e)
-                    => NotifyPropertyChanged(nameof(HamburgerMenuItems));
-                NotifyPropertyChanged(nameof(HamburgerMenuItems));
-            }
-        }
-
 
         //  METHODS
 
         public MainWindow(object args)
         {
             InitializeComponent();
-
-            HamburgerMenuItems = new ObservableCollection<HamburgerMenuItemViewModel>()
-            {
-                HamburgerMenuItemViewModel.CreateHeaderItem(),
-                new HamburgerMenuItemViewModel("Home", PackIconKind.Home, "Show home page"),
-                new HamburgerMenuItemViewModel("Settings", PackIconKind.Gear, "Show settings page"),
-                new HamburgerMenuItemViewModel("Info", PackIconKind.InfoBox, "Show info page"),
-            };
         }
 
         protected virtual void NotifyPropertyChanged(string propertyName)

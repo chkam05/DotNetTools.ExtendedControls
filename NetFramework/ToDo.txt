@@ -43,15 +43,13 @@ CUSTOM COMPONENTS
 - [ ] DirectoryViewerEx
 - [ ] FileViewerEx
 - [X] GeometryThumbEx
-- [.] HamburgerMenuEx
-- [ ] SettingsMenuItemEx
 - [X] ToggleEx
 - [X] UpDownEx
 - [X] UpDownDoubleEx
 - [X] UpDownLongEx
 - [X] WindowTitleBarEx
 
-7/13
+7/11
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------

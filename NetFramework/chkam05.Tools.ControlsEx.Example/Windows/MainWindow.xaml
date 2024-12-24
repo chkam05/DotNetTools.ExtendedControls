@@ -97,11 +97,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <cex:HamburgerMenuEx
-            Items="{Binding HamburgerMenuItems}"
-            Grid.Column="0"
-            Width="64"/>
-
         <Grid
             Grid.Column="1">
 
@@ -115,11 +110,20 @@
                     Margin="8"
                     VerticalAlignment="Top">
 
-                    <cex:ListViewEx
+                    <!--cex:ListViewEx
                         ItemTemplate="{StaticResource HamburgerMenuEx.DataTemplate}"
                         ItemsSource="{Binding HamburgerMenuItems}"
                         Width="36"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    </cex:ListViewEx-->
+
+                    <cex:ListViewEx>
+                        <ListViewItem Content="Test 1"/>
+                        <ListViewItem Content="Test 2"/>
+                        <Separator
+                            Background="Red"
+                            Margin="0"/>
+                        <ListViewItem Content="Test 3"/>
                     </cex:ListViewEx>
 
                 </StackPanel>

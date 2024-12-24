@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx.Data.Events
 {
-    public class SystemThemeChangedEventArgs
+    public class SystemThemeChangedEventArgs : EventArgs
     {
 
         //  VARIABLES
