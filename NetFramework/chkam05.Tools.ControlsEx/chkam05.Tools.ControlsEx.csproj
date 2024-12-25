@@ -64,6 +64,7 @@
     <Compile Include="ButtonExWithIcon.cs" />
     <Compile Include="CalendarEx.cs" />
     <Compile Include="CheckBoxEx.cs" />
+    <Compile Include="ColorPickerEx.cs" />
     <Compile Include="ComboBoxEx.cs" />
     <Compile Include="ComboBoxItemEx.cs" />
     <Compile Include="ContextMenuEx.cs" />
@@ -164,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CheckBoxEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ColorPickerEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

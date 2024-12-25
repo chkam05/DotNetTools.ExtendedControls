@@ -1,4 +1,6 @@
-﻿using chkam05.Tools.ControlsEx.ViewModels;
+﻿using chkam05.Tools.ControlsEx.Utilities;
+using chkam05.Tools.ControlsEx.ViewModels;
+using MaterialDesignColors.ColorManipulation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,19 +42,19 @@ namespace chkam05.Tools.ControlsEx.Data
         public int H
         {
             get => hue;
-            set => UpdateProperty(ref hue, Math.Max(Math.Min(value, HUE_MAX), HUE_MIN));
+            set => UpdateProperty(ref hue, MathUtilities.Clamp(value, HUE_MIN, HUE_MAX));
         }
 
         public int S
         {
             get => saturation;
-            set => UpdateProperty(ref saturation, Math.Max(Math.Min(value, SATURATION_MAX), SATURATION_MIN));
+            set => UpdateProperty(ref saturation, MathUtilities.Clamp(value, SATURATION_MIN, SATURATION_MAX));
         }
 
         public int L
         {
             get => lightness;
-            set => UpdateProperty(ref lightness, Math.Max(Math.Min(value, LIGHTNESS_MAX), LIGHTNESS_MIN));
+            set => UpdateProperty(ref lightness, MathUtilities.Clamp(value, LIGHTNESS_MIN, LIGHTNESS_MAX));
         }
 
 
@@ -93,6 +95,7 @@ namespace chkam05.Tools.ControlsEx.Data
             double max = Math.Max(Math.Max(r, g), b);
             double delta = max - min;
 
+            //  Lightness as percentage.
             double l = (max + min) / 2.0;
 
             if (delta == 0)
@@ -102,21 +105,16 @@ namespace chkam05.Tools.ControlsEx.Data
             else
             {
                 double s = (l <= 0.5) ? (delta / (max + min)) : (delta / (2 - max - min));
-
-                double h;
+                double h = 0;
 
                 if (r == max)
-                {
                     h = ((g - b) / 6) / delta;
-                }
+
                 else if (g == max)
-                {
                     h = (1.0 / 3) + ((b - r) / 6) / delta;
-                }
+
                 else
-                {
                     h = (2.0 / 3) + ((r - g) / 6) / delta;
-                }
 
                 if (h < 0)
                     h += 1;
@@ -143,12 +141,12 @@ namespace chkam05.Tools.ControlsEx.Data
             }
             else
             {
-                double v2 = (l < 0.5) ? (l * (1.0 + s)) : ((l + s) - (l * s));
-                double v1 = 2 * l - v2;
+                double max = (l < 0.5) ? (l * (1.0 + s)) : ((l + s) - (l * s));
+                double min = 2 * l - max;
 
-                double hr = HueToRGB(v1, v2, h + (1.0 / 3.0));
-                double hg = HueToRGB(v1, v2, h);
-                double hb = HueToRGB(v1, v2, h - (1.0 / 3.0));
+                double hr = HueToRGB(min, max, h + (1.0 / 3.0));
+                double hg = HueToRGB(min, max, h);
+                double hb = HueToRGB(min, max, h - (1.0 / 3.0));
 
                 return Color.FromArgb(A, (byte)(hr * 255), (byte)(hg * 255), (byte)(hb * 255));
             }
@@ -163,8 +161,12 @@ namespace chkam05.Tools.ControlsEx.Data
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Convert hue AHSL color model component to RGB color component. </summary>
-        private static double HueToRGB(double v1, double v2, double hue)
+        /// <summary> Helper function to calculate RGB component in HSL to RGB conversion. </summary>
+        /// <param name="min"> Minimum value. </param>
+        /// <param name="max"> Maximum value. </param>
+        /// <param name="hue"> The hue value to calculate from. </param>
+        /// <returns> The calculated RGB component. </returns>
+        private static double HueToRGB(double min, double max, double hue)
         {
             if (hue < 0)
                 hue += 1.0;
@@ -173,15 +175,15 @@ namespace chkam05.Tools.ControlsEx.Data
                 hue -= 1.0;
 
             if ((6.0 * hue) < 1)
-                return (v1 + (v2 - v1) * 6.0 * hue);
+                return (min + (max - min) * 6.0 * hue);
 
             if ((2.0 * hue) < 1)
-                return v2;
+                return max;
 
             if ((3.0 * hue) < 2)
-                return (v1 + (v2 - v1) * ((2.0 / 3.0) - hue) * 6.0);
+                return (min + (max - min) * ((2.0 / 3.0) - hue) * 6.0);
 
-            return v1;
+            return min;
         }
 
         #endregion CONVERSION
