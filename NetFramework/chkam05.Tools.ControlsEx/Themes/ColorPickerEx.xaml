@@ -5,8 +5,25 @@
     xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ThumbEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/SliderEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <conv:CircleCornerRadiusConverter x:Key="CircleCornerRadiusConverter"/>
+    <conv:ColorCodeConverter x:Key="ColorCodeConverter"/>
     <conv:InnerCornerRadiusConverter x:Key="InnerCornerRadiusConverter"/>
     <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <Style x:Key="ColorPickerEx.ThumbExStyle" BasedOn="{StaticResource ThumbExStyle}" TargetType="{x:Type local:ThumbEx}">
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style x:Key="ColorPickerEx.SliderExStyle" BasedOn="{StaticResource SliderExStyle}" TargetType="{x:Type local:SliderEx}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderBrushMouseOver" Value="Transparent"/>
+    </Style>
 
     <ControlTemplate x:Key="ColorPickerEx.ControlTemplate" TargetType="{x:Type local:ColorPickerEx}">
         <Border
@@ -17,43 +34,36 @@
             Padding="{TemplateBinding Padding}"
             SnapsToDevicePixels="True">
 
-            <Border
-                x:Name="colorBorder"
-                BorderBrush="{x:Null}"
-                BorderThickness="0">
+            <Grid>
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                        <GradientStop Color="#FF0000" Offset="0.0" />
-                        <GradientStop Color="#FFFF00" Offset="0.17" />
-                        <GradientStop Color="#00FF00" Offset="0.33" />
-                        <GradientStop Color="#00FFFF" Offset="0.5" />
-                        <GradientStop Color="#0000FF" Offset="0.67" />
-                        <GradientStop Color="#FF00FF" Offset="0.83" />
-                        <GradientStop Color="#FF0001" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Border.CornerRadius>
-                    <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}">
-                        <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}"/>
-                        <Binding Path="Padding" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}"/>
-                    </MultiBinding>
-                </Border.CornerRadius>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
                 <Border
-                    x:Name="bsBorder"
+                    x:Name="colorBorder"
                     BorderBrush="{x:Null}"
-                    BorderThickness="0">
+                    BorderThickness="0"
+                    Grid.Column="0"
+                    Grid.Row="0">
 
                     <Border.Background>
-                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                            <GradientStop Color="Black" Offset="0.0"/>
-                            <GradientStop Color="Transparent" Offset="0.5"/>
-                            <GradientStop Color="White" Offset="1.0"/>
+                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                            <GradientStop Color="#FF0000" Offset="0.0" />
+                            <GradientStop Color="#FFFF00" Offset="0.17" />
+                            <GradientStop Color="#00FF00" Offset="0.33" />
+                            <GradientStop Color="#00FFFF" Offset="0.5" />
+                            <GradientStop Color="#0000FF" Offset="0.67" />
+                            <GradientStop Color="#FF00FF" Offset="0.83" />
+                            <GradientStop Color="#FF0001" Offset="1.0" />
                         </LinearGradientBrush>
                     </Border.Background>
-
 
                     <Border.CornerRadius>
                         <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}">
@@ -62,31 +72,111 @@
                         </MultiBinding>
                     </Border.CornerRadius>
 
-                    <Canvas
-                        x:Name="canvasSelector"
-                        Background="Transparent"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
+                    <Border
+                        x:Name="bsBorder"
+                        BorderBrush="{x:Null}"
+                        BorderThickness="0">
 
-                        <Ellipse
-                            x:Name="handler"
-                            Fill="Transparent"
-                            Height="24"
-                            Stroke="Black"
-                            StrokeThickness="1"
-                            Width="24">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                <GradientStop Color="Black" Offset="0.0"/>
+                                <GradientStop Color="Transparent" Offset="0.5"/>
+                                <GradientStop Color="White" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
 
-                        </Ellipse>
+
+                        <Border.CornerRadius>
+                            <MultiBinding Converter="{StaticResource InnerCornerRadiusConverter}">
+                                <Binding Path="CornerRadius" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}"/>
+                                <Binding Path="Padding" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}"/>
+                            </MultiBinding>
+                        </Border.CornerRadius>
+
+                        <Canvas
+                            x:Name="canvasSelector"
+                            Background="Transparent"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+
+                            <local:ThumbEx
+                                x:Name="handler"
+                                BorderThickness="1"
+                                Height="{TemplateBinding HandlerHeight}"
+                                ToolTip="{Binding SelectedColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}, Converter={StaticResource ColorCodeConverter}}"
+                                Width="{TemplateBinding HandlerWidth}">
+
+                                <local:ThumbEx.Background>
+                                    <SolidColorBrush Color="{TemplateBinding SelectedColor}"/>
+                                </local:ThumbEx.Background>
+
+                                <local:ThumbEx.BackgroundDragging>
+                                    <SolidColorBrush Color="{TemplateBinding SelectedColor}"/>
+                                </local:ThumbEx.BackgroundDragging>
+
+                                <local:ThumbEx.BackgroundMouseOver>
+                                    <SolidColorBrush Color="{TemplateBinding SelectedColor}"/>
+                                </local:ThumbEx.BackgroundMouseOver>
+
+                                <local:ThumbEx.CornerRadius>
+                                    <MultiBinding Converter="{StaticResource CircleCornerRadiusConverter}">
+                                        <Binding Path="HandlerHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}"/>
+                                        <Binding Path="HandlerWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}"/>
+                                    </MultiBinding>
+                                </local:ThumbEx.CornerRadius>
+
+                            </local:ThumbEx>
                         
-                    </Canvas>
+                        </Canvas>
+                    </Border>
                 </Border>
-            </Border>
+
+                <local:SliderEx
+                    x:Name="brightnessSlider"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Maximum="100"
+                    Minimum="0"
+                    Orientation="Vertical"
+                    Style="{TemplateBinding SliderStyle}"
+                    TickFrequency="1"
+                    ToolTip="{TemplateBinding SliderBrightnessLabel}"/>
+
+                <local:SliderEx
+                    x:Name="saturationSlider"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Maximum="100"
+                    Minimum="0"
+                    Orientation="Horizontal"
+                    Style="{TemplateBinding SliderStyle}"
+                    TickFrequency="1"
+                    ToolTip="{TemplateBinding SliderSaturationLabel}"/>
+            </Grid>
         </Border>
+        
+        <ControlTemplate.Triggers>
+            <Trigger Property="SliderBrightnessLabel" Value="">
+                <Setter Property="ToolTip" TargetName="brightnessSlider" Value="{x:Null}"/>
+            </Trigger>
+
+            <Trigger Property="SliderSaturationLabel" Value="">
+                <Setter Property="ToolTip" TargetName="saturationSlider" Value="{x:Null}"/>
+            </Trigger>
+
+            <Trigger Property="ShowColorCode" Value="false">
+                <Setter Property="ToolTip" TargetName="handler" Value="{x:Null}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="ColorPickerExStyle" TargetType="{x:Type local:ColorPickerEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="MinHeight" Value="128"/>
         <Setter Property="MinWidth" Value="128"/>
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="Template" Value="{StaticResource ColorPickerEx.ControlTemplate}"/>
     </Style>
     

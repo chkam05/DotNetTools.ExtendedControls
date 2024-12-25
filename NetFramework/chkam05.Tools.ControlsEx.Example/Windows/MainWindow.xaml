@@ -110,7 +110,9 @@
                     Margin="8"
                     VerticalAlignment="Top">
 
-                    <cex:ColorPickerEx/>
+                    <cex:ColorPickerEx
+                        Height="256"
+                        Width="256"/>
 
                 </StackPanel>
 

@@ -4,33 +4,34 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace chkam05.Tools.ControlsEx.Converters
 {
-    public class MinMaxDimensionConverter : IMultiValueConverter
+    public class CircleCornerRadiusConverter : IMultiValueConverter
     {
 
         //  METHODS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Gets max dimension value. </summary>
+        /// <summary> Calculates circle corner radius. </summary>
         /// <param name="values"> Dimension values produced by the binding source. </param>
         /// <param name="targetType"> The type of the binding target property. </param>
         /// <param name="parameter"> The converter parameter to use. </param>
         /// <param name="culture"> The culture to use in converter. </param>
-        /// <returns> A calculated max dimension value. If the methods returns null, the vaild null value is used. </returns>
+        /// <returns> A calculated corner radius value. If the methods returns null, the vaild null value is used. </returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isMax = parameter is string paramStr ? paramStr.ToUpper() == "MAX" : false;
-
             if (values.Any(v => v is double))
             {
                 var doubleValues = values.Where(v => v is double).Select(v => (double)v);
-                return Math.Max(0, (isMax ? doubleValues.Max() : doubleValues.Min()));
+                var cornerRadiusValue = doubleValues.Max() / 2;
+
+                return new CornerRadius(cornerRadiusValue);
             }
 
-            return 0;
+            return new CornerRadius(0);
         }
 
         //  --------------------------------------------------------------------------------

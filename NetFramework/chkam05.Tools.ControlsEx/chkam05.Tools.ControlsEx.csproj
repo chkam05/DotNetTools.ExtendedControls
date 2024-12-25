@@ -70,6 +70,8 @@
     <Compile Include="ContextMenuEx.cs" />
     <Compile Include="ContextMenuItemEx.cs" />
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
+    <Compile Include="Converters\CircleCornerRadiusConverter.cs" />
+    <Compile Include="Converters\ColorCodeConverter.cs" />
     <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
     <Compile Include="Converters\MinMaxDimensionConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Data\AHSLColor.cs" />
     <Compile Include="Data\CalendarExHeaderPosition.cs" />
     <Compile Include="Data\CheckMarkTypeIcon.cs" />
+    <Compile Include="Data\Events\ColorPickerExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownLongValueChangedEventArgsEx.cs" />

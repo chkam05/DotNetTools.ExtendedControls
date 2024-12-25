@@ -39,7 +39,7 @@ CUSTOM COMPONENTS
 ------------------------------------------------------------
 - [X] ButtonExWithIcon
 - [ ] ColorPaletteEx
-- [ ] ColorPickerEx
+- [X] ColorPickerEx
 - [ ] DirectoryViewerEx
 - [ ] FileViewerEx
 - [X] GeometryThumbEx
