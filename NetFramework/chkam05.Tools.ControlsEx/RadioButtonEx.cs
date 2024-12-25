@@ -1,5 +1,4 @@
-﻿using chkam05.Tools.ControlsEx.Data;
-using chkam05.Tools.ControlsEx.Resources;
+﻿using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(BackgroundInactive),
             typeof(Brush),
             typeof(RadioButtonEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(BackgroundMouseOver),
@@ -63,7 +62,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ForegroundInactive),
             typeof(Brush),
             typeof(RadioButtonEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ForegroundMouseOverProperty = DependencyProperty.Register(
             nameof(ForegroundMouseOver),

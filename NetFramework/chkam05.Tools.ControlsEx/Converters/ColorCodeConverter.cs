@@ -1,5 +1,4 @@
-﻿using chkam05.Tools.ControlsEx.Data;
-using chkam05.Tools.ControlsEx.Utilities;
+﻿using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

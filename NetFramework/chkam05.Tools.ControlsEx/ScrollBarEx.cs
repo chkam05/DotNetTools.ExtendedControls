@@ -51,7 +51,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ButtonBackgroundInactive),
             typeof(Brush),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(ButtonBackgroundMouseOver),
@@ -75,7 +75,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ButtonBorderBrushInactive),
             typeof(Brush),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(ButtonBorderBrushMouseOver),
@@ -189,7 +189,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ThumbBackgroundInactive),
             typeof(Brush),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ThumbBackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(ThumbBackgroundMouseOver),
@@ -213,7 +213,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ThumbBorderBrushInactive),
             typeof(Brush),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ThumbBorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(ThumbBorderBrushMouseOver),

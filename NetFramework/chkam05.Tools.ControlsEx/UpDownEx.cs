@@ -27,25 +27,25 @@ namespace chkam05.Tools.ControlsEx
             nameof(BackgroundInactive),
             typeof(Brush),
             typeof(UpDownEx<T>),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(BackgroundMouseOver),
             typeof(Brush),
             typeof(UpDownEx<T>),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighMouseOver)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightMouseOver)));
 
         public static readonly DependencyProperty BackgroundSelectedProperty = DependencyProperty.Register(
             nameof(BackgroundSelected),
             typeof(Brush),
             typeof(UpDownEx<T>),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighSelected)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightSelected)));
 
         public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
             nameof(BorderBrushInactive),
             typeof(Brush),
             typeof(UpDownEx<T>),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(BorderBrushMouseOver),
@@ -69,7 +69,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ButtonBackgroundInactive),
             typeof(Brush),
             typeof(UpDownEx<T>),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(ButtonBackgroundMouseOver),
@@ -99,7 +99,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ForegroundInactive),
             typeof(Brush),
             typeof(UpDownEx<T>),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ForegroundMouseOverProperty = DependencyProperty.Register(
             nameof(ForegroundMouseOver),

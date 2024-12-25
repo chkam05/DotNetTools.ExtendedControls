@@ -21,13 +21,13 @@ namespace chkam05.Tools.ControlsEx
             nameof(BackgroundInactive),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
             nameof(BorderBrushInactive),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ColumnHeaderBackgroundProperty = DependencyProperty.Register(
             nameof(ColumnHeaderBackground),
@@ -39,7 +39,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ColumnHeaderBackgroundInactive),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ColumnHeaderBackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(ColumnHeaderBackgroundMouseOver),
@@ -63,7 +63,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ColumnHeaderBorderBrushInactive),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ColumnHeaderBorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(ColumnHeaderBorderBrushMouseOver),
@@ -99,7 +99,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ColumnHeaderForegroundInactive),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ColumnHeaderForegroundMouseOverProperty = DependencyProperty.Register(
             nameof(ColumnHeaderForegroundMouseOver),
@@ -159,19 +159,19 @@ namespace chkam05.Tools.ControlsEx
             nameof(ColumnGripperBorderBrushInactive),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ColumnGripperBorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(ColumnGripperBorderBrushMouseOver),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighMouseOver)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightMouseOver)));
 
         public static readonly DependencyProperty ColumnGripperBorderBrushPressedProperty = DependencyProperty.Register(
             nameof(ColumnGripperBorderBrushPressed),
             typeof(Brush),
             typeof(ListViewEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighPressed)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightPressed)));
 
         public static readonly DependencyProperty ColumnGripperBorderThicknessProperty = DependencyProperty.Register(
             nameof(ColumnGripperBorderThickness),

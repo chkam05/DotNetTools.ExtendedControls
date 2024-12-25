@@ -1,4 +1,4 @@
-﻿using chkam05.Tools.ControlsEx.Data;
+﻿using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
 using System;
@@ -69,7 +69,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ToggleBrushInactive),
             typeof(Brush),
             typeof(ToggleEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ToggleBrushMouseOverProperty = DependencyProperty.Register(
             nameof(ToggleBrushMouseOver),

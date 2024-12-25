@@ -32,7 +32,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ForegroundInactive),
             typeof(Brush),
             typeof(SliderEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty HorizontalThumbHeightProperty = DependencyProperty.Register(
             nameof(HorizontalThumbHeight),
@@ -106,32 +106,32 @@ namespace chkam05.Tools.ControlsEx
             typeof(SliderEx),
             new PropertyMetadata(new CornerRadius(2)));
 
-        public static readonly DependencyProperty VertialThumbHeightProperty = DependencyProperty.Register(
-            nameof(VertialThumbHeight),
+        public static readonly DependencyProperty VerticalThumbHeightProperty = DependencyProperty.Register(
+            nameof(VerticalThumbHeight),
             typeof(double),
             typeof(SliderEx),
             new PropertyMetadata(11d));
 
-        public static readonly DependencyProperty VertialThumbStyleProperty = DependencyProperty.Register(
-            nameof(VertialThumbStyle),
+        public static readonly DependencyProperty VerticalThumbStyleProperty = DependencyProperty.Register(
+            nameof(VerticalThumbStyle),
             typeof(Style),
             typeof(SliderEx),
             new PropertyMetadata(GetGenericVerticalThumbExStyle()));
 
-        public static readonly DependencyProperty VertialThumbWidthProperty = DependencyProperty.Register(
-            nameof(VertialThumbWidth),
+        public static readonly DependencyProperty VerticalThumbWidthProperty = DependencyProperty.Register(
+            nameof(VerticalThumbWidth),
             typeof(double),
             typeof(SliderEx),
             new PropertyMetadata(18d));
 
-        public static readonly DependencyProperty VertialTrackBarMarginProperty = DependencyProperty.Register(
-            nameof(VertialTrackBarMargin),
+        public static readonly DependencyProperty VerticalTrackBarMarginProperty = DependencyProperty.Register(
+            nameof(VerticalTrackBarMargin),
             typeof(Thickness),
             typeof(SliderEx),
             new PropertyMetadata(new Thickness(2, 5, 2, 5)));
 
-        public static readonly DependencyProperty VertialTrackBarWidthProperty = DependencyProperty.Register(
-            nameof(VertialTrackBarWidth),
+        public static readonly DependencyProperty VerticalTrackBarWidthProperty = DependencyProperty.Register(
+            nameof(VerticalTrackBarWidth),
             typeof(double),
             typeof(SliderEx),
             new PropertyMetadata(5d));
@@ -229,34 +229,34 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(TrackBarCornerRadiusProperty, value);
         }
 
-        public double VertialThumbHeight
+        public double VerticalThumbHeight
         {
-            get => (double)GetValue(VertialThumbHeightProperty);
-            set => SetValue(VertialThumbHeightProperty, value);
+            get => (double)GetValue(VerticalThumbHeightProperty);
+            set => SetValue(VerticalThumbHeightProperty, value);
         }
 
-        public Style VertialThumbStyle
+        public Style VerticalThumbStyle
         {
-            get => (Style)GetValue(VertialThumbStyleProperty);
-            set => SetValue(VertialThumbStyleProperty, value);
+            get => (Style)GetValue(VerticalThumbStyleProperty);
+            set => SetValue(VerticalThumbStyleProperty, value);
         }
 
-        public double VertialThumbWidth
+        public double VerticalThumbWidth
         {
-            get => (double)GetValue(VertialThumbWidthProperty);
-            set => SetValue(VertialThumbWidthProperty, value);
+            get => (double)GetValue(VerticalThumbWidthProperty);
+            set => SetValue(VerticalThumbWidthProperty, value);
         }
 
-        public Thickness VertialTrackBarMargin
+        public Thickness VerticalTrackBarMargin
         {
-            get => (Thickness)GetValue(VertialTrackBarMarginProperty);
-            set => SetValue(VertialTrackBarMarginProperty, value);
+            get => (Thickness)GetValue(VerticalTrackBarMarginProperty);
+            set => SetValue(VerticalTrackBarMarginProperty, value);
         }
 
-        public double VertialTrackBarWidth
+        public double VerticalTrackBarWidth
         {
-            get => (double)GetValue(VertialTrackBarWidthProperty);
-            set => SetValue(VertialTrackBarWidthProperty, value);
+            get => (double)GetValue(VerticalTrackBarWidthProperty);
+            set => SetValue(VerticalTrackBarWidthProperty, value);
         }
 
 

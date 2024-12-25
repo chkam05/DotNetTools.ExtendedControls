@@ -30,10 +30,10 @@ namespace chkam05.Tools.ControlsEx.Resources
 
         public static readonly Color LightBackground = Colors.White;
         public static readonly Color LightForeground = Colors.Black;
-        public static readonly Color LighInactive = Color.FromArgb(255, 160, 160, 160);
-        public static readonly Color LighMouseOver = Color.FromArgb(255, 127, 127, 127);
-        public static readonly Color LighPressed = Color.FromArgb(255, 211, 211, 211);
-        public static readonly Color LighSelected = Color.FromArgb(255, 168, 168, 168);
+        public static readonly Color LightInactive = Color.FromArgb(255, 160, 160, 160);
+        public static readonly Color LightMouseOver = Color.FromArgb(255, 127, 127, 127);
+        public static readonly Color LightPressed = Color.FromArgb(255, 211, 211, 211);
+        public static readonly Color LightSelected = Color.FromArgb(255, 168, 168, 168);
         public static readonly Color LightShadeBackground = Color.FromArgb(255, 219, 219, 219);
 
         //  PALETTE COLORS

@@ -20,7 +20,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(BackgroundInactive),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(BackgroundMouseOver),
@@ -32,7 +32,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(BorderBrushInactive),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(BorderBrushMouseOver),
@@ -44,49 +44,49 @@ namespace chkam05.Tools.ControlsEx
             nameof(ButtonBackground),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBackgroundInactiveProperty = DependencyProperty.Register(
             nameof(ButtonBackgroundInactive),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(ButtonBackgroundMouseOver),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBackgroundPressedProperty = DependencyProperty.Register(
             nameof(ButtonBackgroundPressed),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBorderBrushProperty = DependencyProperty.Register(
             nameof(ButtonBorderBrush),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBorderBrushInactiveProperty = DependencyProperty.Register(
             nameof(ButtonBorderBrushInactive),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(ButtonBorderBrushMouseOver),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBorderBrushPressedProperty = DependencyProperty.Register(
             nameof(ButtonBorderBrushPressed),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonBorderThicknessProperty = DependencyProperty.Register(
             nameof(ButtonBorderThickness),
@@ -104,25 +104,25 @@ namespace chkam05.Tools.ControlsEx
             nameof(ButtonForeground),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonForegroundInactiveProperty = DependencyProperty.Register(
             nameof(ButtonForegroundInactive),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonForegroundMouseOverProperty = DependencyProperty.Register(
             nameof(ButtonForegroundMouseOver),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonForegroundPressedProperty = DependencyProperty.Register(
             nameof(ButtonForegroundPressed),
             typeof(Brush),
             typeof(ComboBoxEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ButtonMarginProperty = DependencyProperty.Register(
             nameof(ButtonMargin),

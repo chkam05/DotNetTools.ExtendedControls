@@ -78,23 +78,22 @@
     <Compile Include="Converters\ThicknessModifierConverter.cs" />
     <Compile Include="Converters\ToggleTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
-    <Compile Include="Data\CalendarExHeaderPosition.cs" />
-    <Compile Include="Data\CheckMarkTypeIcon.cs" />
+    <Compile Include="Data\Enums\CalendarExHeaderPosition.cs" />
+    <Compile Include="Data\Enums\CheckMarkTypeIcon.cs" />
     <Compile Include="Data\Events\ColorPickerExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownLongValueChangedEventArgsEx.cs" />
-    <Compile Include="Data\HamburgerMenuItemType.cs" />
-    <Compile Include="Data\NSWEPosition.cs" />
+    <Compile Include="Data\Enums\NSWEPosition.cs" />
     <Compile Include="Data\Theme\ThemeDataModel.cs" />
     <Compile Include="Data\Theme\ThemeManager.cs" />
     <Compile Include="Data\Theme\ThemeType.cs" />
     <Compile Include="Data\ColorEx.cs" />
     <Compile Include="Data\Events\SystemThemeChangedEventArgs.cs" />
-    <Compile Include="Data\TitleBarButtonPosition.cs" />
-    <Compile Include="Data\TitleBarIconPosition.cs" />
-    <Compile Include="Data\ToggleTypeIcon.cs" />
-    <Compile Include="Data\WindowExResizeDirection.cs" />
+    <Compile Include="Data\Enums\TitleBarButtonPosition.cs" />
+    <Compile Include="Data\Enums\TitleBarIconPosition.cs" />
+    <Compile Include="Data\Enums\ToggleTypeIcon.cs" />
+    <Compile Include="Data\Enums\WindowExResizeDirection.cs" />
     <Compile Include="DatePickerEx.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
@@ -153,7 +152,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\Collections\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\ButtonEx.xaml">
       <SubType>Designer</SubType>

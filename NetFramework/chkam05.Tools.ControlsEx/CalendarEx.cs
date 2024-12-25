@@ -1,4 +1,4 @@
-﻿using chkam05.Tools.ControlsEx.Data;
+﻿using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
 using System;
@@ -21,13 +21,13 @@ namespace chkam05.Tools.ControlsEx
             nameof(BackgroundInactive),
             typeof(Brush),
             typeof(CalendarEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
             nameof(BorderBrushInactive),
             typeof(Brush),
             typeof(CalendarEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty ContentPaddingProperty = DependencyProperty.Register(
             nameof(ContentPadding),
@@ -137,7 +137,7 @@ namespace chkam05.Tools.ControlsEx
               nameof(DayMonthYearButtonForegroundInactive),
               typeof(Brush),
               typeof(CalendarEx),
-              new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+              new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty DayMonthYearButtonForegroundMouseOverProperty = DependencyProperty.Register(
               nameof(DayMonthYearButtonForegroundMouseOver),
@@ -213,7 +213,7 @@ namespace chkam05.Tools.ControlsEx
               nameof(HeaderNavigationButtonBackgroundInactive),
               typeof(Brush),
               typeof(CalendarEx),
-              new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+              new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty HeaderNavigationButtonBackgroundMouseOverProperty = DependencyProperty.Register(
               nameof(HeaderNavigationButtonBackgroundMouseOver),
@@ -237,7 +237,7 @@ namespace chkam05.Tools.ControlsEx
               nameof(HeaderNavigationButtonBorderBrushInactive),
               typeof(Brush),
               typeof(CalendarEx),
-              new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+              new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty HeaderNavigationButtonBorderBrushMouseOverProperty = DependencyProperty.Register(
               nameof(HeaderNavigationButtonBorderBrushMouseOver),
@@ -343,7 +343,7 @@ namespace chkam05.Tools.ControlsEx
               nameof(HeaderTitleButtonBackgroundInactive),
               typeof(Brush),
               typeof(CalendarEx),
-              new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+              new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty HeaderTitleButtonBackgroundMouseOverProperty = DependencyProperty.Register(
               nameof(HeaderTitleButtonBackgroundMouseOver),
@@ -367,7 +367,7 @@ namespace chkam05.Tools.ControlsEx
               nameof(HeaderTitleButtonBorderBrushInactive),
               typeof(Brush),
               typeof(CalendarEx),
-              new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+              new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty HeaderTitleButtonBorderBrushMouseOverProperty = DependencyProperty.Register(
               nameof(HeaderTitleButtonBorderBrushMouseOver),

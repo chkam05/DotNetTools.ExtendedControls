@@ -38,7 +38,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ForegroundInactive),
             typeof(Brush),
             typeof(ProgressBarEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty OpacityInactiveProperty = DependencyProperty.Register(
             nameof(OpacityInactive),

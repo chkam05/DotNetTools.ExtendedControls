@@ -273,8 +273,8 @@
                     CornerRadius="{TemplateBinding CornerRadius}"
                     Grid.Column="1"
                     HorizontalAlignment="center"
-                    Margin="{TemplateBinding VertialTrackBarMargin}"
-                    Width="{TemplateBinding VertialTrackBarWidth}">
+                    Margin="{TemplateBinding VerticalTrackBarMargin}"
+                    Width="{TemplateBinding VerticalTrackBarWidth}">
 
                     <Border
                         x:Name="PART_SelectionRange"
@@ -304,13 +304,13 @@
                         <local:GeometryThumbEx
                             x:Name="Thumb"
                             Focusable="False"
-                            Height="{TemplateBinding VertialThumbHeight}"
+                            Height="{TemplateBinding VerticalThumbHeight}"
                             HorizontalContentAlignment="Center"
-                            Margin="{TemplateBinding VertialTrackBarMargin, Converter={StaticResource ThicknessModifierConverter}, ConverterParameter=LEFT;TOP:0;RIGHT;BOTTOM:0}"
+                            Margin="{TemplateBinding VerticalTrackBarMargin, Converter={StaticResource ThicknessModifierConverter}, ConverterParameter=LEFT;TOP:0;RIGHT;BOTTOM:0}"
                             OpacityInactive="1"
-                            Style="{TemplateBinding VertialThumbStyle}"
+                            Style="{TemplateBinding VerticalThumbStyle}"
                             VerticalAlignment="Top"
-                            Width="{TemplateBinding VertialThumbWidth}"/>
+                            Width="{TemplateBinding VerticalThumbWidth}"/>
                     </Track.Thumb>
                 </Track>
             </Grid>

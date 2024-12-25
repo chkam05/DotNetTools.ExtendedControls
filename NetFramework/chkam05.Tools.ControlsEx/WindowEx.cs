@@ -1,4 +1,4 @@
-﻿using chkam05.Tools.ControlsEx.Data;
+﻿using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;

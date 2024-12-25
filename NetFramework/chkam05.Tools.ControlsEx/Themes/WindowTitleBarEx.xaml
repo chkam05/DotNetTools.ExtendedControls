@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
-    xmlns:data="clr-namespace:chkam05.Tools.ControlsEx.Data"
+    xmlns:enums="clr-namespace:chkam05.Tools.ControlsEx.Data.Enums"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
@@ -150,15 +150,15 @@
             <Trigger Property="Icon" Value="{x:Null}">
                 <Setter Property="Visibility" TargetName="iconImage" Value="Collapsed"/>
             </Trigger>
-            
-            <Trigger Property="ButtonsPosition" Value="{x:Static data:TitleBarButtonPosition.Left}">
+
+            <Trigger Property="ButtonsPosition" Value="{x:Static enums:TitleBarButtonPosition.Left}">
                 <Setter Property="Width" TargetName="contentColumn" Value="Auto"/>
                 <Setter Property="Width" TargetName="buttonsColumn" Value="*"/>
                 <Setter Property="Grid.Column" TargetName="minimizeButton" Value="2"/>
                 <Setter Property="Grid.Column" TargetName="closeButton" Value="0"/>
             </Trigger>
 
-            <Trigger Property="IconPosition" Value="{x:Static data:TitleBarIconPosition.Right}">
+            <Trigger Property="IconPosition" Value="{x:Static enums:TitleBarIconPosition.Right}">
                 <Setter Property="Grid.Column" TargetName="iconHolder" Value="2"/>
             </Trigger>
 

@@ -19,7 +19,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(BackgroundInactive),
             typeof(Brush),
             typeof(TabItemEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BackgroundMouseOverProperty = DependencyProperty.Register(
             nameof(BackgroundMouseOver),
@@ -37,7 +37,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(BorderBrushInactive),
             typeof(Brush),
             typeof(TabItemEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LighInactive)));
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty BorderBrushMouseOverProperty = DependencyProperty.Register(
             nameof(BorderBrushMouseOver),

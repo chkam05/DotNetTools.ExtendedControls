@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace chkam05.Tools.ControlsEx.Data
+namespace chkam05.Tools.ControlsEx.Data.Enums
 {
-    public enum TitleBarIconPosition
+    public enum CalendarExHeaderPosition
     {
-        Left = 0,
-        Right = 1
+        Top = 0,
+        Bottom = 1
     }
 }
