@@ -38,8 +38,8 @@ OVERRIDED COMPONENTS
 CUSTOM COMPONENTS
 ------------------------------------------------------------
 - [X] ButtonExWithIcon
-- [ ] ColorPaletteEx
-- [X] ColorPickerEx
+- [Y] ColorPaletteEx
+- [Y] ColorPickerEx
 - [ ] DirectoryViewerEx
 - [ ] FileViewerEx
 - [X] GeometryThumbEx
@@ -49,7 +49,7 @@ CUSTOM COMPONENTS
 - [X] UpDownLongEx
 - [X] WindowTitleBarEx
 
-8/11
+9/11
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------

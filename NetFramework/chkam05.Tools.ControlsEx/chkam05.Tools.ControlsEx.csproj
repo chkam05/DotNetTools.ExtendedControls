@@ -64,6 +64,7 @@
     <Compile Include="ButtonExWithIcon.cs" />
     <Compile Include="CalendarEx.cs" />
     <Compile Include="CheckBoxEx.cs" />
+    <Compile Include="ColorPaletteEx.cs" />
     <Compile Include="ColorPickerEx.cs" />
     <Compile Include="ComboBoxEx.cs" />
     <Compile Include="ComboBoxItemEx.cs" />
@@ -78,8 +79,10 @@
     <Compile Include="Converters\ThicknessModifierConverter.cs" />
     <Compile Include="Converters\ToggleTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
+    <Compile Include="Data\Collections\ColorPaletteExCollection.cs" />
     <Compile Include="Data\Enums\CalendarExHeaderPosition.cs" />
     <Compile Include="Data\Enums\CheckMarkTypeIcon.cs" />
+    <Compile Include="Data\Events\ColorPaletteExSelectionChanged.cs" />
     <Compile Include="Data\Events\ColorPickerExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
@@ -140,6 +143,7 @@
     <Compile Include="Utilities\ObjectUtilities.cs" />
     <Compile Include="Utilities\SystemThemeManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ColorPaletteExItemViewModel.cs" />
     <Compile Include="WindowEx.cs" />
     <Compile Include="WindowTitleBarEx.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -152,9 +156,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Collections\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Themes\ButtonEx.xaml">
       <SubType>Designer</SubType>
@@ -169,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\CheckBoxEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ColorPaletteEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

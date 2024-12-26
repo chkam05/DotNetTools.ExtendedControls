@@ -1,0 +1,91 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <Style x:Key="ColorPaletteEx.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:ListViewItemEx}">
+        <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPaletteEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding CornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPaletteEx}}}"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Width" Value="40"/>
+    </Style>
+
+    <DataTemplate x:Key="ColorPaletteEx.DataTemplate">
+        <Border
+            Background="{Binding Brush}"
+            BorderBrush="{x:Null}"
+            BorderThickness="0"
+            CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPaletteEx}}}"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ToolTip="{Binding Name}">
+            
+            <materialDesign:PackIcon
+                x:Name="addPackIcon"
+                Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewItemEx}}}"
+                Height="Auto"
+                HorizontalAlignment="Stretch"
+                Kind="PlusThick"
+                Margin="4"
+                VerticalAlignment="Stretch"
+                Width="Auto"
+                Visibility="Collapsed"/>
+        </Border>
+        
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsAddItem}" Value="True">
+                <Setter Property="Visibility" TargetName="addPackIcon" Value="Visible"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    
+    <ControlTemplate x:Key="ColorPaletteEx.ControlTemplate" TargetType="{x:Type local:ColorPaletteEx}">
+        <Grid
+            SnapsToDevicePixels="True">
+
+            <local:ListViewEx
+                x:Name="listView"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Foreground="{TemplateBinding Foreground}"
+                ItemContainerStyle="{TemplateBinding ItemsStyle}"
+                ItemTemplate="{StaticResource ColorPaletteEx.DataTemplate}"
+                ItemsSource="{TemplateBinding ItemsSource}"
+                ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                ScrollViewer.VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                ScrollViewerStyle="{TemplateBinding ScrollViewerStyle}"
+                SelectedItem="{TemplateBinding SelectedItem}">
+                <local:ListViewEx.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel
+                            Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </local:ListViewEx.ItemsPanel>
+            </local:ListViewEx>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="ColorPaletteExStyle" TargetType="{x:Type local:ColorPaletteEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="MinHeight" Value="128"/>
+        <Setter Property="MinWidth" Value="128"/>
+        <Setter Property="Template" Value="{StaticResource ColorPaletteEx.ControlTemplate}"/>
+    </Style>
+    
+</ResourceDictionary>

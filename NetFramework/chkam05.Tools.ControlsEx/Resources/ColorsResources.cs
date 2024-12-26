@@ -18,6 +18,7 @@ namespace chkam05.Tools.ControlsEx.Resources
         public static readonly Color DefaultAccentColorPressed = Color.FromArgb(255, 0, 90, 163);
         public static readonly Color DefaultAccentColorSelected = Color.FromArgb(255, 0, 105, 188);
 
+
         //  BASE THEME COLORS
 
         public static readonly Color DarkBackground = Colors.Black;
@@ -35,6 +36,7 @@ namespace chkam05.Tools.ControlsEx.Resources
         public static readonly Color LightPressed = Color.FromArgb(255, 211, 211, 211);
         public static readonly Color LightSelected = Color.FromArgb(255, 168, 168, 168);
         public static readonly Color LightShadeBackground = Color.FromArgb(255, 219, 219, 219);
+
 
         //  PALETTE COLORS
 
@@ -92,6 +94,7 @@ namespace chkam05.Tools.ControlsEx.Resources
         public static readonly ColorEx Desert = ColorEx.CreateFromHexCode("#847545", "Desert");
         public static readonly ColorEx Moro = ColorEx.CreateFromHexCode("#766B59", "Moro");
 
+
         //  PALETTE BRUSHES
 
         public static readonly Brush GoldYellowBrush = new SolidColorBrush(GoldYellow.Color);
@@ -147,5 +150,68 @@ namespace chkam05.Tools.ControlsEx.Resources
         public static readonly Brush SageBrush = new SolidColorBrush(Sage.Color);
         public static readonly Brush DesertBrush = new SolidColorBrush(Desert.Color);
         public static readonly Brush MoroBrush = new SolidColorBrush(Moro.Color);
+
+
+        //  METHODS
+
+        public static IEnumerable<ColorEx> GetPaletteColors()
+        {
+            return new List<ColorEx>()
+            {
+                GoldYellow,
+                Gold,
+                BrightOrange,
+                DarkOrange,
+                Rusty,
+                PaleRusty,
+                BrickRed,
+                ModerateRed,
+
+                PaleRed,
+                Red,
+                LightPink,
+                Rose,
+                LightPlum,
+                Plum,
+                LightlyOrchid,
+                Orchid,
+
+                Blue,
+                Navy,
+                PurpleShade,
+                DarkPurpleShade,
+                PastelIris,
+                BrightlyIridescent,
+                LightPurpleRed,
+                PurpleRed,
+
+                BrightBlue,
+                LightBlue,
+                SeaFoam,
+                Greeny,
+                LightMint,
+                DarkMint,
+                Peaty,
+                BrightGreen,
+
+                Gray,
+                GrayBrown,
+                SteelBlue,
+                MetalicBlue,
+                PaleDarkGreen,
+                DarkGreen,
+                LightGreen,
+                Green,
+
+                Cloudy,
+                Storm,
+                BlueGray,
+                DarkGray,
+                ShadedGreen,
+                Sage,
+                Desert,
+                Moro
+            };
+        }
     }
 }
