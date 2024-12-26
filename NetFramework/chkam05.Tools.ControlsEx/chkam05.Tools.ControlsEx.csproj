@@ -82,7 +82,7 @@
     <Compile Include="Data\Collections\ColorPaletteExCollection.cs" />
     <Compile Include="Data\Enums\CalendarExHeaderPosition.cs" />
     <Compile Include="Data\Enums\CheckMarkTypeIcon.cs" />
-    <Compile Include="Data\Events\ColorPaletteExSelectionChanged.cs" />
+    <Compile Include="Data\Events\ColorPaletteExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\ColorPickerExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
