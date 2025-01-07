@@ -22,6 +22,18 @@ namespace chkam05.Tools.ControlsEx
 
         //  DEPENDENCY PROPERTIES
 
+        public static readonly DependencyProperty BackgroundInactiveProperty = DependencyProperty.Register(
+            nameof(BackgroundInactive),
+            typeof(Brush),
+            typeof(ColorPickerEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
+
+        public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
+            nameof(BorderBrushInactive),
+            typeof(Brush),
+            typeof(ColorPickerEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -89,11 +101,24 @@ namespace chkam05.Tools.ControlsEx
         private ThumbEx handler;
         private SliderEx brightnessSlider;
         private SliderEx saturationSlider;
+
         private bool isDragging = false;
-        private bool lockUpdate = false;
+        private bool isUpdating = false;
 
 
         //  GETTERS & SETTERS
+
+        public Brush BackgroundInactive
+        {
+            get => (Brush)GetValue(BackgroundInactiveProperty);
+            set => SetValue(BackgroundInactiveProperty, value);
+        }
+
+        public Brush BorderBrushInactive
+        {
+            get => (Brush)GetValue(BorderBrushInactiveProperty);
+            set => SetValue(BorderBrushInactiveProperty, value);
+        }
 
         public CornerRadius CornerRadius
         {
@@ -165,69 +190,6 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion CONSTRUCTORS
 
-        #region COLOR UPDATE
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Updates handler color to selected color. </summary>
-        private void UpdateHandlerColor()
-        {
-            if (handler != null)
-            {
-                handler.Background = new SolidColorBrush(SelectedColor);
-                handler.BackgroundDragging = new SolidColorBrush(SelectedColor);
-                handler.BackgroundMouseOver = new SolidColorBrush(SelectedColor);
-            }
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Updates the selected color based on the handler's position on the canvas. </summary>
-        /// <param name="relativePosition"> The handler's relative position on the canvas, normalized to [0, 1]. </param>
-        private void UpdateSelectedColor(Point relativePosition)
-        {
-            double height = canvasSelector.ActualHeight;
-            double width = canvasSelector.ActualWidth;
-            double middleHeight = canvasSelector.ActualHeight / 2;
-
-            double xPixel = relativePosition.X * width;
-            double yPixel = relativePosition.Y * height;
-
-            var renderTargetcolorBorder = RenderBrushToBitmap(colorBorder.Background, width, height);
-            var hueColor = GetPixelColor(renderTargetcolorBorder, (int)xPixel, (int)(height / 2));
-            var ahslColor = AHSLColor.FromColor(hueColor);
-            
-            double lightnessFactor = 1.0 - (yPixel / canvasSelector.ActualHeight);
-
-            ahslColor.S = (int)saturationSlider.Value;
-            ahslColor.L = MathUtilities.Clamp((int)(lightnessFactor * 100), 0, 100);
-
-            bool isUserModified = !lockUpdate;
-
-            InvokeInLockUpdateMode(() =>
-            {
-                SelectedColor = ahslColor.ToColor();
-                InvokeSelectionChanged(isUserModified);
-            });
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Updates the interface controls based on the selected color. </summary>
-        /// <param name="selectedColor"> Selected color. </param>
-        private void UpdateInterface(Color selectedColor)
-        {
-            var ahslColor = AHSLColor.FromColor(selectedColor);
-            InvokeInLockUpdateMode(() =>
-            {
-                UpdateHandlerPosition(ahslColor);
-                UpdateBrightnessSliderValue(ahslColor);
-                UpdateSaturationSliderValue(ahslColor);
-                UpdateHandlerColor();
-            });
-            
-            InvokeSelectionChanged(false);
-        }
-
-        #endregion COLOR UPDATE
-
         #region CONTROL
 
         //  --------------------------------------------------------------------------------
@@ -253,6 +215,66 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion EVENTS
 
+        #region HANDLER
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get handler position on canvas selector. </summary>
+        /// <returns> Handler position on canvas selector. </returns>
+        private Point GetHandlerPosition()
+        {
+            double x = Canvas.GetLeft(handler) + (handler.Width / 2);
+            double y = Canvas.GetTop(handler) + (handler.Width / 2);
+
+            return new Point(x, y);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked after pressing the left mouse button while cursor is over the canvas selector. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Mouse button event args. </param>
+        private void OnCanvasSelectorMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = true;
+            UpdateColorFromSelector(e.GetPosition(canvasSelector));
+            canvasSelector.CaptureMouse();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked while moving the cursor over the canvas selector. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Mouse event args. </param>
+        private void OnCanvasSelectorMouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                UpdateColorFromSelector(e.GetPosition(canvasSelector));
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked after releasing the left mouse button while cursor is over the canvas selector. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Mouse button event args. </param>
+        private void OnCanvasSelectorMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = false;
+            canvasSelector.ReleaseMouseCapture();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Set handler to defined position. </summary>
+        /// <param name="position"> Position (as Point) where handler will be placed. </param>
+        private void SetHandlerPosition(Point position)
+        {
+            double x = Math.Max(0, Math.Min(position.X, canvasSelector.ActualWidth));
+            double y = Math.Max(0, Math.Min(position.Y, canvasSelector.ActualHeight));
+
+            Canvas.SetLeft(handler, x - handler.Width / 2);
+            Canvas.SetTop(handler, y - handler.Height / 2);
+        }
+
+        #endregion HANDLER
+
         #region PROPERTIES CHANGED CALLBACKS
 
         //  --------------------------------------------------------------------------------
@@ -269,92 +291,6 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion PROPERTIES CHANGED CALLBACKS
 
-        #region SELECTOR
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Invoked while moving the cursor over the canvas selector. </summary>
-        /// <param name="sender"> Object that invoked the method. </param>
-        /// <param name="e"> Mouse event args. </param>
-        private void OnCanvasSelectorMouseMove(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
-            {
-                MoveHandlerAndUpdateColor(e.GetPosition(canvasSelector));
-            }
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Invoked after pressing the left mouse button while cursor is over the canvas selector. </summary>
-        /// <param name="sender"> Object that invoked the method. </param>
-        /// <param name="e"> Mouse button event args. </param>
-        private void OnCanvasSelectorMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            isDragging = true;
-            MoveHandlerAndUpdateColor(e.GetPosition(canvasSelector));
-            canvasSelector.CaptureMouse();
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Invoked after releasing the left mouse button while cursor is over the canvas selector. </summary>
-        /// <param name="sender"> Object that invoked the method. </param>
-        /// <param name="e"> Mouse button event args. </param>
-        private void OnCanvasSelectorMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            isDragging = false;
-            canvasSelector.ReleaseMouseCapture();
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Get handler position on canvas selector. </summary>
-        /// <returns> Handler position on canvas selector. </returns>
-        private Point GetHandlerPosition()
-        {
-            double x = Canvas.GetLeft(handler) + (handler.Width / 2);
-            double y = Canvas.GetTop(handler) + (handler.Width / 2);
-
-            return new Point(x, y);
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Moves handler to defined position. </summary>
-        /// <param name="position"> Position (as Point) where handler will be placed. </param>
-        private void MoveHandler(Point position)
-        {
-            double x = Math.Max(0, Math.Min(position.X, canvasSelector.ActualWidth));
-            double y = Math.Max(0, Math.Min(position.Y, canvasSelector.ActualHeight));
-
-            Canvas.SetLeft(handler, x - handler.Width / 2);
-            Canvas.SetTop(handler, y - handler.Height / 2);
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Moves handler to defined position and updates the color based on the handler position. </summary>
-        /// <param name="position"> Position (as Point) where handler will be placed. </param>
-        private void MoveHandlerAndUpdateColor(Point position)
-        {
-            double x = Math.Max(0, Math.Min(position.X, canvasSelector.ActualWidth));
-            double y = Math.Max(0, Math.Min(position.Y, canvasSelector.ActualHeight));
-
-            MoveHandler(position);
-            InvokeInLockUpdateMode(() => saturationSlider.Value = 100);
-            UpdateSelectedColor(new Point(x / canvasSelector.ActualWidth, y / canvasSelector.ActualHeight));
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Calculates the new position of the handle on the color picker and moves the handle. </summary>
-        /// <param name="newSelectedColor"> New color. </param>
-        private void UpdateHandlerPosition(AHSLColor newSelectedColor)
-        {
-            if (canvasSelector == null)
-                return;
-
-            var posX = (canvasSelector.ActualWidth * newSelectedColor.H) / AHSLColor.HUE_MAX;
-            var posY = (canvasSelector.ActualWidth * (100 - newSelectedColor.L)) / AHSLColor.LIGHTNESS_MAX;
-            MoveHandler(new Point(posX, posY));
-        }
-
-        #endregion SELECTOR
-
         #region SLIDERS
 
         //  --------------------------------------------------------------------------------
@@ -363,14 +299,22 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="e"> Routed property changed event arguments. </param>
         private void OnBrightnessSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (lockUpdate)
+            if (isDragging || isUpdating)
                 return;
 
             var x = GetHandlerPosition().X;
             var y = (canvasSelector.ActualHeight * (100 - e.NewValue)) / AHSLColor.LIGHTNESS_MAX;
 
-            MoveHandler(new Point(x, y));
-            UpdateSelectedColor(new Point(x / canvasSelector.ActualWidth, y / canvasSelector.ActualHeight));
+            var handlerPosition = new Point(x, y);
+            var color = GetColorFromHandlerPosition(handlerPosition);
+
+            isUpdating = true;
+
+            SetHandlerPosition(handlerPosition);
+            SelectedColor = color.ToColor();
+            InvokeSelectionChanged(true);
+
+            isUpdating = false;
         }
 
         //  --------------------------------------------------------------------------------
@@ -379,30 +323,77 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="e"> Routed property changed event arguments. </param>
         private void OnSaturationSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (lockUpdate)
+            if (isDragging || isUpdating)
                 return;
 
-            var hPos = GetHandlerPosition();
+            var handlerPosition = GetHandlerPosition();
+            var color = GetColorFromHandlerPosition(handlerPosition);
 
-            UpdateSelectedColor(new Point(hPos.X / canvasSelector.ActualWidth, hPos.Y / canvasSelector.ActualHeight));
+            isUpdating = true;
+
+            SelectedColor = color.ToColor();
+            InvokeSelectionChanged(true);
+
+            isUpdating = false;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Set brightness slider TrackBar background. </summary>
+        /// <param name="ahslColor"> Selected AHSL color. </param>
+        private void SetBrightnessSliderTrackBarBackground(AHSLColor ahslColor)
+        {
+            if (brightnessSlider == null)
+                return;
+
+            brightnessSlider.TrackBarBackground = new LinearGradientBrush(
+                new GradientStopCollection()
+                {
+                    new GradientStop(Colors.White, 0d),
+                    new GradientStop(new AHSLColor(ahslColor.A, ahslColor.H, ahslColor.S, 50).ToColor(), 0.5),
+                    new GradientStop(Colors.Black, 1d)
+                })
+            {
+                StartPoint = new Point(0, 0),
+                EndPoint = new Point(0, 1)
+            };
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Set saturation slider TrackBar background. </summary>
+        /// <param name="ahslColor"> Selected AHSL color. </param>
+        private void SetSaturationSliderTrackBarBackground(AHSLColor ahslColor)
+        {
+            if (saturationSlider == null)
+                return;
+
+            saturationSlider.TrackBarBackground = new LinearGradientBrush(
+                new GradientStopCollection()
+                {
+                    new GradientStop(new AHSLColor(ahslColor.A, ahslColor.H, 0, ahslColor.L).ToColor(), 0),
+                    new GradientStop(new AHSLColor(ahslColor.A, ahslColor.H, 100, ahslColor.L).ToColor(), 1)
+                })
+            {
+                StartPoint = new Point(0, 0.5),
+                EndPoint = new Point(1, 0.5)
+            };
         }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Updates brightness slider value. </summary>
-        /// <param name="newSelectedColor"> New selected ahsl color. </param>
-        private void UpdateBrightnessSliderValue(AHSLColor newSelectedColor)
+        /// <param name="value"> New brightness value (L). </param>
+        private void UpdateBrightnessSliderValue(double value)
         {
             if (brightnessSlider != null)
-                brightnessSlider.Value = newSelectedColor.L;
+                brightnessSlider.Value = value;
         }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Updates saturation slider value. </summary>
-        /// <param name="newSelectedColor"> New selected ahsl color. </param>
-        private void UpdateSaturationSliderValue(AHSLColor newSelectedColor)
+        /// <param name="value"> New saturation value (S). </param>
+        private void UpdateSaturationSliderValue(double value)
         {
             if (saturationSlider != null)
-                saturationSlider.Value = newSelectedColor.S;
+                saturationSlider.Value = value;
         }
 
         #endregion SLIDERS
@@ -453,7 +444,118 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion TEMPLATE
 
+        #region UPDATE
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Calculates and updates color based on handler position. </summary>
+        /// <param name="handlerPosition"> Handler position. </param>
+        private void UpdateColorFromSelector(Point handlerPosition)
+        {
+            double x = Math.Max(0, Math.Min(handlerPosition.X, canvasSelector.ActualWidth));
+            double y = Math.Max(0, Math.Min(handlerPosition.Y, canvasSelector.ActualHeight));
+
+            SetHandlerPosition(handlerPosition);
+
+            var color = GetColorFromHandlerPosition(handlerPosition);
+
+            SelectedColor = color.ToColor();
+
+            if (!isUpdating)
+            {
+                UpdateBrightnessSliderValue(color.L);
+                UpdateSaturationSliderValue(color.S);
+            }
+
+            InvokeSelectionChanged(isDragging);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Updates the interface controls based on the selected color. </summary>
+        /// <param name="selectedColor"> Selected color. </param>
+        private void UpdateInterface(Color selectedColor)
+        {
+            var ahslColor = AHSLColor.FromColor(selectedColor);
+
+            if (!isDragging && !isUpdating)
+            {
+                isUpdating = true;
+
+                var handlerPosition = CalculateHandlerPosition(ahslColor);
+
+                if (handlerPosition.HasValue)
+                    SetHandlerPosition(handlerPosition.Value);
+
+                UpdateBrightnessSliderValue(ahslColor.L);
+                UpdateSaturationSliderValue(ahslColor.S);
+                InvokeSelectionChanged(false);
+
+                isUpdating = false;
+            }
+
+            SetBrightnessSliderTrackBarBackground(ahslColor);
+            SetSaturationSliderTrackBarBackground(ahslColor);
+            UpdateHandlerColor();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Updates handler color to selected color. </summary>
+        private void UpdateHandlerColor()
+        {
+            if (handler != null)
+            {
+                handler.Background = new SolidColorBrush(SelectedColor);
+                handler.BackgroundDragging = new SolidColorBrush(SelectedColor);
+                handler.BackgroundMouseOver = new SolidColorBrush(SelectedColor);
+            }
+        }
+
+        #endregion UPDATE
+
         #region UTILITIES
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Calculates handler position based on selected color. </summary>
+        /// <param name="selectedColor"> Selected color. </param>
+        /// <returns> Calculated handler position. </returns>
+        private Point? CalculateHandlerPosition(AHSLColor selectedColor)
+        {
+            if (canvasSelector == null)
+                return null;
+
+            var posX = (canvasSelector.ActualWidth * selectedColor.H) / AHSLColor.HUE_MAX;
+            var posY = (canvasSelector.ActualWidth * (100 - selectedColor.L)) / AHSLColor.LIGHTNESS_MAX;
+
+            return new Point(posX, posY);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Calculates color based on the handler's position on the canvas. </summary>
+        /// <param name="handlerPosition"> The handler's position on the canvas. </param>
+        /// <returns> Calculated AHSL color. </returns>
+        private AHSLColor GetColorFromHandlerPosition(Point handlerPosition)
+        {
+            double height = canvasSelector.ActualHeight;
+            double width = canvasSelector.ActualWidth;
+            double middleHeight = canvasSelector.ActualHeight / 2;
+
+            var relativePosition = new Point(
+                handlerPosition.X / canvasSelector.ActualWidth,
+                handlerPosition.Y / canvasSelector.ActualHeight);
+
+            double xPixel = relativePosition.X * width;
+            double yPixel = relativePosition.Y * height;
+
+            var renderTargetcolorBorder = RenderBrushToBitmap(colorBorder.Background, width, height);
+            var hueColor = GetPixelColor(renderTargetcolorBorder, (int)xPixel, (int)(height / 2));
+            var ahslColor = AHSLColor.FromColor(hueColor);
+
+            double lightnessFactor = 1.0 - (yPixel / canvasSelector.ActualHeight);
+
+            ahslColor.L = MathUtilities.Clamp((int)(lightnessFactor * 100), 0, 100);
+            ahslColor.S = (int)saturationSlider.Value;
+
+            return ahslColor;
+        }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Reads the color of a specific pixel from a RenderTargetBitmap. </summary>
@@ -495,16 +597,6 @@ namespace chkam05.Tools.ControlsEx
 
             renderTarget.Render(visual);
             return renderTarget;
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Performs actions in update lock mode. </summary>
-        /// <param name="action"> The action that will be performed. </param>
-        private void InvokeInLockUpdateMode(Action action)
-        {
-            lockUpdate = true;
-            action?.Invoke();
-            lockUpdate = false;
         }
 
         #endregion UTILITIES

@@ -57,7 +57,9 @@
             <local:ListViewEx
                 x:Name="listView"
                 Background="{TemplateBinding Background}"
+                BackgroundInactive="{TemplateBinding BackgroundInactive}"
                 BorderBrush="{TemplateBinding BorderBrush}"
+                BorderBrushInactive="{TemplateBinding BorderBrushInactive}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Foreground="{TemplateBinding Foreground}"
@@ -80,7 +82,9 @@
 
     <Style x:Key="ColorPaletteExStyle" TargetType="{x:Type local:ColorPaletteEx}">
         <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="MinHeight" Value="128"/>

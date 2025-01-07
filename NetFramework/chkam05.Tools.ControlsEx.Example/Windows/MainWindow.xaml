@@ -46,10 +46,10 @@
                     Margin="8"
                     VerticalAlignment="Top">
 
-                    <cex:ColorPaletteEx
+                    <cex:ColorPickerEx
+                        x:Name="cpex"
                         Height="256"
-                        Width="360"
-                        ShowAddItem="True"/>
+                        Width="360"/>
 
                 </StackPanel>
 

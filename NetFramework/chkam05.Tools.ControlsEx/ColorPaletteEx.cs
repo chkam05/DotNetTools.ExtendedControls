@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using static MaterialDesignThemes.Wpf.Theme.ToolBar;
 
 namespace chkam05.Tools.ControlsEx
@@ -18,6 +19,18 @@ namespace chkam05.Tools.ControlsEx
     {
 
         //  DEPENDENCY PROPERTIES
+
+        public static readonly DependencyProperty BackgroundInactiveProperty = DependencyProperty.Register(
+            nameof(BackgroundInactive),
+            typeof(Brush),
+            typeof(ColorPaletteEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
+
+        public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
+            nameof(BorderBrushInactive),
+            typeof(Brush),
+            typeof(ColorPaletteEx),
+            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
@@ -84,6 +97,18 @@ namespace chkam05.Tools.ControlsEx
 
 
         //  GETTERS & SETTERS
+
+        public Brush BackgroundInactive
+        {
+            get => (Brush)GetValue(BackgroundInactiveProperty);
+            set => SetValue(BackgroundInactiveProperty, value);
+        }
+
+        public Brush BorderBrushInactive
+        {
+            get => (Brush)GetValue(BorderBrushInactiveProperty);
+            set => SetValue(BorderBrushInactiveProperty, value);
+        }
 
         public CornerRadius CornerRadius
         {

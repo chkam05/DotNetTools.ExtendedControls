@@ -27,6 +27,7 @@
 
     <ControlTemplate x:Key="ColorPickerEx.ControlTemplate" TargetType="{x:Type local:ColorPickerEx}">
         <Border
+            x:Name="border"
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
@@ -156,6 +157,12 @@
         </Border>
         
         <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}}"/>
+                <Setter Property="Background" TargetName="bsBorder" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPickerEx}}}"/>
+            </Trigger>
+            
             <Trigger Property="SliderBrightnessLabel" Value="">
                 <Setter Property="ToolTip" TargetName="brightnessSlider" Value="{x:Null}"/>
             </Trigger>
@@ -172,7 +179,9 @@
 
     <Style x:Key="ColorPickerExStyle" TargetType="{x:Type local:ColorPickerEx}">
         <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="MinHeight" Value="128"/>
         <Setter Property="MinWidth" Value="128"/>
