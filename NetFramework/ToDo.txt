@@ -10,7 +10,7 @@ OVERRIDED COMPONENTS
 - [X] ContextMenuItemEx
 - [X] DatePickerEx
 - [X] ExpanderEx
-- [ ] GroupBox
+- [X] GroupBox
 - [X] ListBoxEx
 - [X] ListBoxItemEx
 - [X] ListViewEx
@@ -33,23 +33,24 @@ OVERRIDED COMPONENTS
 - [X] TreeViewItemEx
 - [X] WindowEx
 
-30/31
+31/31
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------
 - [X] ButtonExWithIcon
-- [Y] ColorPaletteEx
-- [Y] ColorPickerEx
+- [X] ColorPaletteEx
+- [X] ColorPickerEx
 - [ ] DirectoryViewerEx
 - [ ] FileViewerEx
 - [X] GeometryThumbEx
+- [ ] HamburgerMenu
 - [X] ToggleEx
 - [X] UpDownEx
 - [X] UpDownDoubleEx
 - [X] UpDownLongEx
 - [X] WindowTitleBarEx
 
-9/11
+9/12
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------

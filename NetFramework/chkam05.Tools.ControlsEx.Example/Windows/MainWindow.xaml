@@ -46,11 +46,6 @@
                     Margin="8"
                     VerticalAlignment="Top">
 
-                    <cex:ColorPickerEx
-                        x:Name="cpex"
-                        Height="256"
-                        Width="360"/>
-
                 </StackPanel>
 
             </cex:ScrollViewerEx>

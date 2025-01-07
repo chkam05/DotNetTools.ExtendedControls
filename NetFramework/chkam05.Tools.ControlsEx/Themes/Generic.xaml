@@ -19,6 +19,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GeometryThumbEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GroupBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListBoxEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListBoxItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewEx.xaml"/>
@@ -59,6 +60,7 @@
     <Style BasedOn="{StaticResource DatePickerExStyle}" TargetType="{x:Type local:DatePickerEx}"/>
     <Style BasedOn="{StaticResource ExpanderExStyle}" TargetType="{x:Type local:ExpanderEx}"/>
     <Style BasedOn="{StaticResource GeometryThumbExStyle}" TargetType="{x:Type local:GeometryThumbEx}"/>
+    <Style BasedOn="{StaticResource GroupBoxExStyle}" TargetType="{x:Type local:GroupBoxEx}"/>
     <Style BasedOn="{StaticResource ListBoxExStyle}" TargetType="{x:Type local:ListBoxEx}"/>
     <Style BasedOn="{StaticResource ListBoxItemExStyle}" TargetType="{x:Type local:ListBoxItemEx}"/>
     <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}"/>

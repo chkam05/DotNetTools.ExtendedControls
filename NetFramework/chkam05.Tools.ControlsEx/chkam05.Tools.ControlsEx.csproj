@@ -73,6 +73,7 @@
     <Compile Include="Converters\CheckMarkTypePackIconConverter.cs" />
     <Compile Include="Converters\CircleCornerRadiusConverter.cs" />
     <Compile Include="Converters\ColorCodeConverter.cs" />
+    <Compile Include="Converters\GroupBoxExHeaderMarginConverter.cs" />
     <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
     <Compile Include="Converters\MinMaxDimensionConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="DatePickerEx.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
+    <Compile Include="GroupBoxEx.cs" />
     <Compile Include="ListBoxEx.cs" />
     <Compile Include="ListBoxItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
@@ -223,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\GridViewItemEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\GroupBoxEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
