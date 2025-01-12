@@ -9,12 +9,12 @@ using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx.Data.Collections
 {
-    public class ColorPaletteExCollection : ObservableCollection<ColorPaletteExItemViewModel>
+    public class ColorPaletteExCollection : ObservableCollection<ColorPaletteExItem>
     {
 
         //  CONST
 
-        private readonly ColorPaletteExItemViewModel addItemPlaceholder = new ColorPaletteExItemViewModel(Colors.Transparent, "Add Color")
+        private readonly ColorPaletteExItem addItemPlaceholder = new ColorPaletteExItem(Colors.Transparent, "Add Color")
         {
             IsAddItem = true,
         };
@@ -57,7 +57,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <summary> ColorPaletteExCollection class constructor. </summary>
         /// <param name="collection"> The collection whose elements are copied to the new collection. </param>
         /// <param name="showAddItem"> Determines whether to show the "Add New Item" placeholder. </param>
-        public ColorPaletteExCollection(IEnumerable<ColorPaletteExItemViewModel> collection, bool showAddItem = false)
+        public ColorPaletteExCollection(IEnumerable<ColorPaletteExItem> collection, bool showAddItem = false)
         {
             AddRange(collection);
             ShowAddItem = showAddItem;
@@ -67,7 +67,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <summary> ColorPaletteExCollection class constructor. </summary>
         /// <param name="collection"> The list whose elements are initially contained in the collection. </param>
         /// <param name="showAddItem"> Determines whether to show the "Add New Item" placeholder. </param>
-        public ColorPaletteExCollection(List<ColorPaletteExItemViewModel> list, bool showAddItem = false)
+        public ColorPaletteExCollection(List<ColorPaletteExItem> list, bool showAddItem = false)
         {
             AddRange(list);
             ShowAddItem = showAddItem;
@@ -80,7 +80,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  --------------------------------------------------------------------------------
         /// <summary> Adds a new item to the collection. </summary>
         /// <param name="item"> The item to add. </param>
-        public new void Add(ColorPaletteExItemViewModel item)
+        public new void Add(ColorPaletteExItem item)
         {
             if (ShowAddItem)
                 base.Insert(Count - 1, item);
@@ -91,7 +91,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  --------------------------------------------------------------------------------
         /// <summary> Adds a new items to the collection. </summary>
         /// <param name="items"> The collection whose elements to be added to the new collection. </param>
-        public void AddRange(IEnumerable<ColorPaletteExItemViewModel> items)
+        public void AddRange(IEnumerable<ColorPaletteExItem> items)
         {
             if (items != null && items.Any())
                 foreach (var item in items)
@@ -112,7 +112,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <summary> Inserts an item at the specified index. </summary>
         /// <param name="index"> The zero-based index at which the item should be inserted. </param>
         /// <param name="item"> The item to insert. </param>
-        protected override void InsertItem(int index, ColorPaletteExItemViewModel item)
+        protected override void InsertItem(int index, ColorPaletteExItem item)
         {
             if (ShowAddItem && index == Count && item != addItemPlaceholder)
                 base.InsertItem(Count - 1, item);
@@ -123,7 +123,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  --------------------------------------------------------------------------------
         /// <summary> Removes the specified item from the collection. </summary>
         /// <param name="item"> The item to remove. </param>
-        public new void Remove(ColorPaletteExItemViewModel item)
+        public new void Remove(ColorPaletteExItem item)
         {
             if (!Equals(item, addItemPlaceholder))
                 base.Remove(item);

@@ -15,6 +15,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/DatePickerEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/DirectoryViewerEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ExpanderEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GeometryThumbEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
@@ -59,6 +60,7 @@
     <Style BasedOn="{StaticResource ContextMenuExStyle}" TargetType="{x:Type local:ContextMenuEx}"/>
     <Style BasedOn="{StaticResource ContextMenuItemExStyle}" TargetType="{x:Type local:ContextMenuItemEx}"/>
     <Style BasedOn="{StaticResource DatePickerExStyle}" TargetType="{x:Type local:DatePickerEx}"/>
+    <Style BasedOn="{StaticResource DirectoryViewerExStyle}" TargetType="{x:Type local:DirectoryViewerEx}"/>
     <Style BasedOn="{StaticResource ExpanderExStyle}" TargetType="{x:Type local:ExpanderEx}"/>
     <Style BasedOn="{StaticResource GeometryThumbExStyle}" TargetType="{x:Type local:GeometryThumbEx}"/>
     <Style BasedOn="{StaticResource GroupBoxExStyle}" TargetType="{x:Type local:GroupBoxEx}"/>

@@ -13,7 +13,7 @@ namespace chkam05.Tools.ControlsEx.Data.Events
 
         //  VARIABLES
 
-        public ColorPaletteExItemViewModel Color { get; private set; }
+        public ColorPaletteExItem Color { get; private set; }
         public bool IsUserModified { get; protected set; }
 
 
@@ -24,7 +24,8 @@ namespace chkam05.Tools.ControlsEx.Data.Events
         //  --------------------------------------------------------------------------------
         /// <summary> ColorPaletteExSelectionChangedEventArgs class constructor. </summary>
         /// <param name="color"> Selected color item view model. </param>
-        public ColorPaletteExSelectionChangedEventArgs(ColorPaletteExItemViewModel color, bool isUserModified)
+        /// <param name="isUserModified"> Is the selection made by the user interface. </param>
+        public ColorPaletteExSelectionChangedEventArgs(ColorPaletteExItem color, bool isUserModified)
         {
             Color = color;
             IsUserModified = isUserModified;

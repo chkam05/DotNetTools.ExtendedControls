@@ -23,18 +23,6 @@ namespace chkam05.Tools.ControlsEx
 
         //  DEPENDENCY PROPERTIES
 
-        public static readonly DependencyProperty BackgroundInactiveProperty = DependencyProperty.Register(
-            nameof(BackgroundInactive),
-            typeof(Brush),
-            typeof(HamburgerMenuEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
-
-        public static readonly DependencyProperty BorderBrushInactiveProperty = DependencyProperty.Register(
-            nameof(BorderBrushInactive),
-            typeof(Brush),
-            typeof(HamburgerMenuEx),
-            new PropertyMetadata(new SolidColorBrush(ColorsResources.LightInactive)));
-
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -123,18 +111,6 @@ namespace chkam05.Tools.ControlsEx
 
 
         //  GETTERS & SETTERS
-
-        public Brush BackgroundInactive
-        {
-            get => (Brush)GetValue(BackgroundInactiveProperty);
-            set => SetValue(BackgroundInactiveProperty, value);
-        }
-
-        public Brush BorderBrushInactive
-        {
-            get => (Brush)GetValue(BorderBrushInactiveProperty);
-            set => SetValue(BorderBrushInactiveProperty, value);
-        }
 
         public CornerRadius CornerRadius
         {
@@ -371,7 +347,7 @@ namespace chkam05.Tools.ControlsEx
             {
                 var boundObject = e.AddedItems[0];
 
-                if (boundObject is HamburgerMenuExItemViewModel viewModel)
+                if (boundObject is HamburgerMenuExItem viewModel)
                 {
                     if (viewModel.ItemType == HamburgerMenuExItemType.Header)
                         InvokeWithAnimationResizeEnabled(() => { IsExpanded = !IsExpanded; });

@@ -202,5 +202,17 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion CONSTRUCTORS
 
+        #region ITEMS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Creates or identifies the element used to display the specified item. </summary>
+        /// <returns> The element used to display the specified item. </returns>
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new TreeViewItemEx();
+        }
+
+        #endregion ITEMS
+
     }
 }

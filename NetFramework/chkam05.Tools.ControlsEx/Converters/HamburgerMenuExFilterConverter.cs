@@ -29,7 +29,7 @@ namespace chkam05.Tools.ControlsEx.Converters
         /// If the methods returns null, the vaild null value is used. </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IEnumerable<HamburgerMenuExItemViewModel> items)
+            if (value is IEnumerable<HamburgerMenuExItem> items)
                 return items.Where(item => item.Position == Position).ToList();
 
             return null;

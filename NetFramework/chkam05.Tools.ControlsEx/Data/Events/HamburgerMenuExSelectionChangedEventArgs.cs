@@ -13,7 +13,7 @@ namespace chkam05.Tools.ControlsEx.Data.Events
 
         //  VARIABLES
 
-        public HamburgerMenuExItemViewModel MenuItem { get; set; }
+        public HamburgerMenuExItem MenuItem { get; set; }
 
 
         //  METHODS
@@ -23,7 +23,7 @@ namespace chkam05.Tools.ControlsEx.Data.Events
         //  --------------------------------------------------------------------------------
         /// <summary> HamburgerMenuExSelectionChangedEventArgs class constructor. </summary>
         /// <param name="menuItem"> Selected menu item. </param>
-        public HamburgerMenuExSelectionChangedEventArgs(HamburgerMenuExItemViewModel menuItem)
+        public HamburgerMenuExSelectionChangedEventArgs(HamburgerMenuExItem menuItem)
         {
             MenuItem = menuItem;
         }

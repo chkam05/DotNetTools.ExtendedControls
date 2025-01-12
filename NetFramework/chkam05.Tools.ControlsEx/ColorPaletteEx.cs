@@ -64,7 +64,7 @@ namespace chkam05.Tools.ControlsEx
 
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register(
             nameof(SelectedItem),
-            typeof(ColorPaletteExItemViewModel),
+            typeof(ColorPaletteExItem),
             typeof(ColorPaletteEx),
             new PropertyMetadata(null));
 
@@ -140,9 +140,9 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ScrollViewerStyleProperty, value);
         }
 
-        public ColorPaletteExItemViewModel SelectedItem
+        public ColorPaletteExItem SelectedItem
         {
-            get => (ColorPaletteExItemViewModel)GetValue(SelectedItemProperty);
+            get => (ColorPaletteExItem)GetValue(SelectedItemProperty);
             set => SetValue(SelectedItemProperty, value);
         }
 
@@ -181,7 +181,7 @@ namespace chkam05.Tools.ControlsEx
         private static ColorPaletteExCollection GetDefaultItems()
         {
             return new ColorPaletteExCollection(ColorsResources.GetPaletteColors()
-                .Select(cx => new ViewModels.ColorPaletteExItemViewModel(cx)));
+                .Select(cx => new ViewModels.ColorPaletteExItem(cx)));
         }
 
         //  --------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ namespace chkam05.Tools.ControlsEx
             {
                 var boundObject = e.AddedItems[0];
 
-                if (boundObject is ColorPaletteExItemViewModel viewModel)
+                if (boundObject is ColorPaletteExItem viewModel)
                 {
                     SelectionChanged?.Invoke(this, new ColorPaletteExSelectionChangedEventArgs(SelectedItem, this.IsFocused));
 

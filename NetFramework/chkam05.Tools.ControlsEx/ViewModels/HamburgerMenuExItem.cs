@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace chkam05.Tools.ControlsEx.ViewModels
 {
-    public class HamburgerMenuExItemViewModel : BaseViewModel
+    public class HamburgerMenuExItem : BaseViewModel
     {
 
         //  VARIABLES
@@ -76,19 +76,19 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         #region CONSTRUCTORS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> HamburgerMenuExItemViewModel class constructor. </summary>
-        public HamburgerMenuExItemViewModel()
+        /// <summary> HamburgerMenuExItem class constructor. </summary>
+        public HamburgerMenuExItem()
         {
             //
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> HamburgerMenuExItemViewModel class constructor. </summary>
+        /// <summary> HamburgerMenuExItem class constructor. </summary>
         /// <param name="title"> Title. </param>
         /// <param name="iconKind"> Icon kind. </param>
         /// <param name="action"> The action that will be called after selecting a menu item. </param>
         /// <param name="position"> Position in menu. </param>
-        public HamburgerMenuExItemViewModel(string title, PackIconKind iconKind, Action action,
+        public HamburgerMenuExItem(string title, PackIconKind iconKind, Action action,
             HamburgerMenuExItemPosition position = HamburgerMenuExItemPosition.Top)
         {
             Title = title;
@@ -98,12 +98,12 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> HamburgerMenuExItemViewModel class constructor. </summary>
+        /// <summary> HamburgerMenuExItem class constructor. </summary>
         /// <param name="title"> Title. </param>
         /// <param name="icon"> Icon as image. </param>
         /// <param name="action"> The action that will be called after selecting a menu item. </param>
         /// <param name="position"> Position in menu. </param>
-        public HamburgerMenuExItemViewModel(string title, ImageSource icon, Action action,
+        public HamburgerMenuExItem(string title, ImageSource icon, Action action,
             HamburgerMenuExItemPosition position = HamburgerMenuExItemPosition.Top)
         {
             Title = title;
@@ -113,13 +113,13 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> HamburgerMenuExItemViewModel class constructor. </summary>
+        /// <summary> HamburgerMenuExItem class constructor. </summary>
         /// <param name="title"> Title. </param>
         /// <param name="description"> Description. </param>
         /// <param name="iconKind"> Icon kind. </param>
         /// <param name="action"> The action that will be called after selecting a menu item. </param>
         /// <param name="position"> Position in menu. </param>
-        public HamburgerMenuExItemViewModel(string title, string description, PackIconKind iconKind, Action action,
+        public HamburgerMenuExItem(string title, string description, PackIconKind iconKind, Action action,
             HamburgerMenuExItemPosition position = HamburgerMenuExItemPosition.Top)
         {
             Title = title;
@@ -130,13 +130,13 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> HamburgerMenuExItemViewModel class constructor. </summary>
+        /// <summary> HamburgerMenuExItem class constructor. </summary>
         /// <param name="title"> Title. </param>
         /// <param name="description"> Description. </param>
         /// <param name="icon"> Icon as image. </param>
         /// <param name="action"> The action that will be called after selecting a menu item. </param>
         /// <param name="position"> Position in menu. </param>
-        public HamburgerMenuExItemViewModel(string title, string description, ImageSource icon, Action action,
+        public HamburgerMenuExItem(string title, string description, ImageSource icon, Action action,
             HamburgerMenuExItemPosition position = HamburgerMenuExItemPosition.Top)
         {
             Title = title;

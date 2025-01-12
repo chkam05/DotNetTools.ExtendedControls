@@ -40,7 +40,7 @@ CUSTOM COMPONENTS
 - [X] ButtonExWithIcon
 - [X] ColorPaletteEx
 - [X] ColorPickerEx
-- [ ] DirectoryViewerEx
+- [X] DirectoryViewerEx
 - [ ] FileViewerEx
 - [X] GeometryThumbEx
 - [X] HamburgerMenu

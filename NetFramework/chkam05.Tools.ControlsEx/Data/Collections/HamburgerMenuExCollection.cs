@@ -11,12 +11,12 @@ using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx.Data.Collections
 {
-    public class HamburgerMenuExCollection : ObservableCollection<HamburgerMenuExItemViewModel>
+    public class HamburgerMenuExCollection : ObservableCollection<HamburgerMenuExItem>
     {
 
         //  CONST
 
-        private readonly HamburgerMenuExItemViewModel headerItemPlaceholder = new HamburgerMenuExItemViewModel()
+        private readonly HamburgerMenuExItem headerItemPlaceholder = new HamburgerMenuExItem()
         {
             Title = "Main Menu",
             Description = "Expands and collapses the menu",
@@ -24,7 +24,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
             ItemType = HamburgerMenuExItemType.Header,
         };
 
-        private readonly HamburgerMenuExItemViewModel backItemPlaceholder = new HamburgerMenuExItemViewModel()
+        private readonly HamburgerMenuExItem backItemPlaceholder = new HamburgerMenuExItem()
         {
             Title = "Back",
             Description = "Go to previous page",
@@ -87,7 +87,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <param name="collection"> The collection whose elements are copied to the new collection. </param>
         /// <param name="showHeaderItem"> Determines whether to show the "Header" placeholder. </param>
         /// <param name="showBackItem"> Determines whether to show the "Back" placeholder. </param>
-        public HamburgerMenuExCollection(IEnumerable<HamburgerMenuExItemViewModel> collection, bool showHeaderItem = true, bool showBackItem = false)
+        public HamburgerMenuExCollection(IEnumerable<HamburgerMenuExItem> collection, bool showHeaderItem = true, bool showBackItem = false)
         {
             AddRange(collection);
             ShowHeaderItem = showHeaderItem;
@@ -99,7 +99,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <param name="collection"> The list whose elements are initially contained in the collection. </param>
         /// <param name="showHeaderItem"> Determines whether to show the "Header" placeholder. </param>
         /// <param name="showBackItem"> Determines whether to show the "Back" placeholder. </param>
-        public HamburgerMenuExCollection(List<HamburgerMenuExItemViewModel> list, bool showAddItem = false)
+        public HamburgerMenuExCollection(List<HamburgerMenuExItem> list, bool showAddItem = false)
         {
             AddRange(list);
             ShowHeaderItem = showHeaderItem;
@@ -113,7 +113,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  --------------------------------------------------------------------------------
         /// <summary> Adds a new item to the collection. </summary>
         /// <param name="item"> The item to add. </param>
-        public new void Add(HamburgerMenuExItemViewModel item)
+        public new void Add(HamburgerMenuExItem item)
         {
             base.Add(item);
         }
@@ -121,7 +121,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  --------------------------------------------------------------------------------
         /// <summary> Adds a new items to the collection. </summary>
         /// <param name="items"> The collection whose elements to be added to the new collection. </param>
-        public void AddRange(IEnumerable<HamburgerMenuExItemViewModel> items)
+        public void AddRange(IEnumerable<HamburgerMenuExItem> items)
         {
             foreach (var item in items)
                 Add(item);
@@ -144,7 +144,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <summary> Inserts an item at the specified index. </summary>
         /// <param name="index"> The zero-based index at which the item should be inserted. </param>
         /// <param name="item"> The item to insert. </param>
-        protected override void InsertItem(int index, HamburgerMenuExItemViewModel item)
+        protected override void InsertItem(int index, HamburgerMenuExItem item)
         {
             if (item.Equals(headerItemPlaceholder) || item.Equals(backItemPlaceholder))
                 base.InsertItem(index, item);
@@ -159,7 +159,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  --------------------------------------------------------------------------------
         /// <summary> Removes the specified item from the collection. </summary>
         /// <param name="item"> The item to remove. </param>
-        public new void Remove(HamburgerMenuExItemViewModel item)
+        public new void Remove(HamburgerMenuExItem item)
         {
             if (item.ItemType != HamburgerMenuExItemType.Header && item.ItemType != HamburgerMenuExItemType.Back)
                 base.Remove(item);

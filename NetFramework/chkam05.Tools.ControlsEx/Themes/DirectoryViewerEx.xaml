@@ -1,0 +1,82 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewItemEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <Style x:Key="DirectoryViewerEx.TreeViewItemExStyle" BasedOn="{StaticResource TreeViewItemExStyle}" TargetType="{x:Type local:TreeViewItemEx}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DirectoryViewerEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DirectoryViewerEx}}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+        <Setter Property="Margin" Value="2,1"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    </Style>
+
+    <HierarchicalDataTemplate x:Key="DirectoryViewerEx.DataTemplate" ItemsSource="{Binding Items}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:PackIcon
+                Grid.Column="0"
+                Height="{Binding IconHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DirectoryViewerEx}}}"
+                HorizontalAlignment="Left"
+                Kind="{Binding Icon}"
+                Margin="{Binding IconMargin, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DirectoryViewerEx}}}"
+                Width="{Binding IconWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DirectoryViewerEx}}}"
+                VerticalAlignment="Center"/>
+
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding Name}"
+                VerticalAlignment="Center"/>
+        </Grid>
+    </HierarchicalDataTemplate>
+
+    <ControlTemplate x:Key="DirectoryViewerEx.ControlTemplate" TargetType="{x:Type local:DirectoryViewerEx}">
+        <Grid
+            SnapsToDevicePixels="True">
+
+            <local:TreeViewEx
+                x:Name="treeView"
+                Background="{TemplateBinding Background}"
+                BackgroundInactive="{TemplateBinding BackgroundInactive}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderBrushInactive="{TemplateBinding BorderBrushInactive}"
+                Foreground="{TemplateBinding Foreground}"
+                ForegroundInactive="{TemplateBinding ForegroundInactive}"
+                ItemContainerStyle="{StaticResource DirectoryViewerEx.TreeViewItemExStyle}"
+                ItemsSource="{TemplateBinding ItemsSource}"
+                ItemTemplate="{StaticResource DirectoryViewerEx.DataTemplate}"
+                ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                ScrollViewer.VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                ScrollViewerStyle="{TemplateBinding ScrollViewerStyle}"/>
+
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="DirectoryViewerExStyle" TargetType="{x:Type local:DirectoryViewerEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="MinWidth" Value="128"/>
+        <Setter Property="Template" Value="{StaticResource DirectoryViewerEx.ControlTemplate}"/>
+    </Style>
+
+</ResourceDictionary>

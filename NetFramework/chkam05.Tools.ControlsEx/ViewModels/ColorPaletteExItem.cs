@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx.ViewModels
 {
-    public class ColorPaletteExItemViewModel : BaseViewModel
+    public class ColorPaletteExItem : BaseViewModel
     {
 
         //  VARIABLES
@@ -74,40 +74,40 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         #region CONSTRUCTORS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> ColorPaletteExItemViewModel class constructor. </summary>
+        /// <summary> ColorPaletteExItem class constructor. </summary>
         /// <param name="colorEx"> ColorEx model. </param>
-        public ColorPaletteExItemViewModel(ColorEx colorEx)
+        public ColorPaletteExItem(ColorEx colorEx)
         {
             Color = colorEx.Color;
             Name = colorEx.Name;
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> ColorPaletteExItemViewModel class constructor. </summary>
+        /// <summary> ColorPaletteExItem class constructor. </summary>
         /// <param name="color"> RGB color model. </param>
-        public ColorPaletteExItemViewModel(Color color)
+        public ColorPaletteExItem(Color color)
         {
             Color = color;
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> ColorPaletteExItemViewModel class constructor. </summary>
+        /// <summary> ColorPaletteExItem class constructor. </summary>
         /// <param name="color"> RGB color model. </param>
         /// <param name="name"> Color name. </param>
-        public ColorPaletteExItemViewModel(Color color, string name)
+        public ColorPaletteExItem(Color color, string name)
         {
             Color = color;
             Name = name;
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Create ColorPaletteExItemViewModel instance from hexadecimal color code representation. </summary>
+        /// <summary> Create ColorPaletteExItem instance from hexadecimal color code representation. </summary>
         /// <param name="hexCode"> Hexadecimal color code representation. </param>
         /// <param name="name"> (Optional) Color name. </param>
-        /// <returns> ColorPaletteExItemViewModel class instance. </returns>
-        public static ColorPaletteExItemViewModel CreateFromHexCode(string hexCode, string name = null)
+        /// <returns> ColorPaletteExItem class instance. </returns>
+        public static ColorPaletteExItem CreateFromHexCode(string hexCode, string name = null)
         {
-            return new ColorPaletteExItemViewModel(
+            return new ColorPaletteExItem(
                 ColorsUtilities.ConvertHexStringToColor(hexCode), name);
         }
 

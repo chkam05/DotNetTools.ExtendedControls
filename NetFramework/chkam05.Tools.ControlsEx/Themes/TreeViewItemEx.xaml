@@ -50,7 +50,7 @@
                         ForegroundMouseOver="{TemplateBinding ForegroundMouseOver}"
                         ForegroundPressed="{TemplateBinding ForegroundSelected}"
                         Grid.Column="0"
-                        IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                        IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                         Margin="0"
                         MinHeight="0"
                         MinWidth="0"

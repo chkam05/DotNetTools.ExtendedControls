@@ -69,11 +69,11 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         {
             HamburgerMenuExCollection = new HamburgerMenuExCollection()
             {
-                new HamburgerMenuExItemViewModel("Components", "Component testing", PackIconKind.CubeOutline,
+                new HamburgerMenuExItem("Components", "Component testing", PackIconKind.CubeOutline,
                     HomeHamburgerMenuExItemAction),
-                new HamburgerMenuExItemViewModel("Settings", "Application settings.", PackIconKind.GearOutline,
+                new HamburgerMenuExItem("Settings", "Application settings.", PackIconKind.GearOutline,
                     SettingsHamburgerMenuExItemAction, HamburgerMenuExItemPosition.Bottom),
-                new HamburgerMenuExItemViewModel("Info", "Application information.", PackIconKind.InfoCircleOutline,
+                new HamburgerMenuExItem("Info", "Application information.", PackIconKind.InfoCircleOutline,
                     InfoHamburgerMenuExItemAction, HamburgerMenuExItemPosition.Bottom)
             };
         }
