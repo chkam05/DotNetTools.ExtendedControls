@@ -1,4 +1,6 @@
-﻿using chkam05.Tools.ControlsEx.ViewModels;
+﻿using chkam05.Tools.ControlsEx.Data.Collections;
+using chkam05.Tools.ControlsEx.Example.Data;
+using chkam05.Tools.ControlsEx.ViewModels;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -18,28 +20,25 @@ using System.Windows.Shapes;
 
 namespace chkam05.Tools.ControlsEx.Example.Windows
 {
-    public partial class MainWindow : WindowEx, INotifyPropertyChanged
+    public partial class MainWindow : WindowEx
     {
-
-        //  EVENTS
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
 
         //  VARIABLES
 
-        //  GETTERS & SETTERS
+        public MainWindowDataContext MainWindowDataContext
+        {
+            get => base.DataContext as MainWindowDataContext;
+            set => base.DataContext = value;
+        }
+
 
         //  METHODS
 
         public MainWindow(object args)
         {
-            InitializeComponent();
-        }
+            DataContext = new MainWindowDataContext();
 
-        protected virtual void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            InitializeComponent();
         }
 
     }

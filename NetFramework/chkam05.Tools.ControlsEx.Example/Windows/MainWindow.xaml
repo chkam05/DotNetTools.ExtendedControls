@@ -12,9 +12,10 @@
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="800"
-    DataContext="{Binding RelativeSource={RelativeSource Self}}"
-    Title="ControlsEx"
+    
     Height="450"
+    Padding="0"
+    Title="ControlsEx"
     Width="800">
 
     <cex:WindowEx.Resources>
@@ -33,13 +34,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <cex:HamburgerMenuEx
+            BorderThickness="0"
+            Grid.Column="0"
+            IsExpanded="False"
+            ItemsSource="{Binding HamburgerMenuExCollection}"
+            ShowBackItem="True"
+            ShowHeaderItem="True"/>
+
         <Grid
             Grid.Column="1">
 
             <cex:ScrollViewerEx
                 Grid.Row="1"
-                HorizontalScrollBarVisibility="Visible"
-                VerticalScrollBarVisibility="Visible">
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto">
 
                 <StackPanel
                     HorizontalAlignment="Left"

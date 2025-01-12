@@ -12,13 +12,17 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
     public class ColorPaletteExCollection : ObservableCollection<ColorPaletteExItemViewModel>
     {
 
-        //  VARIABLES
+        //  CONST
 
-        private bool showAddItem;
         private readonly ColorPaletteExItemViewModel addItemPlaceholder = new ColorPaletteExItemViewModel(Colors.Transparent, "Add Color")
         {
             IsAddItem = true,
         };
+
+
+        //  VARIABLES
+
+        private bool showAddItem;
 
 
         //  GETTERS & SETTERS
@@ -66,7 +70,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         public ColorPaletteExCollection(List<ColorPaletteExItemViewModel> list, bool showAddItem = false)
         {
             AddRange(list);
-            ShowAddItem = this.showAddItem;
+            ShowAddItem = showAddItem;
         }
 
         #endregion CONSTRUCTORS

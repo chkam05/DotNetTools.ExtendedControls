@@ -24,6 +24,7 @@ namespace chkam05.Tools.ControlsEx.Data.Events
         //  --------------------------------------------------------------------------------
         /// <summary> ColorPickerExSelectionChangedEventArgs class constructor. </summary>
         /// <param name="color"> Selected color. </param>
+        /// <param name="isUserModified"> Is selection triggered from user interface. </param>
         public ColorPickerExSelectionChangedEventArgs(Color color, bool isUserModified)
         {
             Color = color;

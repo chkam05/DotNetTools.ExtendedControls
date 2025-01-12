@@ -74,6 +74,7 @@
     <Compile Include="Converters\CircleCornerRadiusConverter.cs" />
     <Compile Include="Converters\ColorCodeConverter.cs" />
     <Compile Include="Converters\GroupBoxExHeaderMarginConverter.cs" />
+    <Compile Include="Converters\HamburgerMenuExFilterConverter.cs" />
     <Compile Include="Converters\InnerCornerRadiusConverter.cs" />
     <Compile Include="Converters\MinMaxDimensionConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
@@ -81,10 +82,14 @@
     <Compile Include="Converters\ToggleTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
     <Compile Include="Data\Collections\ColorPaletteExCollection.cs" />
+    <Compile Include="Data\Collections\HamburgerMenuExCollection.cs" />
     <Compile Include="Data\Enums\CalendarExHeaderPosition.cs" />
     <Compile Include="Data\Enums\CheckMarkTypeIcon.cs" />
+    <Compile Include="Data\Enums\HamburgerMenuExItemPosition.cs" />
+    <Compile Include="Data\Enums\HamburgerMenuExItemType.cs" />
     <Compile Include="Data\Events\ColorPaletteExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\ColorPickerExSelectionChangedEventArgs.cs" />
+    <Compile Include="Data\Events\HamburgerMenuExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownLongValueChangedEventArgsEx.cs" />
@@ -102,6 +107,7 @@
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
     <Compile Include="GroupBoxEx.cs" />
+    <Compile Include="HamburgerMenuEx.cs" />
     <Compile Include="ListBoxEx.cs" />
     <Compile Include="ListBoxItemEx.cs" />
     <Compile Include="ListViewEx.cs" />
@@ -146,6 +152,7 @@
     <Compile Include="Utilities\SystemThemeManager.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ColorPaletteExItemViewModel.cs" />
+    <Compile Include="ViewModels\HamburgerMenuExItemViewModel.cs" />
     <Compile Include="WindowEx.cs" />
     <Compile Include="WindowTitleBarEx.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -229,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\GroupBoxEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\HamburgerMenuEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

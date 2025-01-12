@@ -1,0 +1,181 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:enums="clr-namespace:chkam05.Tools.ControlsEx.Data.Enums"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <conv:HamburgerMenuExFilterConverter x:Key="HamburgerMenuExBottomFilterConverter" Position="{x:Static enums:HamburgerMenuExItemPosition.Bottom}"/>
+    <conv:HamburgerMenuExFilterConverter x:Key="HamburgerMenuExTopFilterConverter" Position="{x:Static enums:HamburgerMenuExItemPosition.Top}"/>
+    <conv:NotConverter x:Key="NotConverter"/>
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
+    <Style x:Key="HamburgerMenuEx.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:ListViewItemEx}">
+        <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="2,1"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    </Style>
+
+    <DataTemplate x:Key="HamburgerMenuEx.DataTemplate">
+        <Grid
+            ToolTip="{Binding Description}">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+
+                <materialDesign:PackIcon
+                    x:Name="packIcon"
+                    Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewItemEx}}}"
+                    Height="{Binding IconHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"
+                    HorizontalAlignment="Center"
+                    Kind="{Binding IconKind}"
+                    Margin="{Binding IconMargin, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"
+                    VerticalAlignment="Stretch"
+                    Width="{Binding IconWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"/>
+
+                <Image
+                    x:Name="iconImage"
+                    Height="{Binding IconHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"
+                    HorizontalAlignment="Center"
+                    Margin="{Binding IconMargin, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"
+                    Source="{Binding Icon}"
+                    VerticalAlignment="Stretch"
+                    Width="{Binding IconWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"/>
+
+            </Grid>
+
+            <TextBlock
+                Grid.Column="1"
+                Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewItemEx}}}"
+                HorizontalAlignment="Left"
+                Margin="{Binding TitleMargin, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"
+                Text="{Binding Title}"
+                VerticalAlignment="Center"/>
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Icon}" Value="{x:Null}">
+                <Setter Property="Visibility" TargetName="iconImage" Value="Collapsed"/>
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding IconKind}" Value="{x:Static materialDesign:PackIconKind.None}">
+                <Setter Property="Visibility" TargetName="packIcon" Value="Collapsed"/>
+            </DataTrigger>
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Icon, Converter={StaticResource NotConverter}, ConverterParameter={x:Null}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IconKind, Converter={StaticResource NotConverter}, ConverterParameter={x:Static materialDesign:PackIconKind.None}}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="iconImage" Value="Collapsed"/>
+            </MultiDataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <ControlTemplate x:Key="HamburgerMenuEx.ControlTemplate" TargetType="{x:Type local:HamburgerMenuEx}">
+        <Border
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            Padding="{TemplateBinding Padding}"
+            SnapsToDevicePixels="True">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <local:ListViewEx
+                    x:Name="topListView"
+                    Background="Transparent"
+                    BackgroundInactive="Transparent"
+                    BorderBrush="{x:Null}"
+                    BorderBrushInactive="{x:Null}"
+                    BorderThickness="0"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Foreground="{TemplateBinding Foreground}"
+                    ForegroundInactive="{TemplateBinding ForegroundInactive}"
+                    Grid.Row="0"
+                    ItemContainerStyle="{TemplateBinding ItemsStyle}"
+                    ItemTemplate="{StaticResource HamburgerMenuEx.DataTemplate}"
+                    ItemsSource="{Binding ItemsSource, Converter={StaticResource HamburgerMenuExTopFilterConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"
+                    Margin="0"
+                    Padding="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+
+                <Border
+                    x:Name="separator"
+                    Background="{TemplateBinding BorderBrush}"
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0"
+                    Grid.Row="1"
+                    Height="1"
+                    HorizontalAlignment="Stretch"
+                    Margin="4,2"
+                    VerticalAlignment="Bottom"
+                    Visibility="Collapsed"/>
+
+                <local:ListViewEx
+                    x:Name="bottomListView"
+                    Background="Transparent"
+                    BackgroundInactive="Transparent"
+                    BorderBrush="{x:Null}"
+                    BorderBrushInactive="{x:Null}"
+                    BorderThickness="0"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Foreground="{TemplateBinding Foreground}"
+                    ForegroundInactive="{TemplateBinding ForegroundInactive}"
+                    Grid.Row="2"
+                    ItemContainerStyle="{TemplateBinding ItemsStyle}"
+                    ItemTemplate="{StaticResource HamburgerMenuEx.DataTemplate}"
+                    ItemsSource="{Binding ItemsSource, Converter={StaticResource HamburgerMenuExBottomFilterConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"
+                    Margin="0"
+                    Padding="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    VerticalAlignment="Bottom"/>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="border" Value="{Binding BackgroundInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding BorderBrushInactive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HamburgerMenuEx}}}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="HamburgerMenuExStyle" TargetType="{x:Type local:HamburgerMenuEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BackgroundInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BorderBrushInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ForegroundInactive" Value="{Binding DataContext.ForegroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Padding" Value="0,1"/>
+        <Setter Property="Template" Value="{StaticResource HamburgerMenuEx.ControlTemplate}"/>
+        <Setter Property="Width" Value="192"/>
+    </Style>
+
+</ResourceDictionary>
