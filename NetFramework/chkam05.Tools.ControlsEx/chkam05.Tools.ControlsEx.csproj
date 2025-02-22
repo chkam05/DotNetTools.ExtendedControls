@@ -90,6 +90,7 @@
     <Compile Include="Data\Enums\CheckMarkTypeIcon.cs" />
     <Compile Include="Data\Enums\DirectoryViewExItemType.cs" />
     <Compile Include="Data\Enums\FileViewExItemType.cs" />
+    <Compile Include="Data\Enums\FileViewExViewType.cs" />
     <Compile Include="Data\Enums\HamburgerMenuExItemPosition.cs" />
     <Compile Include="Data\Enums\HamburgerMenuExItemType.cs" />
     <Compile Include="Data\Events\ColorPaletteExSelectionChangedEventArgs.cs" />
