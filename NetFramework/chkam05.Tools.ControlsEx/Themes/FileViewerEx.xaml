@@ -5,6 +5,88 @@
     xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewItemEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Details ListViewEx -->
+
+    <Style x:Key="FileViewerEx.Details.ListViewItemExStyle" BasedOn="{StaticResource GridViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
+        
+    </Style>
+    
+    <Style x:Key="FileViewerEx.Details.ListViewExStyle" BasedOn="{StaticResource GridViewExStyle}" TargetType="{x:Type local:ListViewEx}">
+        
+    </Style>
+    
+    <!-- List ListViewEx -->
+
+    <DataTemplate x:Key="FileViewerEx.List.DataTemplate">
+
+    </DataTemplate>
+
+    <Style x:Key="FileViewerEx.List.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
+
+    </Style>
+
+    <Style x:Key="FileViewerEx.List.ListViewExStyle" BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <WrapPanel
+                    Grid.IsSharedSizeScope="True"
+                    Orientation="Vertical"
+                    ScrollViewer.CanContentScroll="True"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Icon/SmallIcon/Tile ListViewEx -->
+
+    <DataTemplate x:Key="FileViewerEx.Icon.DataTemplate">
+        
+    </DataTemplate>
+
+    <DataTemplate x:Key="FileViewerEx.SmallIcon.DataTemplate">
+
+    </DataTemplate>
+
+    <DataTemplate x:Key="FileViewerEx.Tile.DataTemplate">
+
+    </DataTemplate>
+
+    <Style x:Key="FileViewerEx.Icon.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
+
+    </Style>
+
+    <Style x:Key="FileViewerEx.SmallIcon.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
+
+    </Style>
+
+    <Style x:Key="FileViewerEx.Tile.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
+
+    </Style>
+
+    <Style x:Key="FileViewerEx.Icon.ListViewExStyle" BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <WrapPanel
+                        Grid.IsSharedSizeScope="True"
+                        Orientation="Horizontal"
+                        ScrollViewer.CanContentScroll="True"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    <!-- FileViewerEx -->
+    
     <ControlTemplate x:Key="FileViewerEx.ControlTemplate" TargetType="{x:Type local:FileViewerEx}">
         <Grid
             SnapsToDevicePixels="True">

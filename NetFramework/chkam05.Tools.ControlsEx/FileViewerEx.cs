@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Data.Collections;
+using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Data.Events;
 using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
@@ -74,6 +75,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(FileViewerEx),
             new PropertyMetadata(new FileViewExItemIconMapper(), IconMapperChangedCallback));
 
+        public static readonly DependencyProperty ItemIconSizeProperty = DependencyProperty.Register(
+            nameof(ItemIconSize),
+            typeof(double),
+            typeof(FileViewerEx),
+            new PropertyMetadata(32));
+
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(
             nameof(ItemsSource),
             typeof(FileViewExCollection),
@@ -127,6 +134,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(ScrollBarVisibility),
             typeof(FileViewerEx),
             new PropertyMetadata(ScrollBarVisibility.Auto));
+
+        public static readonly DependencyProperty ViewTypeProperty = DependencyProperty.Register(
+            nameof(ViewType),
+            typeof(FileViewExViewType),
+            typeof(FileViewerEx),
+            new PropertyMetadata(FileViewExViewType.Icons, ViewTypePropertyChangedCallback));
 
 
         //  DELEGATES
@@ -198,6 +211,12 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(IconMapperProperty, value);
         }
 
+        public double ItemIconSize
+        {
+            get => (double)GetValue(ItemIconSizeProperty);
+            set => SetValue(ItemIconSizeProperty, value);
+        }
+
         public FileViewExCollection ItemsSource
         {
             get => (FileViewExCollection)GetValue(ItemsSourceProperty);
@@ -250,6 +269,12 @@ namespace chkam05.Tools.ControlsEx
         {
             get => (ScrollBarVisibility)GetValue(VerticalScrollBarVisibilityProperty);
             set => SetValue(VerticalScrollBarVisibilityProperty, value);
+        }
+
+        public FileViewExViewType ViewType
+        {
+            get => (FileViewExViewType)GetValue(ViewTypeProperty);
+            set => SetValue(ViewTypeProperty, value);
         }
 
 
@@ -718,6 +743,18 @@ namespace chkam05.Tools.ControlsEx
                 fileViewerEx.UpdateDirectories(true);
         }
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked when ViewType property changes. </summary>
+        /// <param name="d"> Dependency object from which event has been invoked. </param>
+        /// <param name="e"> Dependency property changed event arguments. </param>
+        private static void ViewTypePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var fileViewerEx = d as FileViewerEx;
+
+            if (fileViewerEx != null && e.NewValue is FileViewExViewType viewType)
+                fileViewerEx.UpdateView(viewType);
+        }
+
         #endregion PROPERTIES CHANGED CALLBACKS
 
         #region STYLES
@@ -730,6 +767,111 @@ namespace chkam05.Tools.ControlsEx
             var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerEx.xaml", UriKind.Absolute);
             var resourceDictionary = new ResourceDictionary { Source = uri };
             return resourceDictionary["ScrollViewerExStyle"] as Style;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get ListViewItemEx data template from resources, based on view type configuration. </summary>
+        /// <param name="viewType"> View type. </param>
+        /// <returns> ListViewItemEx data template. </returns>
+        private static DataTemplate GetListViewExDataTemplate(FileViewExViewType viewType)
+        {
+            string resourceKey = "FileViewerEx.Icon.DataTemplate";
+
+            switch (viewType)
+            {
+                case FileViewExViewType.Icons:
+                    resourceKey = "FileViewerEx.Icon.DataTemplate";
+                    break;
+
+                case FileViewExViewType.SmallIcons:
+                    resourceKey = "FileViewerEx.SmallIcon.DataTemplate";
+                    break;
+
+                case FileViewExViewType.Tails:
+                    resourceKey = "FileViewerEx.Tile.DataTemplate";
+                    break;
+
+                case FileViewExViewType.List:
+                    resourceKey = "FileViewerEx.List.DataTemplate";
+                    break;
+
+                case FileViewExViewType.Details:
+                    resourceKey = null;
+                    break;
+            }
+
+            if (string.IsNullOrEmpty(resourceKey))
+                return null;
+
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/FileViewerEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary[resourceKey] as DataTemplate;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get ListViewEx style from resources, based on view type configuration. </summary>
+        /// <param name="viewType"> View type. </param>
+        /// <returns> ListViewEx style. </returns>
+        private static Style GetListViewExStyle(FileViewExViewType viewType)
+        {
+            string resourceKey = "FileViewerEx.Icon.ListViewItemExStyle";
+
+            switch (viewType)
+            {
+                case FileViewExViewType.Icons:
+                    resourceKey = "FileViewerEx.Icon.ListViewItemExStyle";
+                    break;
+
+                case FileViewExViewType.SmallIcons:
+                    resourceKey = "FileViewerEx.SmallIcon.ListViewItemExStyle";
+                    break;
+
+                case FileViewExViewType.Tails:
+                    resourceKey = "FileViewerEx.Tile.ListViewItemExStyle";
+                    break;
+
+                case FileViewExViewType.List:
+                    resourceKey = "FileViewerEx.List.ListViewItemExStyle";
+                    break;
+
+                case FileViewExViewType.Details:
+                    resourceKey = "FileViewerEx.Details.ListViewItemExStyle";
+                    break;
+            }
+
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/FileViewerEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary[resourceKey] as Style;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get ListViewItemEx style from resources, based on view type configuration. </summary>
+        /// <param name="viewType"> View type. </param>
+        /// <returns> ListViewItemEx style. </returns>
+        private static Style GetListViewItemExStyle(FileViewExViewType viewType)
+        {
+            string resourceKey = "FileViewerEx.Icon.ListViewExStyle";
+
+            switch (viewType)
+            {
+                case FileViewExViewType.Icons:
+                case FileViewExViewType.SmallIcons:
+                case FileViewExViewType.Tails:
+                    resourceKey = "FileViewerEx.Icon.ListViewExStyle";
+                    break;
+
+                case FileViewExViewType.List:
+                    resourceKey = "FileViewerEx.List.ListViewExStyle";
+                    break;
+
+                case FileViewExViewType.Details:
+                    resourceKey = "FileViewerEx.Details.ListViewExStyle";
+                    break;
+            }
+
+            var uri = new Uri("pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/FileViewerEx.xaml", UriKind.Absolute);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+            return resourceDictionary[resourceKey] as Style;
         }
 
         #endregion STYLES
@@ -763,6 +905,27 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion UTILITIES
+
+        #region VIEW
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Updates items view of FileViewerEx. </summary>
+        /// <param name="viewType"> View type. </param>
+        protected virtual void UpdateView(FileViewExViewType viewType)
+        {
+            var dataTemplate = GetListViewExDataTemplate(viewType);
+            var listViewItemExStyle = GetListViewItemExStyle(viewType);
+            var listViewExStyle = GetListViewExStyle(viewType);
+
+            if (listView != null)
+            {
+                listView.ItemTemplate = dataTemplate;
+                listView.ItemContainerStyle = listViewItemExStyle;
+                listView.Style = listViewExStyle;
+            }
+        }
+
+        #endregion VIEW
 
     }
 }
