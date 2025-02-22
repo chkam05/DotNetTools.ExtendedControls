@@ -2,6 +2,7 @@
 using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Data.Events;
 using chkam05.Tools.ControlsEx.Resources;
+using chkam05.Tools.ControlsEx.Utilities;
 using chkam05.Tools.ControlsEx.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -303,7 +304,7 @@ namespace chkam05.Tools.ControlsEx
         {
             var drivesCollection = new DirectoryViewExCollection();
 
-            foreach (var driveInfo in GetDrives())
+            foreach (var driveInfo in FileSystemUtilities.GetDrives())
             {
                 var driveItem = CreateDriveItem(driveInfo);
                 drivesCollection.Add(driveItem);
@@ -372,18 +373,10 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Get a list of disk/drives devices plugged to the computer. </summary>
-        /// <returns> List of disk/drives devices plugged to the computer. </returns>
-        private IEnumerable<DriveInfo> GetDrives()
-        {
-            return DriveInfo.GetDrives().Where(d => d.IsReady);
-        }
-
-        //  --------------------------------------------------------------------------------
         /// <summary> Update list of disk/drives after removing device or inserting new drive device. </summary>
         private void UpdateDrives()
         {
-            var newDrives = GetDrives();
+            var newDrives = FileSystemUtilities.GetDrives();
             var removedDrives = ItemsSource.Where(i => !newDrives.Any(d => d.Name == i.Path));
 
             ItemsSource.RemoveRange(removedDrives);
@@ -423,6 +416,8 @@ namespace chkam05.Tools.ControlsEx
                 {
                     if (!item.Items.Any(i => i.Path == newCatalogKvp.Key))
                         item.Items.Insert(itemIndex, CreateCatalogItem(newCatalogKvp.Key, newCatalogKvp.Value));
+
+                    itemIndex++;
                 }
 
                 foreach (var itemExpanded in item.Items.Where(i => i.IsExpanded))
@@ -567,6 +562,18 @@ namespace chkam05.Tools.ControlsEx
         #endregion CONTROL
 
         #region DISK WATCHER
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Triggered when a disk device is connected or disconnected. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Event arrived event args. </param>
+        private void OnDiskChanged(object sender, EventArrivedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                UpdateDrives();
+            });
+        }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Starts listening for device changes. </summary>
@@ -812,22 +819,6 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion STYLES
-
-        #region SYSTEM MANAGEMENT
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Triggered when a disk device is connected or disconnected. </summary>
-        /// <param name="sender"> Object that invoked the method. </param>
-        /// <param name="e"> Event arrived event args. </param>
-        private void OnDiskChanged(object sender, EventArrivedEventArgs e)
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                UpdateDrives();
-            });
-        }
-
-        #endregion SYSTEM MANAGEMENT
 
         #region TEMPLATE
 

@@ -23,11 +23,29 @@ namespace chkam05.Tools.ControlsEx
 
         //  DEPENDENCY PROPERTIES
 
+        public static readonly DependencyProperty CollapseOnSelectProperty = DependencyProperty.Register(
+            nameof(CollapseOnSelect),
+            typeof(bool),
+            typeof(HamburgerMenuEx),
+            new PropertyMetadata(false));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
             typeof(HamburgerMenuEx),
             new PropertyMetadata(new CornerRadius(4)));
+
+        public static readonly DependencyProperty EnableExpandCollapseAnimationProperty = DependencyProperty.Register(
+            nameof(EnableExpandCollapseAnimation),
+            typeof(bool),
+            typeof(HamburgerMenuEx),
+            new PropertyMetadata(true));
+
+        public static readonly DependencyProperty ExpandOnHoverProperty = DependencyProperty.Register(
+            nameof(ExpandOnHover),
+            typeof(bool),
+            typeof(HamburgerMenuEx),
+            new PropertyMetadata(true));
 
         public static readonly DependencyProperty ForegroundInactiveProperty = DependencyProperty.Register(
             nameof(ForegroundInactive),
@@ -112,10 +130,28 @@ namespace chkam05.Tools.ControlsEx
 
         //  GETTERS & SETTERS
 
+        public bool CollapseOnSelect
+        {
+            get => (bool)GetValue(CollapseOnSelectProperty);
+            set => SetValue(CollapseOnSelectProperty, value);
+        }
+
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
             set => SetValue(CornerRadiusProperty, value);
+        }
+
+        public bool EnableExpandCollapseAnimation
+        {
+            get => (bool)GetValue(EnableExpandCollapseAnimationProperty);
+            set => SetValue(EnableExpandCollapseAnimationProperty, value);
+        }
+
+        public bool ExpandOnHover
+        {
+            get => (bool)GetValue(ExpandOnHoverProperty);
+            set => SetValue(ExpandOnHoverProperty, value);
         }
 
         public Brush ForegroundInactive
@@ -203,6 +239,8 @@ namespace chkam05.Tools.ControlsEx
         public HamburgerMenuEx()
         {
             Loaded += OnHamburgerMenuExLoaded;
+            MouseEnter += OnHamburgerMenuExMouseEnter;
+            MouseLeave += OnHamburgerMenuExMouseLeave;
         }
 
         #endregion CONSTRUCTORS
@@ -244,7 +282,7 @@ namespace chkam05.Tools.ControlsEx
                 expandedWidth = Width;
                 MinWidth = minWidth;
 
-                if (enableAnimatedResize)
+                if (EnableExpandCollapseAnimation && enableAnimatedResize)
                     AnimateWidth(Width, minWidth);
                 else
                     Width = minWidth;
@@ -268,7 +306,7 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> Expands the component to full size. </summary>
         private void Expand()
         {
-            if (enableAnimatedResize)
+            if (EnableExpandCollapseAnimation && enableAnimatedResize)
                 AnimateWidth(Width, expandedWidth);
             else
                 Width = expandedWidth;
@@ -301,6 +339,26 @@ namespace chkam05.Tools.ControlsEx
                 Collapse();
 
             ConfigureSeparator();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked after the cursor leaves the component. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Mouse event arguments. </param>
+        private void OnHamburgerMenuExMouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (ExpandOnHover && IsExpanded)
+                InvokeWithAnimationResizeEnabled(() => IsExpanded = false);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked after cursor hovering over a component. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Mouse event arguments. </param>
+        private void OnHamburgerMenuExMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (ExpandOnHover && !IsExpanded)
+                InvokeWithAnimationResizeEnabled(() => IsExpanded = true);
         }
 
         //  --------------------------------------------------------------------------------
@@ -350,10 +408,13 @@ namespace chkam05.Tools.ControlsEx
                 if (boundObject is HamburgerMenuExItem viewModel)
                 {
                     if (viewModel.ItemType == HamburgerMenuExItemType.Header)
-                        InvokeWithAnimationResizeEnabled(() => { IsExpanded = !IsExpanded; });
+                        InvokeWithAnimationResizeEnabled(() => IsExpanded = !IsExpanded);
 
                     SelectionChanged?.Invoke(this, new HamburgerMenuExSelectionChangedEventArgs(viewModel));
                     listViewEx.SelectedItem = null;
+
+                    if (viewModel.ItemType != HamburgerMenuExItemType.Header && IsExpanded && CollapseOnSelect)
+                        InvokeWithAnimationResizeEnabled(() => IsExpanded = false);
                 }
             }
         }

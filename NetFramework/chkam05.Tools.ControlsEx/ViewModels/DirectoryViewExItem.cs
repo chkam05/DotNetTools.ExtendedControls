@@ -55,7 +55,7 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         public string Path
         {
             get => path;
-            set => UpdateItemTypeProperty(value);
+            set => UpdatePathProperty(value);
         }
 
         public string Name
@@ -130,6 +130,7 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         protected virtual void UpdateItemTypeProperty(DirectoryViewExItemType newValue)
         {
             itemType = newValue;
+            NotifyPropertyChanged(nameof(ItemType));
 
             switch (newValue)
             {
@@ -154,9 +155,10 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         //  --------------------------------------------------------------------------------
         /// <summary> Sets a value in a path property and triggers a property changed notification event. </summary>
         /// <param name="newValue"> Value to set. </param>
-        protected virtual void UpdateItemTypeProperty(string newValue)
+        protected virtual void UpdatePathProperty(string newValue)
         {
             path = newValue;
+            NotifyPropertyChanged(nameof(Path));
 
             try
             {
