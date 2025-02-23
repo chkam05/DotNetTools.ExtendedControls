@@ -557,7 +557,7 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> Triggered when a component is unloaded. </summary>
         /// <param name="sender"> Object that invoked the method. </param>
         /// <param name="e"> Routed event arguments. </param>
-        protected void OnUnloaded(object sender, RoutedEventArgs e)
+        private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             StopDiskWatcher();
         }

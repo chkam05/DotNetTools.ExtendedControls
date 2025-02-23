@@ -157,8 +157,8 @@ namespace chkam05.Tools.ControlsEx
 
         private FileSystemWatcher catalogWatcher = null;
         private ManagementEventWatcher diskWatcher = null;
+        private FileViewExColumnBindingMapper columnBindingMapper;
         private ListViewEx listView = null;
-        private ListViewExColumnCreator<FileViewExColumnFieldType> listViewColumnCreator;
         private bool diskWatcherStopped = true;
         private bool isSelecting = false;
 
@@ -290,8 +290,7 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> FileViewerEx class constructor. </summary>
         public FileViewerEx()
         {
-            var gridViewBindingMapper = new FileViewExColumnBindingMapper();
-            listViewColumnCreator = new ListViewExColumnCreator<FileViewExColumnFieldType>(gridViewBindingMapper);
+            columnBindingMapper = new FileViewExColumnBindingMapper();
 
             ItemsSource = CreateCollection();
             Unloaded += OnUnloaded;
@@ -369,7 +368,7 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> Triggered when a component is unloaded. </summary>
         /// <param name="sender"> Object that invoked the method. </param>
         /// <param name="e"> Routed event arguments. </param>
-        protected void OnUnloaded(object sender, RoutedEventArgs e)
+        private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             StopDiskWatcher();
             StopWatchingDirectory();
@@ -975,19 +974,20 @@ namespace chkam05.Tools.ControlsEx
 
         //  --------------------------------------------------------------------------------
         /// <summary> Build grid columns. </summary>
-        protected virtual void BuildGridColumns()
+        private void BuildGridColumns()
         {
             if (ViewType != FileViewExViewType.Details)
                 return;
 
             if (listView != null)
-                listView.View = listViewColumnCreator.CreateGridView(ColumnsSource);
+                listView.View = ListViewExColumnCreator<FileViewExColumnFieldType>
+                    .CreateGridView(ColumnsSource, columnBindingMapper);
         }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Updates items view of FileViewerEx. </summary>
         /// <param name="viewType"> View type. </param>
-        protected virtual void UpdateView(FileViewExViewType viewType, FileViewExViewType? oldViewType = null)
+        private void UpdateView(FileViewExViewType viewType, FileViewExViewType? oldViewType = null)
         {
             var dataTemplate = GetListViewExDataTemplate(viewType);
             var listViewItemExStyle = GetListViewItemExStyle(viewType);

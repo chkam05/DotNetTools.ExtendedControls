@@ -14,33 +14,16 @@ using System.Windows.Data;
 
 namespace chkam05.Tools.ControlsEx.Utilities
 {
-    public class ListViewExColumnCreator<T> where T : Enum
+    public static class ListViewExColumnCreator<T> where T : Enum
     {
 
-        public IBindingMapper<T> BindingMapper { get; set; }
-
-
         //  METHODS
-
-        #region CONSTRUCTORS
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> ListViewExColumnCreator constructor. </summary>
-        /// <param name="bindingMapper"> Column paths binding mapper. </param>
-        public ListViewExColumnCreator(IBindingMapper<T> bindingMapper)
-        {
-            BindingMapper = bindingMapper;
-        }
-
-        #endregion CONSTRUCTORS
-
-        #region BUILDER
 
         //  --------------------------------------------------------------------------------
         /// <summary> Create GridView with columns. </summary>
         /// <param name="columnsConfig"> Columns config collection. </param>
         /// <returns> GridView with columns. </returns>
-        public GridView CreateGridView(GridViewExColumnConfigCollection<T> columnsConfig)
+        public static GridView CreateGridView(GridViewExColumnConfigCollection<T> columnsConfig, IBindingMapper<T> bindingMapper)
         {
             var gridView = new GridView();
 
@@ -52,13 +35,17 @@ namespace chkam05.Tools.ControlsEx.Utilities
                     Width = config.Width
                 };
 
-                string bindingPath = BindingMapper.GetColumnBindingPath(config.FieldType);
+                string bindingPath = bindingMapper.GetColumnBindingPath(config.FieldType);
                 var binding = new Binding(bindingPath);
 
                 if (config.Converter != null)
                     binding.Converter = config.Converter;
 
-                gridViewColumn.CellTemplate = CreateCellTemplate(config.ColumType, binding);
+                gridViewColumn.CellTemplate = new DataTemplate()
+                {
+                    VisualTree = CreateFrameworkElementFactory(config.ColumType, binding)
+                };
+
                 gridView.Columns.Add(gridViewColumn);
             }
 
@@ -66,58 +53,61 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Create grid column cell DataTemplate. </summary>
-        /// <param name="columnType"> Column data type. </param>
-        /// <param name="binding"> Binded value. </param>
-        /// <returns> Grid column DataTemplate. </returns>
-        private DataTemplate CreateCellTemplate(GridViewExColumnType columnType, Binding binding)
-        {
-            return new DataTemplate()
-            {
-                VisualTree = CreateFrameworkElementFactory(columnType, binding)
-            };
-        }
-
-        //  --------------------------------------------------------------------------------
         /// <summary> Create FrameworkElementFactory for grid column cell. </summary>
         /// <param name="columnType"> Column data type. </param>
         /// <param name="binding"> Binded value. </param>
         /// <returns> FrameworkElementFactory for grid column cell. </returns>
-        private FrameworkElementFactory CreateFrameworkElementFactory(GridViewExColumnType columnType, Binding binding)
+        private static FrameworkElementFactory CreateFrameworkElementFactory(GridViewExColumnType columnType, Binding binding)
         {
-            FrameworkElementFactory factory;
-
             switch (columnType)
             {
                 case GridViewExColumnType.PackIcon:
-                    factory = new FrameworkElementFactory(typeof(PackIcon));
-                    factory.SetBinding(PackIcon.KindProperty, binding);
-                    factory.SetValue(PackIcon.HeightProperty, Double.NaN);
-                    factory.SetValue(PackIcon.HorizontalAlignmentProperty, HorizontalAlignment.Stretch);
-                    factory.SetValue(PackIcon.VerticalAlignmentProperty, VerticalAlignment.Stretch);
-
-                    var widthBinding = new Binding("Height")
-                    {
-                        RelativeSource = new RelativeSource(RelativeSourceMode.Self)
-                    };
-
-                    factory.SetBinding(PackIcon.WidthProperty, widthBinding);
-                    break;
+                    return CreatePackIconFrameworkElementFactory(binding);
 
                 case GridViewExColumnType.Text:
                 default:
-                    factory = new FrameworkElementFactory(typeof(TextBlock));
-                    factory.SetBinding(TextBlock.TextProperty, binding);
-                    factory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Left);
-                    factory.SetValue(TextBlock.MarginProperty, new Thickness(0));
-                    factory.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
-                    break;
+                    return CreateTextBlockFrameworkElementFactory(binding);
             }
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Create PackIcon FrameworkElementFactory for grid column cell. </summary>
+        /// <param name="binding"> Binded value. </param>
+        /// <returns> PackIcon FrameworkElementFactory for grid column cell. </returns>
+        private static FrameworkElementFactory CreatePackIconFrameworkElementFactory(Binding binding)
+        {
+            var factory = new FrameworkElementFactory(typeof(PackIcon));
+
+            factory.SetBinding(PackIcon.KindProperty, binding);
+            factory.SetValue(PackIcon.HeightProperty, Double.NaN);
+            factory.SetValue(PackIcon.HorizontalAlignmentProperty, HorizontalAlignment.Stretch);
+            factory.SetValue(PackIcon.VerticalAlignmentProperty, VerticalAlignment.Stretch);
+
+            var widthBinding = new Binding("Height")
+            {
+                RelativeSource = new RelativeSource(RelativeSourceMode.Self)
+            };
+
+            factory.SetBinding(PackIcon.WidthProperty, widthBinding);
 
             return factory;
         }
 
-        #endregion BUILDER
+        //  --------------------------------------------------------------------------------
+        /// <summary> Create TextBlock FrameworkElementFactory for grid column cell. </summary>
+        /// <param name="binding"> Binded value. </param>
+        /// <returns> TextBlock FrameworkElementFactory for grid column cell. </returns>
+        private static FrameworkElementFactory CreateTextBlockFrameworkElementFactory(Binding binding)
+        {
+            var factory = new FrameworkElementFactory(typeof(TextBlock));
+
+            factory.SetBinding(TextBlock.TextProperty, binding);
+            factory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+            factory.SetValue(TextBlock.MarginProperty, new Thickness(0));
+            factory.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
+
+            return factory;
+        }
 
     }
 }

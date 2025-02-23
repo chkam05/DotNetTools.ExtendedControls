@@ -34,7 +34,7 @@ OVERRIDED COMPONENTS
 - [X] TreeViewItemEx
 - [X] WindowEx
 
-31/31
+31/32
 ------------------------------------------------------------
 CUSTOM COMPONENTS
 ------------------------------------------------------------
@@ -42,7 +42,8 @@ CUSTOM COMPONENTS
 - [X] ColorPaletteEx
 - [X] ColorPickerEx
 - [X] DirectoryViewerEx
-- [ ] FileViewerEx
+- [X] FileViewerEx
+- [ ] FullViewButtonEx
 - [X] GeometryThumbEx
 - [X] HamburgerMenu
 - [X] ToggleEx
@@ -51,7 +52,7 @@ CUSTOM COMPONENTS
 - [X] UpDownLongEx
 - [X] WindowTitleBarEx
 
-9/12
+12/13
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------
