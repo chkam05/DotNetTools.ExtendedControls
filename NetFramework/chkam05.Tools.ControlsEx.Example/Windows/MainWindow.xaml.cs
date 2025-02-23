@@ -41,5 +41,9 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
             InitializeComponent();
         }
 
+        private void WideViewButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

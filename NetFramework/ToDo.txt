@@ -10,7 +10,7 @@ OVERRIDED COMPONENTS
 - [X] ContextMenuItemEx
 - [X] DatePickerEx
 - [X] ExpanderEx
-- [ ] FrameEx
+- [ ] FrameEx<T> where T : Page
 - [X] GroupBox
 - [X] ListBoxEx
 - [X] ListBoxItemEx
@@ -43,16 +43,16 @@ CUSTOM COMPONENTS
 - [X] ColorPickerEx
 - [X] DirectoryViewerEx
 - [X] FileViewerEx
-- [ ] FullViewButtonEx
 - [X] GeometryThumbEx
 - [X] HamburgerMenu
 - [X] ToggleEx
 - [X] UpDownEx
 - [X] UpDownDoubleEx
 - [X] UpDownLongEx
+- [X] WideViewButtonEx
 - [X] WindowTitleBarEx
 
-12/13
+13/13
 ------------------------------------------------------------
 INTERNAL MESSAGES
 ------------------------------------------------------------
@@ -66,4 +66,41 @@ INTERNAL MESSAGES
 - [ ] ProgressInternalMessageBox
 
 0/8
+------------------------------------------------------------
+TESTING APP
+------------------------------------------------------------
+- [ ] ButtonEx
+- [ ] ButtonExWithIcon
+- [ ] CalendarEx
+- [ ] CheckBoxEx
+- [ ] ColorPaletteEx
+- [ ] ColorPickerEx
+- [ ] ComboBoxEx
+- [ ] ContextMenuEx
+- [ ] DatePickerEx
+- [ ] DirectoryViewerEx + FileViewerEx (with show and close button in app)
+- [ ] ExpanderEx
+- [ ] GroupBox
+- [ ] HamburgerMenu (with show and close button in app)
+- [ ] ListBoxEx
+- [ ] ListViewEx
+- [ ] MenuEx
+- [ ] ProgressBarEx
+- [ ] RadioButtonEx
+- [ ] RepeatButtonEx
+- [ ] RichTextBoxEx
+- [ ] ScrollBarEx
+- [ ] SliderEx
+- [ ] TabControlEx
+- [ ] TextBoxEx
+- [ ] ToggleButtonEx
+- [ ] ToggleEx
+- [ ] TreeViewEx
+- [ ] UpDownDoubleEx
+- [ ] UpDownLongEx
+- [ ] WideViewButtonEx
+- [ ] WindowEx (with show and close button in app)
+- [ ] WindowTitleBarEx
+
+0/32
 ------------------------------------------------------------

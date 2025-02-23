@@ -46,6 +46,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewItemEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownDoubleEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownLongEx.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WideViewButtonEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WindowEx.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WindowTitleBarEx.xaml"/>
     </ResourceDictionary.MergedDictionaries>
@@ -90,6 +91,7 @@
     <Style BasedOn="{StaticResource TreeViewItemExStyle}" TargetType="{x:Type local:TreeViewItemEx}"/>
     <Style BasedOn="{StaticResource UpDownDoubleExStyle}" TargetType="{x:Type local:UpDownDoubleEx}"/>
     <Style BasedOn="{StaticResource UpDownLongExStyle}" TargetType="{x:Type local:UpDownLongEx}"/>
+    <Style BasedOn="{StaticResource WideViewButtonExStyle}" TargetType="{x:Type local:WideViewButtonEx}"/>
     <Style BasedOn="{StaticResource WindowExStyle}" TargetType="{x:Type local:WindowEx}"/>
     <Style BasedOn="{StaticResource WindowTitleBarExStyle}" TargetType="{x:Type local:WindowTitleBarEx}"/>
 

@@ -80,6 +80,7 @@
     <Compile Include="Converters\ListToStringConverter.cs" />
     <Compile Include="Converters\MinMaxDimensionConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ThicknessModifierConverter.cs" />
     <Compile Include="Converters\ToggleTypePackIconConverter.cs" />
     <Compile Include="Data\AHSLColor.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="ViewModels\DirectoryViewExItem.cs" />
     <Compile Include="ViewModels\FileViewExItem.cs" />
     <Compile Include="ViewModels\HamburgerMenuExItem.cs" />
+    <Compile Include="WideViewButtonEx.cs" />
     <Compile Include="WindowEx.cs" />
     <Compile Include="WindowTitleBarEx.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -365,6 +367,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\UpDownLongEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\WideViewButtonEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
