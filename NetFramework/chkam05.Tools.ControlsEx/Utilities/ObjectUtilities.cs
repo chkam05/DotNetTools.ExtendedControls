@@ -85,6 +85,22 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Searches for parent FrameworkElement by type in the DependencyObject component tree. </summary>
+        /// <param name="current"> Child DependencyObject of VisualTree where the parent will be searched for. </param>
+        /// <returns> Found FrameworkElement object or null. </returns>
+        public static T FindParentAncestorByType<T>(DependencyObject current) where T : DependencyObject
+        {
+            while (current != null)
+            {
+                if (current is T t)
+                    return t;
+
+                current = VisualTreeHelper.GetParent(current);
+            }
+            return null;
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Gets an object of the specified type from a collection of objects. </summary>
         /// <typeparam name="T"> Type of returned object. </typeparam>
         /// <param name="values"> Collection of objects. </param>

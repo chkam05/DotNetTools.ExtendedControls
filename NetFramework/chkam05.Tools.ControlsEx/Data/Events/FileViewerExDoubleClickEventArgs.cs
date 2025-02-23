@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace chkam05.Tools.ControlsEx.Data.Events
 {
-    public class FileViewerExSelectionChangedEventArgs : EventArgs
+    public class FileViewerExDoubleClickEventArgs : EventArgs
     {
 
         //  VARIABLES
 
         public FileViewExItem Item { get; set; }
-        public bool IsUserModified { get; set; }
 
 
         //  METHODS
@@ -21,13 +20,11 @@ namespace chkam05.Tools.ControlsEx.Data.Events
         #region CONSTRUCTORS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> FileViewerExSelectionChangedEventArgs class constructor. </summary>
+        /// <summary> FileViewerExDoubleClickEventArgs class constructor. </summary>
         /// <param name="item"> Selected file item. </param>
-        /// <param name="isUserModified"> Is the selection made by the user interface. </param>
-        public FileViewerExSelectionChangedEventArgs(FileViewExItem item, bool isUserModified)
+        public FileViewerExDoubleClickEventArgs(FileViewExItem item)
         {
             Item = item;
-            IsUserModified = isUserModified;
         }
 
         #endregion CONSTRUCTORS

@@ -15,21 +15,52 @@
     <!-- Details ListViewEx -->
 
     <Style x:Key="FileViewerEx.Details.ListViewItemExStyle" BasedOn="{StaticResource GridViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
-        
+        <Setter Property="Height" Value="32"/>
     </Style>
     
     <Style x:Key="FileViewerEx.Details.ListViewExStyle" BasedOn="{StaticResource GridViewExStyle}" TargetType="{x:Type local:ListViewEx}">
-        
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
     </Style>
     
     <!-- List ListViewEx -->
 
     <DataTemplate x:Key="FileViewerEx.List.DataTemplate">
+        <Grid
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ToolTip="{Binding Name}">
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:PackIcon
+                x:Name="packIcon"
+                Grid.Column="0"
+                Height="Auto"
+                HorizontalAlignment="Stretch"
+                Kind="{Binding Icon}"
+                VerticalAlignment="Stretch"
+                Width="{Binding Height, ElementName=packIcon}"/>
+
+            <TextBlock
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
+                Margin="4,0,0,0"
+                Text="{Binding Name}"
+                TextAlignment="Left"
+                VerticalAlignment="Center"/>
+        </Grid>
     </DataTemplate>
 
     <Style x:Key="FileViewerEx.List.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
-
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Width" Value="Auto"/>
     </Style>
 
     <Style x:Key="FileViewerEx.List.ListViewExStyle" BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}">
@@ -37,38 +68,131 @@
             <Setter.Value>
                 <ItemsPanelTemplate>
                     <WrapPanel
-                    Grid.IsSharedSizeScope="True"
-                    Orientation="Vertical"
-                    ScrollViewer.CanContentScroll="True"/>
+                        Grid.IsSharedSizeScope="True"
+                        Orientation="Vertical"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
     </Style>
 
     <!-- Icon/SmallIcon/Tile ListViewEx -->
 
     <DataTemplate x:Key="FileViewerEx.Icon.DataTemplate">
-        
+        <Grid
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ToolTip="{Binding Name}">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <materialDesign:PackIcon
+                Grid.Row="0"
+                Height="Auto"
+                HorizontalAlignment="Stretch"
+                Kind="{Binding Icon}"
+                VerticalAlignment="Stretch"
+                Width="Auto"/>
+
+            <TextBlock
+                Grid.Row="1"
+                HorizontalAlignment="Stretch"
+                Text="{Binding Name}"
+                TextAlignment="Center"
+                VerticalAlignment="Center"/>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="FileViewerEx.SmallIcon.DataTemplate">
+        <Grid
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ToolTip="{Binding Name}">
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:PackIcon
+                x:Name="packIcon"
+                Grid.Column="0"
+                Height="Auto"
+                HorizontalAlignment="Stretch"
+                Kind="{Binding Icon}"
+                VerticalAlignment="Stretch"
+                Width="{Binding Height, ElementName=packIcon}"/>
+
+            <TextBlock
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
+                Margin="4,0,0,0"
+                Text="{Binding Name}"
+                TextAlignment="Left"
+                VerticalAlignment="Center"/>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="FileViewerEx.Tile.DataTemplate">
+        <Grid
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ToolTip="{Binding Name}">
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:PackIcon
+                x:Name="packIcon"
+                Grid.Column="0"
+                Height="Auto"
+                HorizontalAlignment="Stretch"
+                Kind="{Binding Icon}"
+                VerticalAlignment="Stretch"
+                Width="{Binding Height, ElementName=packIcon}"/>
+
+            <TextBlock
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
+                Margin="4,0,0,0"
+                Text="{Binding Name}"
+                TextAlignment="Left"
+                TextWrapping="WrapWithOverflow"
+                VerticalAlignment="Center"/>
+        </Grid>
     </DataTemplate>
 
     <Style x:Key="FileViewerEx.Icon.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
-
+        <Setter Property="Height" Value="{Binding ItemIconSize, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FileViewerEx}}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Width" Value="{Binding ItemIconSize, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FileViewerEx}}}"/>
     </Style>
 
     <Style x:Key="FileViewerEx.SmallIcon.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
-
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Width" Value="304"/>
     </Style>
 
     <Style x:Key="FileViewerEx.Tile.ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}"  TargetType="{x:Type local:ListViewItemEx}">
-
+        <Setter Property="Height" Value="56"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Width" Value="256"/>
     </Style>
 
     <Style x:Key="FileViewerEx.Icon.ListViewExStyle" BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}">
@@ -82,6 +206,8 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
     </Style>
 
     
@@ -99,10 +225,11 @@
                 BorderBrushInactive="{TemplateBinding BorderBrushInactive}"
                 Foreground="{TemplateBinding Foreground}"
                 ForegroundInactive="{TemplateBinding ForegroundInactive}"
+                ItemContainerStyle="{StaticResource FileViewerEx.Icon.ListViewItemExStyle}"
+                ItemTemplate="{StaticResource FileViewerEx.Icon.DataTemplate}"
                 ItemsSource="{TemplateBinding ItemsSource}"
-                ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
-                ScrollViewer.VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
-                ScrollViewerStyle="{TemplateBinding ScrollViewerStyle}"/>
+                ScrollViewerStyle="{TemplateBinding ScrollViewerStyle}"
+                Style="{StaticResource FileViewerEx.Icon.ListViewExStyle}"/>
 
         </Grid>
     </ControlTemplate>

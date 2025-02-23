@@ -47,18 +47,35 @@
 
             <cex:ScrollViewerEx
                 Grid.Row="1"
-                HorizontalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Auto">
 
-                <StackPanel
-                    HorizontalAlignment="Left"
-                    Margin="8"
-                    VerticalAlignment="Top">
+                <Grid>
 
-                    <cex:DirectoryViewerEx
-                        Height="360"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                </StackPanel>
+                    <StackPanel
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        Margin="8"
+                        VerticalAlignment="Top">
+
+                        <cex:DirectoryViewerEx
+                            Height="360"/>
+
+                    </StackPanel>
+
+                    <cex:FileViewerEx
+                        Grid.Column="1"
+                        Height="400"
+                        Path="E:\"
+                        VerticalAlignment="Top"
+                        ViewType="Details"/>
+
+                </Grid>
 
             </cex:ScrollViewerEx>
 

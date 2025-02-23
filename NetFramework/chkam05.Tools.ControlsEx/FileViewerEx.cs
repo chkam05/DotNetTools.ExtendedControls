@@ -1,4 +1,5 @@
-﻿using chkam05.Tools.ControlsEx.Data.Collections;
+﻿using chkam05.Tools.ControlsEx.Data;
+using chkam05.Tools.ControlsEx.Data.Collections;
 using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Data.Events;
 using chkam05.Tools.ControlsEx.Resources;
@@ -8,6 +9,8 @@ using chkam05.Tools.ControlsEx.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -15,6 +18,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using static MaterialDesignThemes.Wpf.Theme;
@@ -45,6 +50,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(FileViewerEx),
             new PropertyMetadata(true, CatalogListeningPropertyChangedCallback));
 
+        public static readonly DependencyProperty ColumnsSourceProperty = DependencyProperty.Register(
+            nameof(ColumnsSource),
+            typeof(GridViewExColumnConfigCollection<FileViewExColumnFieldType>),
+            typeof(FileViewerEx),
+            new PropertyMetadata(GetDefaultColumnItems(), ColumnsSourcePropertyChangedCallback));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -63,12 +74,6 @@ namespace chkam05.Tools.ControlsEx
             typeof(FileViewerEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DarkInactive)));
 
-        public static readonly DependencyProperty HorizontalScrollBarVisibilityProperty = DependencyProperty.Register(
-            nameof(HorizontalScrollBarVisibility),
-            typeof(ScrollBarVisibility),
-            typeof(FileViewerEx),
-            new PropertyMetadata(ScrollBarVisibility.Auto));
-
         public static readonly DependencyProperty IconMapperProperty = DependencyProperty.Register(
             nameof(IconMapper),
             typeof(IFileViewExItemIconMapper),
@@ -79,7 +84,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ItemIconSize),
             typeof(double),
             typeof(FileViewerEx),
-            new PropertyMetadata(32));
+            new PropertyMetadata(72d));
 
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(
             nameof(ItemsSource),
@@ -129,12 +134,6 @@ namespace chkam05.Tools.ControlsEx
             typeof(FileViewerEx),
             new PropertyMetadata(false, ShowSystemPropertyChangedCallback));
 
-        public static readonly DependencyProperty VerticalScrollBarVisibilityProperty = DependencyProperty.Register(
-            nameof(VerticalScrollBarVisibility),
-            typeof(ScrollBarVisibility),
-            typeof(FileViewerEx),
-            new PropertyMetadata(ScrollBarVisibility.Auto));
-
         public static readonly DependencyProperty ViewTypeProperty = DependencyProperty.Register(
             nameof(ViewType),
             typeof(FileViewExViewType),
@@ -144,11 +143,13 @@ namespace chkam05.Tools.ControlsEx
 
         //  DELEGATES
 
+        public delegate void FileViewerExDoubleClickEventHandler(object sender, FileViewerExDoubleClickEventArgs e);
         public delegate void FileViewerExSelectionChangedEventHandler(object sender, FileViewerExSelectionChangedEventArgs e);
 
 
         //  EVENTS
 
+        public event FileViewerExDoubleClickEventHandler DoubleClick;
         public event FileViewerExSelectionChangedEventHandler SelectionChanged;
 
 
@@ -157,6 +158,7 @@ namespace chkam05.Tools.ControlsEx
         private FileSystemWatcher catalogWatcher = null;
         private ManagementEventWatcher diskWatcher = null;
         private ListViewEx listView = null;
+        private ListViewExColumnCreator<FileViewExColumnFieldType> listViewColumnCreator;
         private bool diskWatcherStopped = true;
         private bool isSelecting = false;
 
@@ -181,6 +183,12 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(CatalogListeningProperty, value);
         }
 
+        public GridViewExColumnConfigCollection<FileViewExColumnFieldType> ColumnsSource
+        {
+            get => (GridViewExColumnConfigCollection<FileViewExColumnFieldType>)GetValue(ColumnsSourceProperty);
+            set => SetValue(ColumnsSourceProperty, value);
+        }
+
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
@@ -197,12 +205,6 @@ namespace chkam05.Tools.ControlsEx
         {
             get => (Brush)GetValue(ForegroundInactiveProperty);
             set => SetValue(ForegroundInactiveProperty, value);
-        }
-
-        public ScrollBarVisibility HorizontalScrollBarVisibility
-        {
-            get => (ScrollBarVisibility)GetValue(HorizontalScrollBarVisibilityProperty);
-            set => SetValue(VerticalScrollBarVisibilityProperty, value);
         }
 
         public IFileViewExItemIconMapper IconMapper
@@ -265,12 +267,6 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ShowSystemProperty, value);
         }
 
-        public ScrollBarVisibility VerticalScrollBarVisibility
-        {
-            get => (ScrollBarVisibility)GetValue(VerticalScrollBarVisibilityProperty);
-            set => SetValue(VerticalScrollBarVisibilityProperty, value);
-        }
-
         public FileViewExViewType ViewType
         {
             get => (FileViewExViewType)GetValue(ViewTypeProperty);
@@ -294,6 +290,9 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> FileViewerEx class constructor. </summary>
         public FileViewerEx()
         {
+            var gridViewBindingMapper = new FileViewExColumnBindingMapper();
+            listViewColumnCreator = new ListViewExColumnCreator<FileViewExColumnFieldType>(gridViewBindingMapper);
+
             ItemsSource = CreateCollection();
             Unloaded += OnUnloaded;
         }
@@ -428,6 +427,15 @@ namespace chkam05.Tools.ControlsEx
         #region ITEMS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Invoked after ColumnsSource collection changed. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Notify collection changed event arguments. </param>
+        private void OnColumnsSourceCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            BuildGridColumns();
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Create FileViewExItem collection. </summary>
         /// <returns> FileViewItemEx collection. </returns>
         private FileViewExCollection CreateCollection()
@@ -486,6 +494,20 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Creates a default ColumnItems collection. </summary>
+        /// <returns> Default ColumnItems collection. </returns>
+        private static GridViewExColumnConfigCollection<FileViewExColumnFieldType> GetDefaultColumnItems()
+        {
+            return new GridViewExColumnConfigCollection<FileViewExColumnFieldType>()
+            {
+                new GridViewColumnConfig<FileViewExColumnFieldType>(FileViewExColumnFieldType.Icon, "Icon", GridViewExColumnType.PackIcon, 48),
+                new GridViewColumnConfig<FileViewExColumnFieldType>(FileViewExColumnFieldType.Name, "Name", 256),
+                new GridViewColumnConfig<FileViewExColumnFieldType>(FileViewExColumnFieldType.Size, "Size", 72),
+                new GridViewColumnConfig<FileViewExColumnFieldType>(FileViewExColumnFieldType.Owner, "Owner", 128),
+            };
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Creates a default ItemsSource collection. </summary>
         /// <returns> Default ItemsSource collection. </returns>
         private static FileViewExCollection GetDefaultItems()
@@ -499,6 +521,26 @@ namespace chkam05.Tools.ControlsEx
         private void InvokeSelectionChanged(FileViewExItem selectedItem)
         {
             SelectionChanged?.Invoke(this, new FileViewerExSelectionChangedEventArgs(selectedItem, isSelecting));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked after double click. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Mouse button event arguments. </param>
+        private void OnViewExMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewEx listViewEx)
+            {
+                var element = listViewEx.InputHitTest(e.GetPosition(listView)) as FrameworkElement;
+
+                if (element != null)
+                {
+                    var item = element.DataContext as FileViewExItem;
+
+                    if (item != null)
+                        DoubleClick?.Invoke(this, new FileViewerExDoubleClickEventArgs(item));
+                }
+            }
         }
 
         //  --------------------------------------------------------------------------------
@@ -637,6 +679,24 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Invoked when ColumnsSource property changes. </summary>
+        /// <param name="d"> Dependency object from which event has been invoked. </param>
+        /// <param name="e"> Dependency property changed event arguments. </param>
+        private static void ColumnsSourcePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var fileViewerEx = d as FileViewerEx;
+
+            if (fileViewerEx != null && e.NewValue is GridViewExColumnConfigCollection<FileViewExColumnFieldType> columnsCollection)
+            {
+                if (e.OldValue is GridViewExColumnConfigCollection<FileViewExColumnFieldType> oldCollection && oldCollection != columnsCollection)
+                    oldCollection.CollectionChanged -= fileViewerEx.OnColumnsSourceCollectionChanged;
+
+                columnsCollection.CollectionChanged += fileViewerEx.OnColumnsSourceCollectionChanged;
+                fileViewerEx.BuildGridColumns();
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Invoked when ExtensionFilter property changes. </summary>
         /// <param name="d"> Dependency object from which event has been invoked. </param>
         /// <param name="e"> Dependency property changed event arguments. </param>
@@ -752,7 +812,7 @@ namespace chkam05.Tools.ControlsEx
             var fileViewerEx = d as FileViewerEx;
 
             if (fileViewerEx != null && e.NewValue is FileViewExViewType viewType)
-                fileViewerEx.UpdateView(viewType);
+                fileViewerEx.UpdateView(viewType, e.OldValue as FileViewExViewType?);
         }
 
         #endregion PROPERTIES CHANGED CALLBACKS
@@ -809,10 +869,10 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Get ListViewEx style from resources, based on view type configuration. </summary>
+        /// <summary> Get ListViewItemEx style from resources, based on view type configuration. </summary>
         /// <param name="viewType"> View type. </param>
-        /// <returns> ListViewEx style. </returns>
-        private static Style GetListViewExStyle(FileViewExViewType viewType)
+        /// <returns> ListViewItemEx style. </returns>
+        private static Style GetListViewItemExStyle(FileViewExViewType viewType)
         {
             string resourceKey = "FileViewerEx.Icon.ListViewItemExStyle";
 
@@ -845,10 +905,10 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Get ListViewItemEx style from resources, based on view type configuration. </summary>
+        /// <summary> Get ListViewEx style from resources, based on view type configuration. </summary>
         /// <param name="viewType"> View type. </param>
-        /// <returns> ListViewItemEx style. </returns>
-        private static Style GetListViewItemExStyle(FileViewExViewType viewType)
+        /// <returns> ListViewEx style. </returns>
+        private static Style GetListViewExStyle(FileViewExViewType viewType)
         {
             string resourceKey = "FileViewerEx.Icon.ListViewExStyle";
 
@@ -887,7 +947,12 @@ namespace chkam05.Tools.ControlsEx
             listView = GetTemplateChild("listView") as ListViewEx;
 
             if (listView != null)
+            {
+                listView.MouseDoubleClick += OnViewExMouseDoubleClick;
                 listView.SelectionChanged += OnViewExSelectedItemChanged;
+            }
+
+            UpdateView(ViewType);
         }
 
         #endregion TEMPLATE
@@ -909,19 +974,35 @@ namespace chkam05.Tools.ControlsEx
         #region VIEW
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Build grid columns. </summary>
+        protected virtual void BuildGridColumns()
+        {
+            if (ViewType != FileViewExViewType.Details)
+                return;
+
+            if (listView != null)
+                listView.View = listViewColumnCreator.CreateGridView(ColumnsSource);
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Updates items view of FileViewerEx. </summary>
         /// <param name="viewType"> View type. </param>
-        protected virtual void UpdateView(FileViewExViewType viewType)
+        protected virtual void UpdateView(FileViewExViewType viewType, FileViewExViewType? oldViewType = null)
         {
             var dataTemplate = GetListViewExDataTemplate(viewType);
             var listViewItemExStyle = GetListViewItemExStyle(viewType);
             var listViewExStyle = GetListViewExStyle(viewType);
-
+            
             if (listView != null)
             {
-                listView.ItemTemplate = dataTemplate;
-                listView.ItemContainerStyle = listViewItemExStyle;
+                if (oldViewType == FileViewExViewType.Details && viewType != oldViewType)
+                    listView.View = null;
+
                 listView.Style = listViewExStyle;
+                listView.ItemContainerStyle = listViewItemExStyle;
+                listView.ItemTemplate = dataTemplate;
+                BuildGridColumns();
+                listView.UpdateLayout();
             }
         }
 

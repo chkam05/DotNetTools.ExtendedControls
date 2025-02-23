@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -125,11 +126,13 @@ namespace chkam05.Tools.ControlsEx
 
         //  DELEGATES
 
+        public delegate void DirectoryViewerExDoubleClickEventHandler(object sender, DirectoryViewerExDoubleClickEventArgs e);
         public delegate void DirectoryViewerExSelectionChangedEventHandler(object sender, DirectoryViewerExSelectionChangedEventArgs e);
 
 
         //  EVENTS
 
+        public event DirectoryViewerExDoubleClickEventHandler DoubleClick;
         public event DirectoryViewerExSelectionChangedEventHandler SelectionChanged;
 
 
@@ -658,6 +661,31 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Invoked after double click. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Mouse button event arguments. </param>
+        private void OnViewExMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is TreeViewEx treeViewEx)
+            {
+                var clickedElement = treeViewEx.InputHitTest(e.GetPosition(treeViewEx)) as DependencyObject;
+
+                if (clickedElement != null)
+                {
+                    var treeViewItem = ObjectUtilities.FindParentAncestorByType<TreeViewItemEx>(clickedElement);
+
+                    if (treeViewItem != null)
+                    {
+                        var item = (treeViewItem.DataContext ?? treeViewItem.Header) as DirectoryViewExItem;
+
+                        if (item != null)
+                            DoubleClick?.Invoke(this, new DirectoryViewerExDoubleClickEventArgs(item));
+                    }
+                }
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Manages the selection of elements on the DirectoryViewerEx. </summary>
         /// <param name="sender"> Object that invoked the method. </param>
         /// <param name="e"> Selection changed event arguments. </param>
@@ -831,7 +859,10 @@ namespace chkam05.Tools.ControlsEx
             treeView = GetTemplateChild("treeView") as TreeViewEx;
 
             if (treeView != null)
+            {
+                treeView.MouseDoubleClick += OnViewExMouseDoubleClick;
                 treeView.SelectedItemChanged += OnViewExSelectedItemChanged;
+            }
         }
 
         #endregion TEMPLATE
