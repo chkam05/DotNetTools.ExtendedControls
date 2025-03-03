@@ -87,6 +87,7 @@
     <Compile Include="Data\Collections\ColorPaletteExCollection.cs" />
     <Compile Include="Data\Collections\DirectoryViewExCollection.cs" />
     <Compile Include="Data\Collections\FileViewExCollection.cs" />
+    <Compile Include="Data\Collections\FrameExPagesCollection.cs" />
     <Compile Include="Data\Collections\HamburgerMenuExCollection.cs" />
     <Compile Include="Data\Collections\GridViewExColumnConfigCollection.cs" />
     <Compile Include="Data\Enums\CalendarExHeaderPosition.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="DirectoryViewerEx.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="FileViewerEx.cs" />
+    <Compile Include="FrameEx.cs" />
     <Compile Include="GeometryThumbEx.cs" />
     <Compile Include="GroupBoxEx.cs" />
     <Compile Include="HamburgerMenuEx.cs" />
@@ -247,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\FileViewerEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\FrameEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
